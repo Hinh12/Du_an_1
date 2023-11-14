@@ -11,7 +11,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-String hllo = "minh";
+        String hllo = "minh";
+        String hllg = "hinh";
 
     }
 }
