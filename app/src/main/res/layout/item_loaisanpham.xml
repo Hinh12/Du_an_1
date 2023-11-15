@@ -18,7 +18,8 @@
             android:layout_marginLeft="20sp"
             android:fontFamily=""
             android:text="Mã loại sản "
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
