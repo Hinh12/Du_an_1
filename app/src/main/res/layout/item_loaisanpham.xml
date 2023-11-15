@@ -26,7 +26,7 @@
             android:src="@drawable/cancel"
             android:background="none"
             android:layout_gravity="right|center"
-            android:layout_marginRight="10sp"
+            android:layout_marginRight="11sp"
          />
     </FrameLayout>
 
