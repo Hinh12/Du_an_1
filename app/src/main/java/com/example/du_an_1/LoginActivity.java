@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         in_user = findViewById(R.id.in_User);
         in_pass = findViewById(R.id.in_Pass);
         btnLogin = findViewById(R.id.btnLogin);
-        btnCancel = findViewById(R.id.btnCancel);
         btnDangky = findViewById(R.id.btnDangky);
         chkRememberPass = findViewById(R.id.chkRememberPass);
 
@@ -47,14 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         chkRememberPass.setChecked(rem);
 
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edUserName.setText("");
-                edPassword.setText("");
-
-            }
-        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
