@@ -3,4 +3,5 @@
     <string name="acction_home">home</string>
     <string name="acction_thong_bao">thông báo</string>
     <string name="acction_user">user</string>
+    <string name="app_name">SShop</string>
 </resources>

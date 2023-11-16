@@ -10,10 +10,6 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
-
-
         android:orientation="horizontal">
         <TextView
             android:id="@+id/txtma_loai_san_pham"
@@ -28,10 +24,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/cancel"
-            android:background="none"
+
             android:layout_gravity="right|center"
-            android:layout_marginRight="11sp"
-         />
+            android:layout_marginRight="11dp" />
     </FrameLayout>
 
     <TextView
