@@ -53,10 +53,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 "('khachhang1','Nguyen Văn A ','123456')");
 
         db.execSQL("INSERT INTO LoaiGiay VALUES ('1', 'xxx')," +
-                "('2', 'lll')");
+                "('2', 'lll')," +
+                "('3', 'dfa')");
 
         db.execSQL("INSERT INTO Giay VALUES ('1', 'Giay bong da', '30000', '1')," +
-                "('2', 'Giay', '40000', '2')");
+                "('2', 'Giay', '40000', '2')," +
+                "('3', 'Giay thoi trang', '54444', '3')");
 
         db.execSQL("INSERT INTO HoaDon VALUES('1', '1', 'Giay bong da', 2, 1231413, '23')," +
                 "('2', '2', 'Giay', 1, 231221, '12')");
