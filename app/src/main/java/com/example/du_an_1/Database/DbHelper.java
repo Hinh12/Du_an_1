@@ -1,4 +1,4 @@
-package com.example.du_an_1;
+package com.example.du_an_1.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 2;
+    private static final int DbVersion = 3;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -20,13 +20,17 @@ public class DbHelper extends SQLiteOpenHelper {
         String  tb_Admin = ("CREATE TABLE Admin (" +
                 "maAD TEXT PRIMARY KEY, " +
                 "hoTen TEXT NOT NULL, " +
-                "matKhau TEXT NOT NULL," +
-                "Loaitaikhoan TEXT NOT NULL)");
+                "matKhau TEXT NOT NULL)");
+//        String  tb_Admin = ("CREATE TABLE Admin (" +
+//                "maAD TEXT PRIMARY KEY, " +
+//                "hoTen TEXT NOT NULL, " +
+//                "matKhau TEXT NOT NULL," +
+//                "Loaitaikhoan TEXT NOT NULL)");
         db.execSQL(tb_Admin);
 
         //insert date
-        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin','Admin'), " +
-                "('khachhang1','Nguyen Văn A ','123456','khachhang')");
+        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin'), " +
+                "('khachhang1','Nguyen Văn A ','123456')");
 
 
 

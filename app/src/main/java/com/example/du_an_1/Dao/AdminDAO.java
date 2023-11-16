@@ -1,9 +1,11 @@
-package com.example.du_an_1;
+package com.example.du_an_1.Dao;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.du_an_1.Database.DbHelper;
 
 public class AdminDAO {
     DbHelper dbHelper;
@@ -20,6 +22,19 @@ public class AdminDAO {
             return true;
         }
         return false;
+    }
+
+    public boolean register(String username, String hoten, String password){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put("maAD", username);
+            values.put("hoTen", hoten);
+            values.put("matKhau", password);
+
+            long check = db.insert("Admin", null, values);
+            return check != -1;
+
     }
 
     public boolean updatePass(String username, String oldPass, String newPass){

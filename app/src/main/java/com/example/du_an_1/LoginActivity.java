@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.example.du_an_1.Dao.AdminDAO;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -17,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText edUserName, edPassword;
     TextInputLayout in_user, in_pass;
-    Button btnLogin, btnCancel;
+    Button btnLogin, btnCancel, btnDangky;
     CheckBox chkRememberPass;
     AdminDAO adminDAO = new AdminDAO(this);
 
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         in_pass = findViewById(R.id.in_Pass);
         btnLogin = findViewById(R.id.btnLogin);
         btnCancel = findViewById(R.id.btnCancel);
+        btnDangky = findViewById(R.id.btnDangky);
         chkRememberPass = findViewById(R.id.chkRememberPass);
 
         // doc user, pass trong SharedPreferences
@@ -58,6 +60,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkLogin();
+            }
+        });
+
+        btnDangky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, Dangky.class));
             }
         });
 
