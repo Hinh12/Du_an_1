@@ -34,7 +34,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10sp"
-                    android:fontFamily="@string/acction_thong_bao"
                     android:text="ma san pham "
                     android:textSize="20sp" />
 
@@ -53,7 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
-                android:fontFamily="@string/acction_thong_bao"
                 android:text="ten san pham "
                 android:textSize="20sp" />
             <TextView
@@ -61,7 +59,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
-                android:fontFamily="@string/acction_thong_bao"
                 android:text="Trang thai "
                 android:textSize="20sp" />
             <TextView
@@ -69,7 +66,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
-                android:fontFamily="@string/acction_thong_bao"
                 android:text="Gia san pham "
                 android:textSize="20sp" />
         </LinearLayout>
@@ -82,7 +78,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="5sp"
-        android:fontFamily="@string/acction_thong_bao"
         android:text="Ma loai san pham: "
         android:textSize="20sp" />
     <TextView
@@ -90,7 +85,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
-        android:fontFamily=""
         android:text="ten loai san pham: "
         android:textSize="20sp" />
 </LinearLayout>

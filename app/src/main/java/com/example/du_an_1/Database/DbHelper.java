@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 3;
+    private static final int DbVersion = 4;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -17,24 +17,52 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //Tao bang Admin
-        String  tb_Admin = ("CREATE TABLE Admin (" +
-                "maAD TEXT PRIMARY KEY, " +
-                "hoTen TEXT NOT NULL, " +
-                "matKhau TEXT NOT NULL)");
-//        String  tb_Admin = ("CREATE TABLE Admin (" +
-//                "maAD TEXT PRIMARY KEY, " +
-//                "hoTen TEXT NOT NULL, " +
-//                "matKhau TEXT NOT NULL," +
-//                "Loaitaikhoan TEXT NOT NULL)");
+        // Table Admin
+        String tb_Admin= "CREATE TABLE Admin(" +
+                "maAD TEXT PRIMARY KEY," +
+                "hoTen TEXT NOT NULL," +
+                "matKhau TEXT NOT NULL)";
         db.execSQL(tb_Admin);
 
-        //insert date
-        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin'), " +
-                "('khachhang1','Nguyen Văn A ','123456')");
+        // Table nhan vien
+        String tb_NhanVien= "CREATE TABLE NhanVien(" +
+                "maNV INTEGER PRIMARY KEY ," +
+                "hoTen TEXT NOT NULL," +
+                "namSinh TEXT NOT NULL," +
+                "CCCD TEXT NOT NULL)";
+        db.execSQL(tb_NhanVien);
 
+        // Table loai giay
+        String tb_LoaiGiay= "CREATE TABLE LoaiGiay(" +
+                "maLoai INTEGER PRIMARY KEY ," +
+                "tenLoai TEXT NOT NULL)";
+        db.execSQL(tb_LoaiGiay);
+
+        // Table giay
+        String tb_Giay= "CREATE TABLE Giay(" +
+                "maGiay INTEGER PRIMARY KEY ," +
+                "tenGiay TEXT NOT NULL," +
+                "giaTien INTEGER NOT NULL," +
+                "maLoai INTEGER REFERENCES LoaiGiay(maLoai))";
+        db.execSQL(tb_Giay);
+
+        //Table hoa don
+        String tb_HoaDon= "CREATE TABLE HoaDon(" +
+                "maHD INTEGER PRIMARY KEY ," +
+                "maGiay INTEGER REFERENCES Giay(maGiay)," +
+                "soLuong INTEGER NOT NULL," +
+                "giaTien INTEGER NOT NULL," +
+                "ngay TEXT NOT NULL)";
+        db.execSQL(tb_HoaDon);
+        db.execSQL("INSERT INTO Admin VALUES ('1','Nguyễn Văn Admin','1'), " +
+                "('khachhang1','Nguyen Văn A ','123456')");
+        db.execSQL("INSERT INTO Giay VALUES " +
+                "('1','Giày đá bóng',200000,1)," +
+                "('2','Giày thời trang',250000,2)");
 
 
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
