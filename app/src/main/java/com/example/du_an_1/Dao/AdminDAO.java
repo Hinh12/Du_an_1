@@ -9,6 +9,7 @@ import com.example.du_an_1.Database.DbHelper;
 
 public class AdminDAO {
     DbHelper dbHelper;
+    AdminDAO adminDAO;
 
     public AdminDAO(Context context){
         dbHelper = new DbHelper(context);
