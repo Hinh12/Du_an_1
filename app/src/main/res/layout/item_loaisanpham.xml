@@ -10,6 +10,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
+
+
+
         android:orientation="horizontal">
         <TextView
             android:id="@+id/txtma_loai_san_pham"
