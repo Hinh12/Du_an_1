@@ -6,9 +6,42 @@
              tools:context=".UserFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="User"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#FF5823">
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img_1"
+            android:scaleType="centerCrop"
+            android:layout_marginHorizontal="@dimen/_10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="25sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="80dp" />
+
+
+
+        <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="Edit Profile"
+            android:background="@drawable/settings"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="100dp"
+            />
+
+    </LinearLayout>
 
 </FrameLayout>
