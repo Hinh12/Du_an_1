@@ -1,26 +1,28 @@
 package com.example.du_an_1.model;
 
 public class GIay {
-    private String maGiay;
+    private int maGiay;
     private String tenGIay;
+    private int trangThai;
     private int giaTien;
-    private String maLoai;
+    private String tenLoai;
 
     public GIay() {
     }
 
-    public GIay(String maGiay, String tenGIay, int giaTien, String maLoai) {
+    public GIay(int maGiay, String tenGIay, int trangThai, int giaTien, String tenLoai) {
         this.maGiay = maGiay;
         this.tenGIay = tenGIay;
+        this.trangThai = trangThai;
         this.giaTien = giaTien;
-        this.maLoai = maLoai;
+        this.tenLoai = tenLoai;
     }
 
-    public String getMaGiay() {
+    public int getMaGiay() {
         return maGiay;
     }
 
-    public void setMaGiay(String maGiay) {
+    public void setMaGiay(int maGiay) {
         this.maGiay = maGiay;
     }
 
@@ -32,6 +34,14 @@ public class GIay {
         this.tenGIay = tenGIay;
     }
 
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
     public int getGiaTien() {
         return giaTien;
     }
@@ -40,11 +50,11 @@ public class GIay {
         this.giaTien = giaTien;
     }
 
-    public String getMaLoai() {
-        return maLoai;
+    public String getTenLoai() {
+        return tenLoai;
     }
 
-    public void setMaLoai(String maLoai) {
-        this.maLoai = maLoai;
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
     }
 }
