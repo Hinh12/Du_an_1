@@ -1,17 +1,14 @@
 package com.example.du_an_1.model;
 
 public class HoaDon {
-    private String maHD;
-    private String maGIay;
+    private int maHD;
+    private int maGIay;
     private String tenGiay;
     private int soLuong;
     private int giaTien;
     private String ngay;
 
-    public HoaDon() {
-    }
-
-    public HoaDon(String maHD, String maGIay, String tenGiay, int soLuong, int giaTien, String ngay) {
+    public HoaDon(int maHD, int maGIay, String tenGiay, int soLuong, int giaTien, String ngay) {
         this.maHD = maHD;
         this.maGIay = maGIay;
         this.tenGiay = tenGiay;
@@ -20,19 +17,19 @@ public class HoaDon {
         this.ngay = ngay;
     }
 
-    public String getMaHD() {
+    public int getMaHD() {
         return maHD;
     }
 
-    public void setMaHD(String maHD) {
+    public void setMaHD(int maHD) {
         this.maHD = maHD;
     }
 
-    public String getMaGIay() {
+    public int getMaGIay() {
         return maGIay;
     }
 
-    public void setMaGIay(String maGIay) {
+    public void setMaGIay(int maGIay) {
         this.maGIay = maGIay;
     }
 

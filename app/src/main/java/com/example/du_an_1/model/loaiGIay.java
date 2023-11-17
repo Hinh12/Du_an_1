@@ -1,22 +1,22 @@
 package com.example.du_an_1.model;
 
 public class loaiGIay {
-    private String maLoai;
+    private int maLoai;
     private String tenLoai;
 
     public loaiGIay() {
     }
 
-    public loaiGIay(String maLoai, String tenLoai) {
+    public loaiGIay(int maLoai, String tenLoai) {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;
     }
 
-    public String getMaLoai() {
+    public int getMaLoai() {
         return maLoai;
     }
 
-    public void setMaLoai(String maLoai) {
+    public void setMaLoai(int maLoai) {
         this.maLoai = maLoai;
     }
 

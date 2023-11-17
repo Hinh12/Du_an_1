@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 16;
+    private static final int DbVersion = 19;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -26,22 +26,22 @@ public class DbHelper extends SQLiteOpenHelper {
 
         // Bang loai giay
         String tb_LoaiGiay= "CREATE TABLE LoaiGiay(" +
-                "maLoai TEXT PRIMARY KEY," +
+                "maLoai INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenLoai TEXT NOT NULL)";
         db.execSQL(tb_LoaiGiay);
 
         // Bang giay
         String tb_Giay= "CREATE TABLE Giay(" +
-                "maGiay TEXT PRIMARY KEY," +
+                "maGiay INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenGiay TEXT NOT NULL," +
                 "giaTien INTEGER NOT NULL," +
-                "maLoai TEXT REFERENCES LoaiGiay(maLoai))";
+                "maLoai INTEGER REFERENCES LoaiGiay(maLoai))";
         db.execSQL(tb_Giay);
 
         // Bang hoa don
         String tb_HoaDon= "CREATE TABLE HoaDon(" +
-                "maHD TEXT PRIMARY KEY," +
-                "maGiay TEXT REFERENCES Giay(maGiay)," +
+                "maHD INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "maGiay INTEGER REFERENCES Giay(maGiay)," +
                 "tenGiay TEXT REFERENCES Giay(tenGiay)," +
                 "soLuong INTEGER NOT NULL," +
                 "giaTien INTEGER NOT NULL," +
@@ -56,12 +56,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 "('2', 'lll')," +
                 "('3', 'dfa')");
 
-        db.execSQL("INSERT INTO Giay VALUES ('1', 'Giay bong da', '30000', '1')," +
-                "('2', 'Giay', '40000', '2')," +
-                "('3', 'Giay thoi trang', '54444', '3')");
+        db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', '30000', '1')," +
+                "(2, 'Giay', '40000', '2')," +
+                "(3, 'Giay thoi trang', '54444', '3')");
 
-        db.execSQL("INSERT INTO HoaDon VALUES('1', '1', 'Giay bong da', 2, 1231413, '23')," +
-                "('2', '2', 'Giay', 1, 231221, '12')");
+        db.execSQL("INSERT INTO HoaDon VALUES(1, 1, 'Giay bong da', 2, 1231413, '23')," +
+                "(2, 2, 'Giay', 1, 231221, '12')");
     }
 
     @Override
