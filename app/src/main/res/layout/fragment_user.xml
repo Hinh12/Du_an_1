@@ -11,6 +11,7 @@
         android:layout_height="200dp"
         android:background="#FF5823">
         <ImageView
+            
             android:id="@+id/profileImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
