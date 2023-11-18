@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.du_an_1.Dao.AdminDAO;
@@ -18,7 +19,8 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText edUserName, edPassword;
     TextInputLayout in_user, in_pass;
-    Button btnLogin, btnCancel, btnDangky;
+    Button btnLogin, btnCancel;
+    TextView btnDangky;
     CheckBox chkRememberPass;
     AdminDAO adminDAO = new AdminDAO(this);
 

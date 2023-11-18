@@ -5,8 +5,15 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:gravity="center"
               tools:context=".LoginActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="ĐĂNG NHẬP"
+        android:textSize="40dp"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -44,8 +51,9 @@
             android:id="@+id/chkRememberPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="130dp"
-            android:text="Lưu Mật Khẩu"/>
+            android:layout_marginLeft="15dp"
+            android:text="Lưu Mật Khẩu"
+        />
 
 
     <LinearLayout
@@ -53,26 +61,45 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
         <Button
                 android:id="@+id/btnLogin"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:backgroundTint="#8000FF00"
+                android:backgroundTint="#FF5722"
                 android:textColor="@color/black"
                 android:text="Đăng nhập"
-                android:layout_weight="1"/>
-
-        <Button
-                android:id="@+id/btnDangky"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-
-                android:backgroundTint="#444444"
-                android:layout_weight="1"
-                android:text="Đăng ký"/>
+                />
+<!--        <Button-->
+<!--                android:id="@+id/btnDangky"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:backgroundTint="#444444"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Đăng ký"/>-->
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="100dp"
+        android:gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don’t have an account?"
+            android:textColor="#555555"/>
+        <TextView
+            android:id="@+id/btnDangky"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sign up" />
+    </LinearLayout>
+
+
+
 </LinearLayout>
