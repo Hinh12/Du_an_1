@@ -11,18 +11,25 @@ import android.widget.ImageButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class menu_quanly extends AppCompatActivity {
-    ImageButton btn_bac;
+    ImageButton btn_back;
+    Button btn_dang_xuat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_quanly);
-        btn_bac = findViewById(R.id.btn_back);
-        btn_bac.setOnClickListener(new View.OnClickListener() {
+        btn_back = findViewById(R.id.btn_back);
+        btn_dang_xuat=findViewById(R.id.btn_dang_xuat);
+        btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Quay lại màn hình trước đó
-                Intent intent= new Intent(menu_quanly.this, UserFragment.class);
-                startActivity(intent);
+                onBackPressed();
+            }
+        });
+        btn_dang_xuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(menu_quanly.this, LoginActivity.class));
             }
         });
     }
