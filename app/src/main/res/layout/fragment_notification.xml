@@ -3,16 +3,15 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".Frame.NotificationFragment">
+             tools:context=".NotificationFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Notification"/>
-    <ImageView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/add"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:id="@+id/rcvGioHang">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>
