@@ -10,7 +10,15 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(int maGiay, String tenGiay, int giaTien, int maLoai) {
+//    public SanPham(int maGiay, String tenGiay, int maLoai, int giaTien, String tenLoai) {
+//        this.maGiay = maGiay;
+//        this.tenGiay = tenGiay;
+//        this.maLoai = maLoai;
+//        this.giaTien = giaTien;
+//        this.tenLoai = tenLoai;
+//    }
+
+    public SanPham(int maGiay, String tenGiay, int giaTien, int maLoai ) {
         this.maGiay = maGiay;
         this.tenGiay = tenGiay;
         this.giaTien = giaTien;

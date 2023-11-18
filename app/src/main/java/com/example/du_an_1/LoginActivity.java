@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText edUserName, edPassword;
     TextInputLayout in_user, in_pass;
-    Button btnLogin, btnCancel;
+    Button btnLogin;
     TextView btnDangky;
     CheckBox chkRememberPass;
     AdminDAO adminDAO = new AdminDAO(this);

@@ -40,16 +40,18 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
     sanPhamDAO spdao;
 
 
-    public sanPhamAdapter(Context context, ArrayList<SanPham> list) {
+    public sanPhamAdapter(Context context, ArrayList<SanPham> list,ArrayList<HashMap<String, Object>> listHM ) {
         this.context = context;
         this.list = list;
+        this.listHM = listHM;
+        spdao = new sanPhamDAO(context);
     }
 
     @NonNull
     @Override
     public ViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater= ((Activity)context).getLayoutInflater();
-        View view= inflater.inflate(R.layout.item_sanpham, parent, false);
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+        View view = inflater.inflate(R.layout.item_sanpham, parent, false);
         return new ViewHoler(view);
     }
 
@@ -57,10 +59,10 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {
         LoaiSanPhamDAO loaispdao = new LoaiSanPhamDAO(context);
         LoaiSanPham loaisp = loaispdao.getLoaiSanPhamByID(list.get(position).getMaLoai());
-        holder.txtmasp.setText("Mã sản phẩm: "+String.valueOf(list.get(position).getMaGiay()));
-        holder.txttensp.setText("Tên sản phẩm: "+ list.get(position).getTenGiay());
-        holder.txtgiasp.setText("Giá sản phẩm: "+String.valueOf(list.get(position).getGiaTien()));
-        holder.txtmaloaisp.setText("Mã loại sản phẩm: "+ loaisp.getMaLoai()+"");
+        holder.txtmasp.setText("Mã sản phẩm: " + String.valueOf(list.get(position).getMaGiay()));
+        holder.txttensp.setText("Tên sản phẩm: " + list.get(position).getTenGiay());
+        holder.txtgiasp.setText("Giá sản phẩm: " + String.valueOf(list.get(position).getGiaTien()));
+        holder.txtmaloaisp.setText("Mã loại sản phẩm: " + loaisp.getMaLoai() + "");
         SanPham sp = list.get(position);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -82,9 +84,9 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                     public void onClick(DialogInterface dialog, int which) {
                         spdao = new sanPhamDAO(context);
                         int check = spdao.delete(list.get(holder.getAdapterPosition()).getMaGiay());
-                        switch (check){
+                        switch (check) {
                             case 1:
-                              //  loadData();
+                                //  loadData();
                                 Toast.makeText(context, "Xóa thành công sản phẩm", Toast.LENGTH_SHORT).show();
                                 break;
                             case 0:
@@ -98,7 +100,7 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                         }
                     }
                 });
-                builder.setNegativeButton("NO",null);
+                builder.setNegativeButton("NO", null);
                 builder.create().show();
             }
         });
@@ -111,20 +113,20 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
         return list.size();
     }
 
-    public class ViewHoler extends RecyclerView.ViewHolder{
+    public class ViewHoler extends RecyclerView.ViewHolder {
 
         TextView txtmasp, txttensp, txtgiasp, txtmaloaisp, txttenloaisp;
         ImageView delete_sp;
+
         public ViewHoler(@NonNull View itemView) {
             super(itemView);
-            txtmasp= itemView.findViewById(R.id.txtma_san_pham);
-            txttensp= itemView.findViewById(R.id.txt_ten_san_pham);
-            txtgiasp= itemView.findViewById(R.id.txtgia_san_pham);
-            txtmaloaisp= itemView.findViewById(R.id.txtma_loai_san_pham2);
-            delete_sp= itemView.findViewById(R.id.can);
+            txtmasp = itemView.findViewById(R.id.txtma_san_pham);
+            txttensp = itemView.findViewById(R.id.txt_ten_san_pham);
+            txtgiasp = itemView.findViewById(R.id.txtgia_san_pham);
+            txtmaloaisp = itemView.findViewById(R.id.txtma_loai_san_pham2);
+            delete_sp = itemView.findViewById(R.id.can);
         }
     }
-
 
 
     private void dialogAddGiay(SanPham sp) {
@@ -136,15 +138,15 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
         dialog.show();
 
         TextInputLayout in_TenSP = view.findViewById(R.id.in_updateTenSP);
-        TextInputLayout in_GiaThue = view.findViewById(R.id.in_updateGiaThue);
+        TextInputLayout in_GiaTien = view.findViewById(R.id.in_updateGiaTien);
         TextInputEditText ed_TenSanPham = view.findViewById(R.id.ed_updateTenSP);
-        TextInputEditText ed_GiaThue = view.findViewById(R.id.ed_updateGiaThue);
-        Spinner spnSP = view.findViewById(R.id.spnSanPham);
+        TextInputEditText ed_GiaTien = view.findViewById(R.id.ed_updateGiaTien);
+        Spinner spnUpadateSP = view.findViewById(R.id.spnSanPham2);
         Button update = view.findViewById(R.id.SP_update);
-        Button cancel = view.findViewById(R.id.SP_Cancel);
+        Button cancel = view.findViewById(R.id.SP_Cancel2);
 
         ed_TenSanPham.setText(sp.getTenGiay());
-        ed_GiaThue.setText(String.valueOf(sp.getGiaTien()));
+        ed_GiaTien.setText(String.valueOf(sp.getGiaTien()));
 
         ed_TenSanPham.addTextChangedListener(new TextWatcher() {
             @Override
@@ -156,6 +158,7 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() == 0) {
                     in_TenSP.setError("Vui lòng không để trống tên sản phẩm");
+                    return;
                 } else {
                     in_TenSP.setError(null);
                 }
@@ -167,7 +170,7 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
             }
         });
 
-        ed_GiaThue.addTextChangedListener(new TextWatcher() {
+        ed_GiaTien.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -176,9 +179,10 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() == 0) {
-                    in_GiaThue.setError("Vui lòng không để trống giá tiền");
+                    in_GiaTien.setError("Vui lòng không để trống giá tiền");
+                    return;
                 } else {
-                    in_GiaThue.setError(null);
+                    in_GiaTien.setError(null);
                 }
             }
 
@@ -189,7 +193,6 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
         });
 
 
-        if (listHM != null && !listHM.isEmpty()) {
             SimpleAdapter simpleAdapter = new SimpleAdapter(
                     context,
                     listHM,
@@ -197,7 +200,7 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                     new String[]{"tenLoai"},
                     new int[]{android.R.id.text1}
             );
-            spnSP.setAdapter(simpleAdapter);
+            spnUpadateSP.setAdapter(simpleAdapter);
 
             int index = 0;
             int position = -1;
@@ -209,57 +212,67 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                 }
                 index++;
             }
-            spnSP.setSelection(position);
-        } else {
-            // Xử lý khi listHM là null hoặc rỗng
-            // Ví dụ: Hiển thị thông báo lỗi, ẩn hoặc vô hiệu hóa spnSP, vv.
-        }
-
+            spnUpadateSP.setSelection(position);
 
 
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tensp = ed_TenSanPham.getText().toString();
-                String checktien = ed_GiaThue.getText().toString();;
-                HashMap<String, Object> hs = (HashMap<String, Object>) spnSP.getSelectedItem();
-                int maloai = (int) hs.get("maLoai");
-                if(tensp.isEmpty() || checktien.isEmpty()){
-                    if(tensp.equals("")){
-                        in_TenSP.setError("Vui lòng không để trống tên Sản phẩm");
-                    }else{
-                        in_TenSP.setError(null);
-                    }
-                    if(checktien.equals("")){
-                        in_GiaThue.setError("Vui lòng không để trống giá tiền");
-                    }else{
-                        in_GiaThue.setError(null);
-                    }
-                }else{
-                    int tien = Integer.parseInt(checktien);
-                    boolean check = spdao.update(sp.getMaGiay(),tensp,tien,maloai);
-                    if(check){
-                       // loadData();
-                        Toast.makeText(context, "Cập nhật thành công sản phẩm", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }else{
-                        Toast.makeText(context, "Cập nhật không thành công sản phẩm", Toast.LENGTH_SHORT).show();
+                    String tensanpham = ed_TenSanPham.getText().toString();
+                    String giasanpham = ed_GiaTien.getText().toString();
+                    HashMap<String, Object> hs = (HashMap<String, Object>) spnUpadateSP.getSelectedItem();
+                    int maloaisp = (int) hs.get("maLoai");
+
+                    if (tensanpham.isEmpty() || giasanpham.isEmpty()) {
+                        if (tensanpham.equals("")) {
+                            ed_TenSanPham.setError("Vui lòng không để trống tên sản phẩm");
+                        } else {
+                            ed_GiaTien.setError(null);
+                        }
+                        if (giasanpham.equals("")) {
+                            ed_TenSanPham.setError("Vui lòng không để trống giá sản phẩm");
+                        } else {
+                            ed_GiaTien.setError(null);
+                        }
+                    } else {
+                        try {
+                            int tien = Integer.parseInt(giasanpham);
+                            if (tien <= 0) {
+                                ed_GiaTien.setError("Giá sản phẩm phải lớn hơn 0");
+                            } else {
+                                ed_GiaTien.setError(null);
+                                boolean check = spdao.update(sp.getMaGiay(), tensanpham, tien, maloaisp);
+
+                                if (check) {
+                                    list.clear();
+                                    list = spdao.getDSSanPham();
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, "Cập nhật thành công sách", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                } else {
+                                    Toast.makeText(context, "Cập nhật không thành công sách", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        } catch (NumberFormatException e) {
+                            ed_GiaTien.setError("Giá sản phẩm phải là số");
+                        }
                     }
                 }
-            }
-        });
+
+            });
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ed_TenSanPham.setText("");
-                ed_GiaThue.setText("");
+                dialog.dismiss();
             }
         });
 
 
     }
+
 //    private void loadData(){
 //        list.clear();
 //        list = dao.getDSSanPham();

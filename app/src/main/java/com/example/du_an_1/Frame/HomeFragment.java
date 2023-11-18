@@ -55,8 +55,9 @@ public class HomeFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(layoutManager);
-        adapter = new sanPhamAdapter(getContext(),list);
+        adapter = new sanPhamAdapter(getContext(),list,getDSLoaiGiay());
         rcv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         view.findViewById(R.id.add_sp).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +91,7 @@ public class HomeFragment extends Fragment {
         TextInputLayout in_GiaThue = view.findViewById(R.id.in_addGiaThue);
         TextInputEditText ed_TenSanPham = view.findViewById(R.id.ed_addTenSP);
         TextInputEditText ed_GiaThue = view.findViewById(R.id.ed_addGiaThue);
-        Spinner spnSanPham = view.findViewById(R.id.spnSanPham);
+        Spinner spnSanPham = view.findViewById(R.id.spnSanPham1);
         Button addSP = view.findViewById(R.id.SP_add);
         Button cancel = view.findViewById(R.id.SP_Cancel);
 
@@ -179,8 +180,12 @@ public class HomeFragment extends Fragment {
                         int tien = Integer.parseInt(checktien);
                         boolean check = dao.insert(tensach, tien, maloai);
                         if (check) {
-                            // loadData();
+                             loadData();
                             Toast.makeText(getContext(), "Thêm thành công sản phẩm", Toast.LENGTH_SHORT).show();
+                            list.clear();
+                            list.addAll(dao.getDSSanPham());
+                            adapter = new sanPhamAdapter(getContext(),list,getDSLoaiGiay());
+                            adapter.notifyDataSetChanged();
                             dialog.dismiss();
                         } else {
                             Toast.makeText(getContext(), "Thêm không thành công sản phẩm", Toast.LENGTH_SHORT).show();
@@ -216,5 +221,12 @@ public class HomeFragment extends Fragment {
         return listHM;
     }
 
+    private void loadData(){
+        list = dao.getDSSanPham();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        rcv.setLayoutManager(layoutManager);
+        sanPhamAdapter adapter = new sanPhamAdapter(getContext(),list, getDSLoaiGiay());
+        rcv.setAdapter(adapter);
+    }
 
 }
