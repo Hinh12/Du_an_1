@@ -1,13 +1,13 @@
 package com.example.du_an_1.model;
 
-public class loaiGIay {
+public class LoaiSanPham {
     private int maLoai;
     private String tenLoai;
 
-    public loaiGIay() {
+    public LoaiSanPham() {
     }
 
-    public loaiGIay(int maLoai, String tenLoai) {
+    public LoaiSanPham(int maLoai, String tenLoai) {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;
     }
