@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Du_an_1"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".UserNameActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".menu"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".UserNameActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".menu_quanly"
             android:exported="false" />
