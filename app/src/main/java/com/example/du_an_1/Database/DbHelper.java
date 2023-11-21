@@ -23,7 +23,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 "matKhau TEXT NOT NULL)");
         db.execSQL(tb_Admin);
 
-
         // Bang loai giay
         String tb_LoaiGiay= "CREATE TABLE LoaiGiay(" +
                 "maLoai INTEGER PRIMARY KEY AUTOINCREMENT," +

@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Frame.ThongKeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:text="Doanh Thu"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="50dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Từ ngày"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/orange"
+            android:id="@+id/btnTuNgay"/>
+        <EditText
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:id="@+id/edTuNgay"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Đến ngày"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/orange"
+            android:id="@+id/btnDenNgay"/>
+
+        <EditText
+            android:id="@+id/edDenNgay"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Doanh thu"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:id="@+id/btnDoanhThu"
+        android:backgroundTint="#E37783"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Doanh Thu: "
+        android:textColor="@color/black"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:id="@+id/txtdoanhthu"/>
 
-</FrameLayout>
+</LinearLayout>

@@ -15,7 +15,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.du_an_1.Frame.DoiMatKhauFragment;
 import com.example.du_an_1.Frame.QLdonHangFragment;
+import com.example.du_an_1.Frame.QLloaiSanPhamFragment;
 import com.example.du_an_1.Frame.QLnguoiDungFragment;
 import com.example.du_an_1.Frame.QLsanPhamFragment;
 import com.example.du_an_1.Frame.ThongKeFragment;
@@ -43,25 +45,33 @@ public class menu extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.nav_quanLyNguoiDung) {
-                    toolbar.setTitle("Quản lý phiếu mượn");
-                    QLnguoiDungFragment qlphieumuon = new QLnguoiDungFragment();
-                    replay(qlphieumuon);
+                    toolbar.setTitle("Quản lý người dùng");
+                    QLnguoiDungFragment qlnguoidung = new QLnguoiDungFragment();
+                    replay(qlnguoidung);
                 } else if (item.getItemId() == R.id.nav_quanLySanPham) {
-                    toolbar.setTitle("Quản lý loại sách");
-                    QLsanPhamFragment loaisach = new QLsanPhamFragment();
-                    replay(loaisach);
-                } else if (item.getItemId() == R.id.nav_quanLyDonHang) {
-                    toolbar.setTitle("Quản lý sách");
-                    QLdonHangFragment sach = new QLdonHangFragment();
-                    replay(sach);
+                    toolbar.setTitle("Quản lý sản phẩm");
+                    QLsanPhamFragment qlsanpham = new QLsanPhamFragment();
+                    replay(qlsanpham);
+                } else if (item.getItemId() == R.id.nav_quanLyLoaiSanPham) {
+                    toolbar.setTitle("Quản lý loại sản phẩm");
+                    QLloaiSanPhamFragment qlloaisanpham = new QLloaiSanPhamFragment();
+                    replay(qlloaisanpham);
+                }else if (item.getItemId() == R.id.nav_quanLyDonHang) {
+                    toolbar.setTitle("Quản đơn hàng");
+                    QLdonHangFragment qldonhang = new QLdonHangFragment();
+                    replay(qldonhang);
                 } else if (item.getItemId() == R.id.nav_thongKe) {
-                    toolbar.setTitle("Quản lý thành viên");
-                    ThongKeFragment thanhvien = new ThongKeFragment();
-                    replay(thanhvien);
-                } else {
+                    toolbar.setTitle("Quản lý thông kê");
+                    ThongKeFragment qlthongke = new ThongKeFragment();
+                    replay(qlthongke);
+                } else if (item.getItemId() == R.id.nav_doiMatKhau) {
+                    toolbar.setTitle("Đổi mật khẩu");
+                    DoiMatKhauFragment doimk = new DoiMatKhauFragment();
+                    replay(doimk);
+                }else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("Đăng Xuất");
-                    builder.setMessage("Bạn chắc chăn muướn đăng xuất chứ!");
+                    builder.setMessage("Bạn chắc chăn muốn đăng xuất chứ!");
                     builder.setPositiveButton("Đăng xuất", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

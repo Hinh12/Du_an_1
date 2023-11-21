@@ -16,17 +16,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
-            android:fontFamily=""
             android:text="Mã loại sản "
             android:textSize="20sp"
             />
+
         <ImageButton
+            android:id="@+id/imgDeleteLSP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/cancel"
-
             android:layout_gravity="right|center"
-            android:layout_marginRight="11dp" />
+            android:layout_marginRight="11dp"
+            android:src="@drawable/cancel" />
     </FrameLayout>
 
     <TextView
@@ -35,7 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="5sp"
-        android:fontFamily=""
         android:text="ten loại sản phẩm: "
         android:textSize="20sp" />
 

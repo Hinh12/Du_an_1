@@ -20,7 +20,8 @@ public class LoaiSanPhamDAO {
     public ArrayList<LoaiSanPham> getDSLoaiSP(){
         ArrayList<LoaiSanPham> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select g.maGiay, g.tenGiay, g.giaTien, lg.maLoai, lg.tenLoai from Giay g, LoaiGiay lg where g.maLoai = lg.maLoai",null);
+//        Cursor cursor = db.rawQuery("select g.maGiay, g.tenGiay, g.giaTien, lg.maLoai, lg.tenLoai from Giay g, LoaiGiay lg where g.maLoai = lg.maLoai",null);
+        Cursor cursor = db.rawQuery("select * from LoaiGiay",null);
         if(cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
