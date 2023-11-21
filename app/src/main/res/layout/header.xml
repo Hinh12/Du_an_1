@@ -12,6 +12,7 @@
         android:layout_height="110sp"
         android:backgroundTint="#444444"
         android:alpha="0.85"
+        android:layout_gravity="center"
         android:src="@drawable/boy"
         android:scaleType="fitXY"
         />

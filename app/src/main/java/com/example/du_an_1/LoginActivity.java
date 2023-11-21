@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             if (adminDAO.checkLogin(user,pass)){
                 Toast.makeText(this, "Login thành công", Toast.LENGTH_SHORT).show();
                 rememberUser(user,pass,chkRememberPass.isChecked());
-                Intent i = new Intent(LoginActivity.this, menu.class);
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 i.putExtra("maTT",user);
                 startActivity(i);
                 finish();
