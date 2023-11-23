@@ -1,6 +1,11 @@
 package com.example.du_an_1.model;
 
-public class SanPham {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class SanPham  implements Parcelable {
     private int maGiay;
     private String tenGiay;
     private int maLoai;
@@ -66,4 +71,44 @@ public class SanPham {
     public void setTenLoai(String tenLoai) {
         this.tenLoai = tenLoai;
     }
+
+    public  SanPham(Parcel in) {
+        // Đọc dữ liệu từ Parcel và đặt vào các thuộc tính
+
+        maGiay = in.readInt();
+        tenGiay = in.readString();
+        giaTien = in.readInt();
+        maLoai = in.readInt();
+        tenLoai = in.readString();
+//        masanpham = in.readInt();
+//        tensanpham = in.readString();
+//        gia = in.readInt();
+//        maloaisanpham = in.readInt();
+//        tenloaisanpham = in.readString();
+//        mota = in.readString();
+    }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(maGiay);
+        parcel.writeString(tenGiay);
+        parcel.writeInt(giaTien);
+        parcel.writeInt(maLoai);
+        parcel.writeString(tenLoai);
+    }
+    public static final Creator<SanPham> CREATOR = new Creator<SanPham>(){
+        @Override
+        public SanPham createFromParcel(Parcel parcel) {
+            return new SanPham(parcel);
+        }
+
+        @Override
+        public SanPham[] newArray(int i) {
+            return new SanPham[i];
+        }
+    };
 }
