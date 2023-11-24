@@ -83,7 +83,7 @@ public class QLloaiSanPhamFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(charSequence.length() == 0){
-                    in_TenLSP.setError("Vui lòng nhập tên loại sách");
+                    in_TenLSP.setError("Vui lòng nhập tên loại sản phẩm");
                 }else{
                     in_TenLSP.setError(null);
                 }
@@ -101,7 +101,7 @@ public class QLloaiSanPhamFragment extends Fragment {
                 String tenloai = ed_TenLSP.getText().toString();
                 if(tenloai.isEmpty()){
                     if(tenloai.equals("")){
-                        in_TenLSP.setError("Vui lòng nhập tên loại sản phẩm");
+                        in_TenLSP.setError("Vui lòng nhập tên loại sạn phẩm");
                     }else{
                         in_TenLSP.setError(null);
                     }

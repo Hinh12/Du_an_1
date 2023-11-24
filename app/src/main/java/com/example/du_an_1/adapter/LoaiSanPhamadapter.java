@@ -59,9 +59,9 @@ public class LoaiSanPhamadapter  extends RecyclerView.Adapter<LoaiSanPhamadapter
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder= new AlertDialog.Builder(context);
-                builder.setTitle("Xóa loại sách");
-                builder.setMessage("Bạn có muốn xóa loại sách này không!");
-                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                builder.setTitle("Xóa loại sạn phẩm");
+                builder.setMessage("Bạn có muốn xóa loại sạn phẩm này không!");
+                builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         LoaiSanPhamDAO lspdao = new LoaiSanPhamDAO(context);
@@ -71,20 +71,20 @@ public class LoaiSanPhamadapter  extends RecyclerView.Adapter<LoaiSanPhamadapter
                                 list.clear();
                                 list = lspdao.getDSLoaiSP();
                                 notifyDataSetChanged();
-                                Toast.makeText(context, "Xóa loại sách thành công", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Xóa loại sạn phẩm thành công", Toast.LENGTH_SHORT).show();
                                 break;
                             case -1:
-                                Toast.makeText(context, "Không thể xóa vì đang có sách thuộc thể loại", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Không thể xóa vì đang có sạn phẩm thuộc thể loại", Toast.LENGTH_SHORT).show();
                                 break;
                             case 0:
-                                Toast.makeText(context, "Xóa loại sách không thành công", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Xóa loại sạn phẩm không thành công", Toast.LENGTH_SHORT).show();
                                 break;
                             default:
                                 break;
                         }
                     }
                 });
-                builder.setNegativeButton("Cancel",null);
+                builder.setNegativeButton("Hủy",null);
                 builder.create().show();
             }
         });
