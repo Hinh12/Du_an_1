@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/item_giohang_img"
             android:scaleType="centerCrop"
-            android:src="@drawable/add_shopping_cart"
+            android:src="@drawable/giay"
             android:layout_width="100dp"
             android:layout_height="100dp"/>
         <LinearLayout

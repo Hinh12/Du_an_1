@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="Giỏ Hàng"
-        android:background="#3F51B5"
+        android:background="@color/orange"
         tools:ignore="MissingConstraints" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvgiohang"

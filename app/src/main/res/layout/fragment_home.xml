@@ -4,23 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/xam"
     tools:context=".Frame.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
-        android:src="@drawable/banner3"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
-        android:id="@+id/rcvgiay"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2">
+        android:paddingBottom="100dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/orange"
+                />
+            <!--    <me.relex.circleindicator.CircleIndicator3-->
+            <!--        android:id="@+id/chamduoi"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="40sp"-->
+            <!--        android:layout_below="@+id/viewpage"-->
+            <!--        app:ci_drawable="@drawable/bacham" />-->
 
-    </androidx.recyclerview.widget.RecyclerView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="200dp"
+                android:id="@+id/rcvgiay"
+                tools:listitem="@layout/item_sanphamhome"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+    </ScrollView>
 
 
 </FrameLayout>
