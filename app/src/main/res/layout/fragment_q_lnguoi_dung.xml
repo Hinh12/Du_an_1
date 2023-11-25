@@ -5,20 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".Frame.QLnguoiDungFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rcvnguoidung">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:orientation="vertical">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:id="@+id/rcvnguoidung"/>
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_nguoidung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/add_nguoidung"
+        android:src="@drawable/add"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="80sp"
-        android:src="@drawable/add"/>
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"/>
 
 </FrameLayout>

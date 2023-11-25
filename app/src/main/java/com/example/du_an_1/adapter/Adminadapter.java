@@ -58,7 +58,7 @@ public class Adminadapter extends RecyclerView.Adapter<Adminadapter.ViewHolder> 
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Cảnh báo");
-                builder.setMessage("Bạn có chắc chắn muốn xóa sản phẩm này không!");
+                builder.setMessage("Bạn có chắc chắn muốn xóa người dùng này không!");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

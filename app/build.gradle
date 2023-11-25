@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.example.du_an_1'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.du_an_1"
@@ -40,4 +40,5 @@ dependencies {
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
+    implementation 'me.relex:circleindicator:2.1.6'
 }

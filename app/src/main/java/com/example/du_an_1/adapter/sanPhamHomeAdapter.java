@@ -60,10 +60,10 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {
         LoaiSanPhamDAO loaispdao = new LoaiSanPhamDAO(context);
         LoaiSanPham loaisp = loaispdao.getLoaiSanPhamByID(list.get(position).getMaLoai());
-        holder.txtmasp.setText("Mã sản phẩm: " + String.valueOf(list.get(position).getMaGiay()));
-        holder.txttensp.setText("Tên sản phẩm: " + list.get(position).getTenGiay());
-        holder.txtgiasp.setText("Giá sản phẩm: " + String.valueOf(list.get(position).getGiaTien()));
-        holder.txtmaloaisp.setText("Mã loại sản phẩm: " + loaisp.getMaLoai() + "");
+//        holder.txtmasp.setText("Mã sản phẩm: " + String.valueOf(list.get(position).getMaGiay()));
+        holder.txttensp.setText(list.get(position).getTenGiay());
+        holder.txtgiasp.setText(String.valueOf(list.get(position).getGiaTien()));
+//        holder.txtmaloaisp.setText("Mã loại sản phẩm: " + loaisp.getMaLoai() + "");
         SanPham sp = list.get(position);
 
         holder.sanphamhome.setOnClickListener(new View.OnClickListener() {
