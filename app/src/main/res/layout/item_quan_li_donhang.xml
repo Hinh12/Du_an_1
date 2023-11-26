@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="10sp"
+    android:background="@drawable/khung_item"
+    >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtmadonhang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:text="Mã đơn hàng: "
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/btnxoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="7sp"
+            android:layout_marginRight="10sp"
+            android:background="@drawable/khung_item"
+            android:src="@drawable/cancel" />
+    </FrameLayout>
+    <TextView
+        android:id="@+id/txtmanguoidung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:text="Mã người dùng: "
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/txthotennguoidung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:text="Tên người dùng: "
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/txtngay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:text="Ngày đặt hàng: "
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/txttongtien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:text="Tổng tiền:    "
+        android:layout_marginBottom="10sp"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

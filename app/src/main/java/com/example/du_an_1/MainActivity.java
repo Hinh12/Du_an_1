@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.health.ServiceHealthStats;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
@@ -127,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
 
     }
 
