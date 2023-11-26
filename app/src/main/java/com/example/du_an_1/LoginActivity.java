@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     TextView btnDangky;
     CheckBox chkRememberPass;
-    AdminDAO adminDAO = new AdminDAO(this);
+    AdminDAO adminDAO = new AdminDAO(this);;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkLogin();
+               checkLogin();
             }
         });
 
@@ -98,6 +98,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         }else {
             if (adminDAO.checkLogin(user,pass)){
+//                if (adminDAO.checkRoleAdmin(user) == 0){
+//                    Toast.makeText(this, "Admin", Toast.LENGTH_SHORT).show();
+//                } else if (adminDAO.checkRoleAdmin(user) == 1){
+//                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+//                }
                 Toast.makeText(this, "Login thành công", Toast.LENGTH_SHORT).show();
                 rememberUser(user,pass,chkRememberPass.isChecked());
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);

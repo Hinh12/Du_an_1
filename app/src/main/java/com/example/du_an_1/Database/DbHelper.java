@@ -29,6 +29,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 "tenLoai TEXT NOT NULL)";
         db.execSQL(tb_LoaiGiay);
 
+        // Bang don hang
+        String tb_donHang= "CREATE TABLE DonHang(" +
+                "maDonHang INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "maAD TEXT REFERENCES Admin(maAD)," +
+                "ngayDatHang TEXT NOT NULL," +
+                "tongTien INTEGER NOT NULL)";
+        db.execSQL(tb_donHang);
+
         // Bang giay
         String tb_Giay= "CREATE TABLE Giay(" +
                 "maGiay INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -55,12 +63,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 "('2', 'lll')," +
                 "('3', 'dfa')");
 
+        db.execSQL("INSERT INTO DonHang VALUES(1, 'khachhang1', '12-01-2000', 2000)");
+
         db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', '30000', '1')," +
                 "(2, 'Giay', '40000', '2')," +
                 "(3, 'Giay thoi trang', '54444', '3')");
 
-        db.execSQL("INSERT INTO HoaDon VALUES(1, 1, 'Giay bong da', 2, 1231413, '23')," +
-                "(2, 2, 'Giay', 1, 231221, '12')");
+        db.execSQL("INSERT INTO HoaDon VALUES(1, 1, 'Giay bong da',  2, 1231413, '23')," +
+                "(2, 2, 'Giay',  1, 231221, '12')");
     }
 
     @Override
@@ -68,6 +78,7 @@ public class DbHelper extends SQLiteOpenHelper {
         if(oldVersion != newVersion){
             db.execSQL("drop table if exists Admin");
             db.execSQL("drop table if exists HoaDon");
+            db.execSQL("drop table if exists DonHang");
             db.execSQL("drop table if exists Giay");
             db.execSQL("drop table if exists LoaiGiay");
 
