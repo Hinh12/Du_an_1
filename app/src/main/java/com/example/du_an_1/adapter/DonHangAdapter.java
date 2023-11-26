@@ -37,6 +37,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater= ((Activity)context).getLayoutInflater();
         View view= inflater.inflate(R.layout.item_quan_li_donhang, parent, false);
+
         return new Viewholder(view);
     }
 
