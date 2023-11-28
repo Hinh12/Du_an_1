@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 1;
+    private static final int DbVersion = 7;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -45,6 +45,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maLoai INTEGER REFERENCES LoaiGiay(maLoai))";
         db.execSQL(tb_Giay);
 
+        //4. Bảng giỏ hàng
+        String tb_gioHang = "CREATE TABLE GioHang(" +
+                "maGioHang integer primary key autoincrement, " +
+                "maAD integer REFERENCES Admin(maAD)," +
+                "maGiay integer REFERENCES Giay(maGiay)," +
+                "soLuong integer not null)";
+        db.execSQL(tb_gioHang);
+
         // Bang hoa don
         String tb_HoaDon= "CREATE TABLE HoaDon(" +
                 "maHD INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -78,7 +86,6 @@ public class DbHelper extends SQLiteOpenHelper {
         if(oldVersion != newVersion){
             db.execSQL("drop table if exists Admin");
             db.execSQL("drop table if exists HoaDon");
-            db.execSQL("drop table if exists DonHang");
             db.execSQL("drop table if exists Giay");
             db.execSQL("drop table if exists LoaiGiay");
 

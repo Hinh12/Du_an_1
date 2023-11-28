@@ -120,7 +120,7 @@ public class QLloaiSanPhamFragment extends Fragment {
         CancelLSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ed_TenLSP.setText("");
+                dialog.dismiss();
             }
         });
 

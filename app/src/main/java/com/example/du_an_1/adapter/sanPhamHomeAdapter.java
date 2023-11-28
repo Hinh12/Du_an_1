@@ -2,21 +2,18 @@ package com.example.du_an_1.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.du_an_1.Dao.LoaiSanPhamDAO;
 import com.example.du_an_1.Dao.sanPhamDAO;
-import com.example.du_an_1.Frame.HomeFragment;
 import com.example.du_an_1.R;
 import com.example.du_an_1.model.LoaiSanPham;
 import com.example.du_an_1.model.SanPham;
@@ -31,10 +28,9 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
     sanPhamDAO spdao;
 
 
-    public sanPhamHomeAdapter(Context context, ArrayList<SanPham> list, ArrayList<HashMap<String, Object>> listHM ) {
+    public sanPhamHomeAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
         this.list = list;
-        this.listHM = listHM;
         spdao = new sanPhamDAO(context);
     }
     public interface OnItemClickListener {
@@ -48,6 +44,20 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
+
+    private OnAddToCartClickListener mAddToCartClickListener;
+
+    //nút thêm vào giỏ hàng
+    public interface OnAddToCartClickListener {
+        void onAddToCartClick(SanPham sanPham);
+    }
+
+    public void setOnAddToCartClickListener(OnAddToCartClickListener listener) {
+        mAddToCartClickListener = listener;
+    }
+
+
+
     @NonNull
     @Override
     public ViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -66,12 +76,17 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
 //        holder.txtmaloaisp.setText("Mã loại sản phẩm: " + loaisp.getMaLoai() + "");
         SanPham sp = list.get(position);
 
-        holder.sanphamhome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
+        holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAddToCartClickListener != null){
+                    mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
+                }
             }
         });
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,7 +105,7 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
     public class ViewHoler extends RecyclerView.ViewHolder {
 
         TextView txtmasp, txttensp, txtgiasp, txtmaloaisp, txttenloaisp;
-        ImageView delete_sp;
+        Button btn_themvagiohang;
         LinearLayout sanphamhome;
 
         public ViewHoler(@NonNull View itemView) {
@@ -100,6 +115,9 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
             txtgiasp = itemView.findViewById(R.id.txtgia_san_pham);
             txtmaloaisp = itemView.findViewById(R.id.txtma_loai_san_pham2);
             sanphamhome = itemView.findViewById(R.id.sanphamhome);
+
+            btn_themvagiohang = itemView.findViewById(R.id.btn_themvaogiohang);
+
 
 
 

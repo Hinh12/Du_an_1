@@ -1,59 +1,52 @@
 package com.example.du_an_1.Frame;
 
-import android.app.Dialog;
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.example.du_an_1.ChiTietSanPham;
-import com.example.du_an_1.Dao.LoaiSanPhamDAO;
+import com.example.du_an_1.Dao.GioHangDAO;
 import com.example.du_an_1.Dao.sanPhamDAO;
+import com.example.du_an_1.R;
+import com.example.du_an_1.Viewmd.SharedViewModel;
+import com.example.du_an_1.adapter.GioHangAdapter;
 import com.example.du_an_1.adapter.adapter_slide;
-import com.example.du_an_1.adapter.sanPhamAdapter;
 import com.example.du_an_1.adapter.sanPhamHomeAdapter;
-import com.example.du_an_1.model.LoaiSanPham;
+import com.example.du_an_1.model.GioHang;
 import com.example.du_an_1.model.SanPham;
+import com.example.du_an_1.model.Slideiten;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import com.example.du_an_1.R;
-import com.example.du_an_1.model.Slideiten;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 
 public class HomeFragment extends Fragment {
 
     RecyclerView rcv;
-    sanPhamDAO dao;
-    sanPhamHomeAdapter adapter;
+    sanPhamDAO spdao;
+    sanPhamHomeAdapter sanPhamHomeAdapter;
     ArrayList<SanPham> list= new ArrayList<>();
-    LinearLayout sanphamhome;
+    GioHangAdapter gioHangAdapter;
+    GioHangDAO gioHangDAO;
+    private SharedViewModel sharedViewModel;
 
 //    adapter_slide;
 
@@ -68,8 +61,11 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         rcv= view.findViewById(R.id.rcvgiay);
         viewpage = view.findViewById(R.id.viewpager);
-        dao= new sanPhamDAO(getContext());
-        list= dao.getDSSanPham();
+        spdao= new sanPhamDAO(getContext());
+        list= spdao.getDSSanPham();
+        gioHangDAO = new GioHangDAO(getContext());
+        gioHangAdapter = new GioHangAdapter(new ArrayList<>(),getContext());
+
 
 //        sanphamhome = view.findViewById(R.id.sanphamhome);
         slidelist = new ArrayList<>(); // Khởi tạo slidelist trước khi sử dụng
@@ -118,13 +114,23 @@ public class HomeFragment extends Fragment {
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rcv.setLayoutManager(gridLayoutManager);
-        adapter = new sanPhamHomeAdapter(getContext(),list,getDSLoaiGiay());
-        rcv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        sanPhamHomeAdapter = new sanPhamHomeAdapter(getContext(),list);
+        rcv.setAdapter(sanPhamHomeAdapter);
+        sanPhamHomeAdapter.notifyDataSetChanged();
+
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        sanPhamHomeAdapter.setOnAddToCartClickListener(new sanPhamHomeAdapter.OnAddToCartClickListener() {
+            @Override
+            public void onAddToCartClick(SanPham sanPham) {
+                addToCart(sanPham);
+            }
+        });
 
 
 
-        adapter.setOnItemClickListener(position -> {
+
+
+        sanPhamHomeAdapter.setOnItemClickListener(position -> {
             SanPham selectedSanPham = list.get(position);
             Intent intent = new Intent(getContext(), ChiTietSanPham.class);
             intent.putExtra("sanPham", selectedSanPham);
@@ -139,19 +145,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-    private ArrayList<HashMap<String , Object>> getDSLoaiGiay(){
-        LoaiSanPhamDAO loaiSanPhamDAO = new LoaiSanPhamDAO(getContext());
-        ArrayList<LoaiSanPham> list1 = loaiSanPhamDAO.getDSLoaiSP();
-        ArrayList<HashMap<String, Object>> listHM = new ArrayList<>();
-
-        for (LoaiSanPham ls : list1){
-            HashMap<String, Object> hs = new HashMap<>();
-            hs.put("maLoai", ls.getMaLoai());
-            hs.put("tenLoai", ls.getTenLoai());
-            listHM.add(hs);
-        }
-        return listHM;
-    }
     private Runnable sildeRunnable = new Runnable() {
         @Override
         public void run() {
@@ -164,6 +157,40 @@ public class HomeFragment extends Fragment {
             }
         }
     };
+
+    private void addToCart(SanPham sanPham) {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String maad = sharedPreferences.getString("USERNAME", "");
+
+        if (!sharedViewModel.isProductInCart(sanPham.getMaGiay())) {
+            sharedViewModel.setMasp(sanPham.getMaGiay());
+            sharedViewModel.setAddToCartClicked(true);
+            sharedViewModel.addProductToCart(sanPham.getMaGiay());
+            sharedViewModel.setQuantityToAdd(1);
+            Log.i("tengiayuuuuu",sanPham.getTenGiay());
+            Log.i("ma nguoi dunggggggggg",maad);
+            gioHangDAO.insertGioHang(new GioHang(sanPham.getMaGiay(), maad, 1));
+        } else {
+            GioHang hang = gioHangDAO.getGioHangByMasp(sanPham.getMaGiay(),maad);
+            if (hang != null) {
+                hang.setSoLuongMua(hang.getSoLuongMua() + 1);
+                gioHangDAO.updateGioHang(hang);
+            } else {
+                GioHang newCartItem = new GioHang(sanPham.getMaGiay(), maad, 1);
+                gioHangDAO.insertGioHang(newCartItem);
+            }
+            gioHangAdapter.notifyDataSetChanged();
+        }
+        ArrayList<GioHang> updatedCartList = gioHangDAO.getDSGioHang();
+        gioHangAdapter.updateCartList(updatedCartList);
+        gioHangAdapter.notifyDataSetChanged();
+        Toast.makeText(getContext(), "Đã cập nhật giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+    }
+
+
+
+
+
 
 
 }

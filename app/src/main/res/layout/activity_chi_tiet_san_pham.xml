@@ -74,6 +74,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <Button
         android:id="@+id/addToCartButton"
         android:layout_width="match_parent"

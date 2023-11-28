@@ -200,9 +200,7 @@ public class QLnguoiDungFragment extends Fragment {
         btn_huy_ND.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ed_TenTaiKhoan.setText("");
-                ed_HoTen.setText("");
-                ed_MatKhau.setText("");
+                dialog.dismiss();
 
             }
         });

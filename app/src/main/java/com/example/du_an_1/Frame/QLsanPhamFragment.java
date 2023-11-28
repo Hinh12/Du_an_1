@@ -200,8 +200,7 @@ public class QLsanPhamFragment extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ed_TenSanPham.setText("");
-                ed_GiaThue.setText("");
+                dialog.dismiss();
             }
         });
     }
