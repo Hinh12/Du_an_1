@@ -4,14 +4,16 @@ public class Admin {
     private String maAD;
     private String hoTen;
     private String matKhau;
+    private String loaiTK;
 
     public Admin() {
     }
 
-    public Admin(String maAD, String hoTen, String matKhau) {
+    public Admin(String maAD, String hoTen, String matKhau, String loaiTK) {
         this.maAD = maAD;
         this.hoTen = hoTen;
         this.matKhau = matKhau;
+        this.loaiTK = loaiTK;
     }
 
     public String getMaAD() {
@@ -36,5 +38,13 @@ public class Admin {
 
     public void setMatKhau(String matKhau) {
         this.matKhau = matKhau;
+    }
+
+    public String getLoaiTK() {
+        return loaiTK;
+    }
+
+    public void setLoaiTK(String loaiTK) {
+        this.loaiTK = loaiTK;
     }
 }

@@ -1,9 +1,13 @@
 package com.example.du_an_1.Dao;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.du_an_1.Database.DbHelper;
 import com.example.du_an_1.model.Admin;
@@ -11,11 +15,18 @@ import com.example.du_an_1.model.Admin;
 import java.util.ArrayList;
 
 public class AdminDAO {
-    DbHelper dbHelper;
-    AdminDAO adminDAO;
+    private final DbHelper dbHelper;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     public AdminDAO(Context context){
-        dbHelper = new DbHelper(context);
+        this.dbHelper = new DbHelper(context);
+
+        if (context != null){
+            sharedPreferences= context.getSharedPreferences("USER_FILE", context.MODE_PRIVATE);
+        }else {
+            Log.e(TAG, "Context is null in USER_FILE contructor");
+        }
     }
     public ArrayList<Admin> getDSNguoiDung(){
         ArrayList<Admin> list = new ArrayList<>();
@@ -24,7 +35,7 @@ public class AdminDAO {
         if(cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new Admin(cursor.getString(0),cursor.getString(1),cursor.getString(2)));
+                list.add(new Admin(cursor.getString(0),cursor.getString(1),cursor.getString(2), cursor.getString(3)));
             }while (cursor.moveToNext());
         }
         return list;
@@ -33,12 +44,37 @@ public class AdminDAO {
     //đăng nhập
 
     public boolean checkLogin(String maAD,String matKhau) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Admin WHERE maAD=? AND matKhau=?",new String[]{maAD, matKhau});
-        if (cursor.getCount()  != 0){
-            return true;
+        Log.d(TAG, "CheckDangNhap: " + maAD + " - " + matKhau);
+        SQLiteDatabase database= dbHelper.getReadableDatabase();
+        try{
+            Cursor cursor = database.rawQuery("SELECT * FROM Admin WHERE maAD = ? AND matKhau = ?", new String[]{maAD, matKhau});
+            if (cursor.getCount() > 0){
+                cursor.moveToFirst();
+                editor= sharedPreferences.edit();
+                editor.putString("maAD", cursor.getString(0));
+                editor.putString("hoTen", cursor.getString(1));
+                editor.putString("matKhau", cursor.getString(2));
+                editor.putString("loaiTK", cursor.getString(3));
+                editor.commit();
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            Log.e(TAG, "Lỗi kiểm tra đăng nhập", e);
+            return false;
         }
-        return false;
+    }
+
+    public boolean checkDangKy(Admin admin){
+        SQLiteDatabase db= dbHelper.getWritableDatabase();
+        ContentValues values= new ContentValues();
+        values.put("maAD", admin.getMaAD());
+        values.put("hoTen", admin.getHoTen());
+        values.put("matKhau", admin.getMatKhau());
+        values.put("loaiTK", admin.getLoaiTK());
+        long result= db.insert("Admin", null, values);
+        return result != -1;
     }
 
     public boolean register(String username, String hoten, String password){

@@ -39,6 +39,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navController;
+    NavigationView navigationView;
     Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout dralayout = findViewById(R.id.dralayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        NavigationView nav = findViewById(R.id.menunav);
+        navigationView = findViewById(R.id.menunav);
         navController = findViewById(R.id.bottomNavigationView);
         setUpNavigation();
         setSupportActionBar(toolbar);
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
-        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.nav_quanLyNguoiDung) {
@@ -106,6 +107,18 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        SharedPreferences sharedPreferences= getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String loaiTK= sharedPreferences.getString("loaiTK", "");
+        if (!loaiTK.equals("admin")){
+            Menu menu= navigationView.getMenu();
+            menu.findItem(R.id.nav_quanLyNguoiDung).setVisible(false);
+            menu.findItem(R.id.nav_thongKe).setVisible(false);
+            menu.findItem(R.id.nav_quanLyLoaiSanPham).setVisible(false);
+            menu.findItem(R.id.nav_quanLyDonHang).setVisible(false);
+            menu.findItem(R.id.nav_quanLySanPham).setVisible(false);
+        }
+
 
     }
 

@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 7;
+    private static final int DbVersion = 1;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -20,7 +20,8 @@ public class DbHelper extends SQLiteOpenHelper {
         String  tb_Admin = ("CREATE TABLE Admin (" +
                 "maAD TEXT PRIMARY KEY, " +
                 "hoTen TEXT NOT NULL, " +
-                "matKhau TEXT NOT NULL)");
+                "matKhau TEXT NOT NULL," +
+                "loaiTK TEXT NOT NULL)");
         db.execSQL(tb_Admin);
 
         // Bang loai giay
@@ -64,8 +65,8 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(tb_HoaDon);
 
         //insert date
-        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin'), " +
-                "('khachhang1','Nguyen Văn A ','123456')");
+        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin', 'admin'), " +
+                "('khachhang1','Nguyen Văn A ','123456', 'admin')");
 
         db.execSQL("INSERT INTO LoaiGiay VALUES ('1', 'xxx')," +
                 "('2', 'lll')," +
@@ -86,6 +87,8 @@ public class DbHelper extends SQLiteOpenHelper {
         if(oldVersion != newVersion){
             db.execSQL("drop table if exists Admin");
             db.execSQL("drop table if exists HoaDon");
+            db.execSQL("drop table if exists GioHang");
+            db.execSQL("drop table if exists DonHang");
             db.execSQL("drop table if exists Giay");
             db.execSQL("drop table if exists LoaiGiay");
 
