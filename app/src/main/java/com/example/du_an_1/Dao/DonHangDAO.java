@@ -45,7 +45,7 @@ public class DonHangDAO {
 
     public boolean xoaDonHang(DonHang donHang){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        long check = sqLiteDatabase.delete("DonHang","maDonHang = ?",new String[]{String.valueOf(donHang.getMaDonHang())});
+        long check = sqLiteDatabase.delete("DONHANG","maDonHang = ?",new String[]{String.valueOf(donHang.getMaDonHang())});
         return check >0;
 
     }

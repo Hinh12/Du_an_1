@@ -22,13 +22,15 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     TextView btnDangky;
     CheckBox chkRememberPass;
-    AdminDAO adminDAO = new AdminDAO(this);;
+    AdminDAO adminDAO;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        adminDAO = new AdminDAO(this);
         edUserName = findViewById(R.id.edUserName);
         edPassword = findViewById(R.id.edPassword);
         in_user = findViewById(R.id.in_User);
@@ -36,83 +38,60 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnDangky = findViewById(R.id.btnDangky);
         chkRememberPass = findViewById(R.id.chkRememberPass);
+        checkRemember();
+//        AdminDAO adminDAO = new AdminDAO(getApplicationContext());
+        btnLogin.setOnClickListener(view -> {
+            String maAD= edUserName.getText().toString();
+            String matKhau= edPassword.getText().toString();
 
-        // doc user, pass trong SharedPreferences
-        SharedPreferences pref = getSharedPreferences("USER_FILE",MODE_PRIVATE);
-        String user = pref.getString("USERNAME","");
-        String pass = pref.getString("PASSWORD","");
-        Boolean rem = pref.getBoolean("REMEMBER",false);
+            if (maAD.isEmpty()){
+                in_user.setError("Không được để trống");
+            }
+            if (matKhau.isEmpty()){
+                in_pass.setError("Không được để trống");
+                return;
+            }
+            if(adminDAO.checkLogin(maAD, matKhau)){
+                if (chkRememberPass.isChecked()){
+                    editor.putString("maAD", maAD);
+                    editor.putString("matKhau", matKhau);
+                    editor.putBoolean("isChecked", chkRememberPass.isChecked());
+                    editor.apply();
+                }else {
+                    editor.clear();
+                    editor.apply();
+                }
+                edUserName.setText("");
+                edPassword.setText("");
+                Intent intent= new Intent(LoginActivity.this, MainActivity.class);
+                LoginActivity.this.startActivity(intent);
+                this.finish();
 
-        edUserName.setText(user);
-        edPassword.setText(pass);
-        chkRememberPass.setChecked(rem);
-
-
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               checkLogin();
+            }else {
+                in_user.setError("Tên đăng nhập không đúng");
+                in_pass.setError("Mật khẩu không đúng");
             }
         });
 
         btnDangky.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, Dangky.class));
-
+            public void onClick(View view) {
+                Intent intent= new Intent(LoginActivity.this, Dangky.class);
+                startActivity(intent);
             }
         });
 
     }
 
-    public  void rememberUser(String u, String p, boolean status){
-        SharedPreferences pref = getSharedPreferences("USER_FILE",MODE_PRIVATE);
-        SharedPreferences.Editor edit = pref.edit();
-        if (!status){
-            //xoa tinh trang luu tru truoc do
-            edit.clear();
-        }else{
-            //luu du lieu
-            edit.putString("USERNAME", u);
-            edit.putString("PASSWORD", p);
-            edit.putBoolean("REMEMBER", status);
-        }
-        //luu lai toan bo
-        edit.commit();
-    }
+        private void checkRemember(){
+            sharedPreferences= this.getSharedPreferences("USER", MODE_PRIVATE);
+            editor = sharedPreferences.edit(); // Thêm dòng này để khởi tạo đối tượng editor
+            boolean isCheck= sharedPreferences.getBoolean("isCheck", false);
+            if(isCheck){
+                edUserName.setText(sharedPreferences.getString("user", ""));
+                edPassword.setText(sharedPreferences.getString("pass", ""));
+                chkRememberPass.setChecked(isCheck);
 
-    public void  checkLogin(){
-        String user = edUserName.getText().toString();
-        String pass = edPassword.getText().toString();
-        if (user.isEmpty() || pass.isEmpty()){
-            if (user.equals("")){
-                in_user.setError("Không được để trống tên đăng nhập");
-            }else{
-                in_user.setError(null);
-            }
-            if (pass.equals("")){
-                in_pass.setError("Không được để trống mật khẩu");
-            }else {
-                in_pass.setError(null);
-            }
-        }else {
-            if (adminDAO.checkLogin(user,pass)){
-//                if (adminDAO.checkRoleAdmin(user) == 0){
-//                    Toast.makeText(this, "Admin", Toast.LENGTH_SHORT).show();
-//                } else if (adminDAO.checkRoleAdmin(user) == 1){
-//                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-//                }
-                Toast.makeText(this, "Login thành công", Toast.LENGTH_SHORT).show();
-                rememberUser(user,pass,chkRememberPass.isChecked());
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                i.putExtra("maTT",user);
-                startActivity(i);
-                finish();
-            }else {
-                in_user.setError("Tên đăng nhập hoặc mật khẩu không đúng");
-                in_pass.setError("Tên đăng nhập hoặc mật khẩu không đúng");
-            }
         }
     }
 }
