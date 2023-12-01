@@ -12,33 +12,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="147dp"
-            android:background="@drawable/giay" />
+            android:layout_height="150dp"
+            android:background="@drawable/giay"
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-<!--            <FrameLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:orientation="vertical">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/txtma_san_pham"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginLeft="10sp"-->
-<!--                    android:text="ma san pham "-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="20sp" />-->
-<!--            </FrameLayout>-->
 
             <TextView
                 android:id="@+id/txt_ten_san_pham"
@@ -56,24 +41,7 @@
                 android:text="Gia san pham "
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/orange"
-
                 android:textSize="20sp" />
-
-<!--            <TextView-->
-<!--                android:id="@+id/txtma_loai_san_pham2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="10sp"-->
-<!--                android:layout_marginTop="5sp"-->
-<!--                android:text="Ma loai san pham"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="20sp" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/addToCartButton"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:text="Thêm vào giỏ hàng" />-->
 
             <Button
                 android:id="@+id/btn_themvaogiohang"

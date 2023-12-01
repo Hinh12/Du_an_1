@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.nfc.Tag;
 import android.util.Log;
 
+import androidx.constraintlayout.helper.widget.MotionEffect;
+
 import com.example.du_an_1.Database.DbHelper;
 import com.example.du_an_1.model.DonHang;
 
@@ -59,13 +61,28 @@ public class DonHangDAO {
         long check = sqLiteDatabase.update("DonHang", values, "maDonHang = ?", new String[]{String.valueOf(donHang.getMaDonHang())});
         return check > 0;
     }
-    public boolean insertDonHang(DonHang donHang){
-        SQLiteDatabase da = dbHelper.getWritableDatabase();
+    public int insertDonHang(DonHang donHang){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("maAD",donHang.getMaAD());
         values.put("ngayDatHang",donHang.getNgayDatHang());
         values.put("tongTien", donHang.getTongTien());
-        long check = da.insert("DonHang",null,values);
-        return check>0;
+
+        try {
+            long check = db.insert("DonHang",null,values);
+            db.close();
+
+            // Kiểm tra xem đơn hàng đã được chèn thành công hay không
+            if (check > 0) {
+                return (int) check; // Trả về ID của đơn hàng nếu thành công
+            } else {
+                return -1; // Trả về -1 nếu có lỗi khi chèn đơn hàng
+            }
+        } catch (Exception e) {
+            Log.e(MotionEffect.TAG, "Lỗi khi chèn đơn hàng", e);
+            return -1; // Trả về -1 nếu có lỗi khi chèn đơn hàng
+        }
+
+
     }
 }

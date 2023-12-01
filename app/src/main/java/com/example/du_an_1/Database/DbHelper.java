@@ -46,7 +46,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maLoai INTEGER REFERENCES LoaiGiay(maLoai))";
         db.execSQL(tb_Giay);
 
-        //4. Bảng giỏ hàng
+        // Bảng giỏ hàng
         String tb_gioHang = "CREATE TABLE GioHang(" +
                 "maGioHang integer primary key autoincrement, " +
                 "maAD integer REFERENCES Admin(maAD)," +
@@ -64,8 +64,20 @@ public class DbHelper extends SQLiteOpenHelper {
                 "ngay TEXT NOT NULL)";
         db.execSQL(tb_HoaDon);
 
+        //. Bảng chi tiết đơn hàng
+        String chiTietDonHang = "CREATE TABLE ChiTietDonHang(" +
+                "maChiTietDonHang INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "maDonHang INTEGER REFERENCES DonHang(maDonHang)," +
+                "maGiay INTEGER REFERENCES Giay(maGiay)," +
+                "soLuong INTEGER NOT NULL," +
+                "donGia INTEGER NOT NULL," +
+                "thanhTien INTEGER NOT NULL)";
+        db.execSQL(chiTietDonHang);
+
+        db.execSQL("INSERT INTO ChiTietDonHang VALUES(1,2,1,5,20,20)");
+
         //insert date
-        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin', 'admin'), " +
+        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin', 'admin'),('admin12','Nguyễn Văn Admin','admin12', 'khachhang'), " +
                 "('khachhang1','Nguyen Văn A ','123456', 'admin')");
 
         db.execSQL("INSERT INTO LoaiGiay VALUES ('1', 'xxx')," +
@@ -88,6 +100,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists Admin");
             db.execSQL("drop table if exists HoaDon");
             db.execSQL("drop table if exists GioHang");
+            db.execSQL("drop table if exists ChiTietDonHang");
             db.execSQL("drop table if exists DonHang");
             db.execSQL("drop table if exists Giay");
             db.execSQL("drop table if exists LoaiGiay");

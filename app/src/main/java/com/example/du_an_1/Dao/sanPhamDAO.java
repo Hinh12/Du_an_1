@@ -1,5 +1,6 @@
 package com.example.du_an_1.Dao;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -73,6 +74,36 @@ public class sanPhamDAO {
         }else{
             return 1;
         }
+    }
+
+    private static final String COL_MASP = "maGiay";
+    private static final String COL_TENSP = "tenGiay";
+    private static final String COL_GIA = "giaTien";
+    private static final String COL_MALOAI = "maLoai";
+
+    @SuppressLint("Range")
+    public SanPham getSanPhamById(int masanpham) {
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        SanPham sanPham = null;
+
+        String[] columns = {COL_MASP, COL_TENSP, COL_GIA, COL_MALOAI};
+        String selection = COL_MASP + "=?";
+        String[] selectionArgs = {String.valueOf(masanpham)};
+
+        Cursor cursor = database.query("Giay", columns, selection, selectionArgs, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int maSanPham = cursor.getInt(cursor.getColumnIndex(COL_MASP));
+            String tenSanPham = cursor.getString(cursor.getColumnIndex(COL_TENSP));
+            int gia = cursor.getInt(cursor.getColumnIndex(COL_GIA));
+            int maLoaiSanPham = cursor.getInt(cursor.getColumnIndex(COL_MALOAI));
+
+
+            sanPham = new SanPham(maSanPham, tenSanPham, gia, maLoaiSanPham);
+        }
+
+        cursor.close();
+        return sanPham;
     }
 
 

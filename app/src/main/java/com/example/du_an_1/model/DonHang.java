@@ -6,12 +6,22 @@ public class DonHang {
     private String hoTen;
     private String ngayDatHang;
     private int tongTien;
+    private String trangthai;
 
     public DonHang() {
     }
 
+
+
     public DonHang(int maDonHang, String maAD, String hoTen, String ngayDatHang, int tongTien) {
         this.maDonHang = maDonHang;
+        this.maAD = maAD;
+        this.hoTen = hoTen;
+        this.ngayDatHang = ngayDatHang;
+        this.tongTien = tongTien;
+    }
+
+    public DonHang(String maAD, String hoTen, String ngayDatHang, int tongTien) {
         this.maAD = maAD;
         this.hoTen = hoTen;
         this.ngayDatHang = ngayDatHang;

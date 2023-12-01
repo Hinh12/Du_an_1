@@ -86,10 +86,10 @@ public class LoginActivity extends AppCompatActivity {
         private void checkRemember(){
             sharedPreferences= this.getSharedPreferences("USER", MODE_PRIVATE);
             editor = sharedPreferences.edit(); // Thêm dòng này để khởi tạo đối tượng editor
-            boolean isCheck= sharedPreferences.getBoolean("isCheck", false);
+            boolean isCheck= sharedPreferences.getBoolean("isChecked", false);
             if(isCheck){
-                edUserName.setText(sharedPreferences.getString("user", ""));
-                edPassword.setText(sharedPreferences.getString("pass", ""));
+                edUserName.setText(sharedPreferences.getString("maAD", ""));
+                edPassword.setText(sharedPreferences.getString("matKhau", ""));
                 chkRememberPass.setChecked(isCheck);
 
         }

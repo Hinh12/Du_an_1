@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     private ArrayList<GioHang> list;
     Context context;
     GioHangDAO dao;
+
+    private TotalPriceListener listener;
 
     public GioHangAdapter(ArrayList<GioHang> list, Context context) {
         this.list = list;
@@ -52,28 +55,31 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
              public void onClick(View view) {
                  if(gioHang.getSoLuongMua() >= 1){
                      gioHang.setSoLuongMua(gioHang.getSoLuongMua() + 1);
+
                      dao.updateGioHang(gioHang);
                      notifyDataSetChanged();
+                     updateTotalPrice();
 
                  }
              }
          });
 
+        holder.chkChonSanPham.setOnCheckedChangeListener((compoundButton, b) -> {
+            gioHang.setSelected(b);
+            updateTotalPrice();
+
+        });
+
          holder.btntru.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 if (gioHang.getSoLuongMua() >= 1) {
+                 if (gioHang.getSoLuongMua() > 1) {
                      gioHang.setSoLuongMua(gioHang.getSoLuongMua() - 1);
                      dao.updateGioHang(gioHang);
                      notifyDataSetChanged();
+                     updateTotalPrice();
                  }else {
-                     if (dao.deleteGioHang(gioHang)){
-                         list.clear();
-                         list.addAll(dao.getDSGioHang());
-                         notifyDataSetChanged();
-                     }else {
-                         Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
-                     }
+                     removeItem(gioHang);
                  }
 
              }
@@ -89,6 +95,39 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         notifyDataSetChanged();
     }
 
+    private void removeItem(GioHang gioHang) {
+        if (dao.deleteGioHang(gioHang)) {
+            list.remove(gioHang);
+            notifyDataSetChanged();
+            updateTotalPrice();
+        } else {
+            Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void updateTotalPrice() {
+        if (listener != null) {
+            int totalAmount = 0;
+            for (GioHang gioHang : list) {
+                if (gioHang.isSelected()) {
+                    totalAmount += gioHang.getSoLuongMua() * gioHang.getGiaTien();
+                }
+            }
+            listener.onTotalPriceUpdated(totalAmount);
+        }
+    }
+
+
+
+    public void setTotalPriceListener(TotalPriceListener listener) {
+        this.listener = listener;
+    }
+
+    public interface TotalPriceListener {
+        void onTotalPriceUpdated(int totalAmount);
+    }
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -97,6 +136,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txttensp,txtsoluong,txtgia;
         ImageButton btntru,btncong;
+        CheckBox chkChonSanPham;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -105,6 +145,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
             txtsoluong = itemView.findViewById(R.id.txtsoluong);
             btncong = itemView.findViewById(R.id.btncong);
             btntru = itemView.findViewById(R.id.btntru);
+            chkChonSanPham = itemView.findViewById(R.id.chkChonSanPham);
 
         }
     }
