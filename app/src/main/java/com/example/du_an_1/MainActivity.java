@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         setUpNavigation();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(savedInstanceState == null ){
+            replay(new HomeFragment() );
+            getSupportActionBar().setTitle("trang chủ");
+        }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
                 dralayout, toolbar, R.string.open, R.string.close);

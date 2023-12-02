@@ -3,77 +3,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/xam"
     tools:context=".Frame.ThongKeFragment">
 
-    <TextView
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:text="Doanh Thu"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:textSize="50dp" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="Từ ngày"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            android:backgroundTint="@color/orange"
-            android:id="@+id/btnTuNgay"/>
-        <EditText
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:id="@+id/edTuNgay"/>
-    </LinearLayout>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10sp"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="Đến ngày"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            android:backgroundTint="@color/orange"
-            android:id="@+id/btnDenNgay"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.842"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.001">
 
-        <EditText
-            android:id="@+id/edDenNgay"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Chọn ngày thống kê"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Doanh thu"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        android:id="@+id/btnDoanhThu"
-        android:backgroundTint="#E37783"/>
+                <!--        <FrameLayout-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_marginLeft="30sp"-->
+                <!--            android:layout_marginTop="40sp"-->
+                <!--            android:orientation="vertical">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Doanh Thu: "
-        android:textColor="@color/black"
-        android:layout_marginTop="100dp"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:id="@+id/txtdoanhthu"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:text="Từ ngày :"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/btnlich_bat_dau"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_lich"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginBottom="10sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:text="Đến ngày :"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/btnlich_ket_thuc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_lich"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnthong_ke"
+                    android:layout_width="120sp"
+                    android:layout_height="50sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5sp"
+                    android:text="Thống kê"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginTop="20sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtso_luong_don"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50sp"
+                        android:layout_marginTop="5sp"
+                        android:text="Số lượng hàng đơn hàng:"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:src="@drawable/lich" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginBottom="20sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txttong_tien"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50sp"
+                        android:layout_marginTop="5sp"
+                        android:text="Tổng tiền hàng bán ra:"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:src="@drawable/ic_tien" />
+                </FrameLayout>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

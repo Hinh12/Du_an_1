@@ -35,7 +35,7 @@ public class AdminDAO {
         if(cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new Admin(cursor.getString(0),cursor.getString(1),cursor.getString(2), cursor.getString(3)));
+                list.add(new Admin(cursor.getString(0),cursor.getString(1),cursor.getString(2), cursor.getString(3),cursor.getString(4)));
             }while (cursor.moveToNext());
         }
         return list;
@@ -55,6 +55,7 @@ public class AdminDAO {
                 editor.putString("hoTen", cursor.getString(1));
                 editor.putString("matKhau", cursor.getString(2));
                 editor.putString("loaiTK", cursor.getString(3));
+                editor.putString("anh",cursor.getString(4));
                 editor.commit();
                 return true;
             }else {

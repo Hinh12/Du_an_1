@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 1;
+    private static final int DbVersion = 3;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -21,7 +21,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maAD TEXT PRIMARY KEY, " +
                 "hoTen TEXT NOT NULL, " +
                 "matKhau TEXT NOT NULL," +
-                "loaiTK TEXT NOT NULL)");
+                "loaiTK TEXT NOT NULL," +
+                "anh TEXT)");
         db.execSQL(tb_Admin);
 
         // Bang loai giay
@@ -77,14 +78,17 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO ChiTietDonHang VALUES(1,2,1,5,20,20)");
 
         //insert date
-        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin', 'admin'),('admin12','Nguyễn Văn Admin','admin12', 'khachhang'), " +
-                "('khachhang1','Nguyen Văn A ','123456', 'admin')");
+        db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin', 'admin','https://www.google.com/imgres?imgurl=https%3A%2F%2Fps.w.org%2Fuser-avatar-reloaded%2Fassets%2Ficon-256x256.png%3Frev%3D2540745&tbnid=4tCxPvBodOnWbM&vet=12ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Ffa.wordpress.org%2Fplugins%2Fuser-avatar-reloaded%2F&docid=7XY1G-DhNW4M4M&w=257&h=257&q=avt%20user&ved=2ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT')," +
+                "('admin12','Nguyễn Văn Admin','admin12', 'khachhang','https://www.google.com/imgres?imgurl=https%3A%2F%2Fps.w.org%2Fuser-avatar-reloaded%2Fassets%2Ficon-256x256.png%3Frev%3D2540745&tbnid=4tCxPvBodOnWbM&vet=12ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Ffa.wordpress.org%2Fplugins%2Fuser-avatar-reloaded%2F&docid=7XY1G-DhNW4M4M&w=257&h=257&q=avt%20user&ved=2ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT'), " +
+                "('khachhang1','Nguyen Văn A ','123456', 'admin','https://www.google.com/imgres?imgurl=https%3A%2F%2Fps.w.org%2Fuser-avatar-reloaded%2Fassets%2Ficon-256x256.png%3Frev%3D2540745&tbnid=4tCxPvBodOnWbM&vet=12ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Ffa.wordpress.org%2Fplugins%2Fuser-avatar-reloaded%2F&docid=7XY1G-DhNW4M4M&w=257&h=257&q=avt%20user&ved=2ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT')");
 
         db.execSQL("INSERT INTO LoaiGiay VALUES ('1', 'xxx')," +
                 "('2', 'lll')," +
                 "('3', 'dfa')");
 
-        db.execSQL("INSERT INTO DonHang VALUES(1, 'khachhang1', '12-01-2000', 2000)");
+        db.execSQL("INSERT INTO DonHang VALUES(1, 'khachhang1', '11/01/2023', 2000)," +
+                "(2, 'khachhang1', '11/02/2023', 2000)," +
+                "(3, 'khachhang1', '11/03/2023', 2000)");
 
         db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', '30000', '1')," +
                 "(2, 'Giay', '40000', '2')," +
