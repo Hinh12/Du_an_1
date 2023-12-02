@@ -64,8 +64,8 @@ public class ThanhToanFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NotificationFragment frgGioHang = new NotificationFragment();
-                FragmentManager fragmentManager=getParentFragmentManager();
-                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frglayout,frgGioHang);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

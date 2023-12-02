@@ -97,8 +97,6 @@ public class sanPhamDAO {
             String tenSanPham = cursor.getString(cursor.getColumnIndex(COL_TENSP));
             int gia = cursor.getInt(cursor.getColumnIndex(COL_GIA));
             int maLoaiSanPham = cursor.getInt(cursor.getColumnIndex(COL_MALOAI));
-
-
             sanPham = new SanPham(maSanPham, tenSanPham, gia, maLoaiSanPham);
         }
 

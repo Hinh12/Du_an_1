@@ -45,10 +45,19 @@ public class DonHangDAO {
         return list;
     }
 
-    public boolean xoaDonHang(DonHang donHang){
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        long check = sqLiteDatabase.delete("DONHANG","maDonHang = ?",new String[]{String.valueOf(donHang.getMaDonHang())});
-        return check >0;
+    public int xoaDonHang(int maDonHang){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from DonHang where maDonHang = ?",new String[]{String.valueOf(maDonHang)});
+        if (cursor.getCount() != 0){
+            return -1;
+        }
+
+        long check = db.delete("DonHang","maDonHang = ?",new String[]{String.valueOf(maDonHang)});
+        if (check == -1){
+            return 0;
+        }else {
+            return 1;
+        }
 
     }
     public boolean updateDonHang(DonHang donHang) {

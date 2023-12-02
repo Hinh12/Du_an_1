@@ -108,10 +108,9 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                             if (totalAmount > 0){
                                 Log.d("sizeeeeeeeeeee",String.valueOf(list.size()));
                                 for (GioHang gioHang : list){
-
                                     if(gioHang.isSelected()){
                                         sanPhamDAO SPDAO = new sanPhamDAO(getContext());
-                                        SanPham sanPham = SPDAO.getSanPhamById(gioHang.getMaGioHang());
+                                        SanPham sanPham = SPDAO.getSanPhamById(gioHang.getMaGiay());
                                         if (sanPham != null){
                                            DonHangChiTiet donHangChiTiet = new DonHangChiTiet(orderId, gioHang.getMaGiay(), gioHang.getSoLuongMua(), sanPham.getGiaTien(), gioHang.getSoLuongMua() * sanPham.getGiaTien());
                                            chiTietDao.insertDonHangChiTiet(donHangChiTiet);
@@ -138,6 +137,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                             Snackbar.make(getView(), "Thanh toán thành công", Snackbar.LENGTH_SHORT).show();
                             Bundle bundle = new Bundle();
                             bundle.putInt("maDonHang", orderId);
+//                            Toast.makeText(getContext(), "Đã tạo đơn hàng thành công!", Toast.LENGTH_SHORT).show();
 
                             ThanhToanFragment frgThanhToan = new ThanhToanFragment();
                             frgThanhToan.setArguments(bundle);
@@ -149,10 +149,9 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
 
                         }else {
                             Toast.makeText(getContext(), "Thất bại!", Toast.LENGTH_SHORT).show();
-                            return;
                         }
                 }
-                Toast.makeText(getContext(), "Đã tạo đơn hàng thành công!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
