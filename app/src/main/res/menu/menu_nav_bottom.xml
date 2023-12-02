@@ -3,17 +3,17 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/home"
-        android:title="" />
+        android:title="Trang chủ" />
 
     <item
         android:id="@+id/notificationFragment"
         android:icon="@drawable/add_shopping_cart"
-        android:title="" />
+        android:title="Giỏ hàng" />
 
     <item
         android:id="@+id/userFragment"
         android:icon="@drawable/user"
-        android:title="" />
+        android:title="Nguời dùng" />
 
 
 </menu>

@@ -6,14 +6,17 @@ public class Admin {
     private String matKhau;
     private String loaiTK;
 
+    private String anh;
+
     public Admin() {
     }
 
-    public Admin(String maAD, String hoTen, String matKhau, String loaiTK) {
+    public Admin(String maAD, String hoTen, String matKhau, String loaiTK, String anh) {
         this.maAD = maAD;
         this.hoTen = hoTen;
         this.matKhau = matKhau;
         this.loaiTK = loaiTK;
+        this.anh = anh;
     }
 
     public String getMaAD() {
@@ -46,5 +49,13 @@ public class Admin {
 
     public void setLoaiTK(String loaiTK) {
         this.loaiTK = loaiTK;
+    }
+
+    public String getAnh() {
+        return anh;
+    }
+
+    public void setAnh(String anh) {
+        this.anh = anh;
     }
 }
