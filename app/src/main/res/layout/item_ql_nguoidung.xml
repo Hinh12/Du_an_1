@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="10sp"
-    android:background="@drawable/khung_item"
+    android:background="@drawable/khung_radio10"
     >
     <FrameLayout
         android:layout_width="match_parent"

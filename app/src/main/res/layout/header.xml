@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200sp"
-    android:background="#FF6E41"
+    android:background="#E7E4E5"
     android:orientation="vertical"
     android:padding="8sp">
 
@@ -10,10 +10,9 @@
     <ImageView
         android:layout_width="120sp"
         android:layout_height="110sp"
-        android:backgroundTint="#444444"
         android:alpha="0.85"
         android:layout_gravity="center"
-        android:src="@drawable/boy"
+        android:src="@drawable/logo"
         android:scaleType="fitXY"
         />
 
@@ -22,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18sp"
         android:textColor="#151713"
-        android:text="Admin"
+        android:text="Chào mừng tới ShoeS"
         android:gravity="center"
         android:textSize="20sp"
         />
