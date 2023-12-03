@@ -8,6 +8,8 @@ public class GioHang {
     private String tenGiay;
     private int giaTien;
 
+    private int soLuong;
+
     private boolean isSelected;
 
     public boolean isSelected() {
@@ -32,6 +34,14 @@ public class GioHang {
         this.maGiay = maGiay;
         this.maAD = maAD;
         this.soLuongMua = soLuongMua;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
     public int getMaGioHang() {

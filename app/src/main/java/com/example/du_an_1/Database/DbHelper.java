@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 3;
+    private static final int DbVersion = 1;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -44,13 +44,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maGiay INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenGiay TEXT NOT NULL," +
                 "giaTien INTEGER NOT NULL," +
-                "maLoai INTEGER REFERENCES LoaiGiay(maLoai))";
+                "maLoai INTEGER REFERENCES LoaiGiay(maLoai)," +
+                "soLuong INTEGER NOT NULL)";
         db.execSQL(tb_Giay);
 
         // Bảng giỏ hàng
         String tb_gioHang = "CREATE TABLE GioHang(" +
                 "maGioHang integer primary key autoincrement, " +
-                "maAD integer REFERENCES Admin(maAD)," +
+                "maAD TEXT REFERENCES Admin(maAD)," +
                 "maGiay integer REFERENCES Giay(maGiay)," +
                 "soLuong integer not null)";
         db.execSQL(tb_gioHang);
@@ -75,7 +76,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "thanhTien INTEGER NOT NULL)";
         db.execSQL(chiTietDonHang);
 
-        db.execSQL("INSERT INTO ChiTietDonHang VALUES(1,2,1,5,20,20)");
+
 
         //insert date
         db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin', 'admin','https://www.google.com/imgres?imgurl=https%3A%2F%2Fps.w.org%2Fuser-avatar-reloaded%2Fassets%2Ficon-256x256.png%3Frev%3D2540745&tbnid=4tCxPvBodOnWbM&vet=12ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Ffa.wordpress.org%2Fplugins%2Fuser-avatar-reloaded%2F&docid=7XY1G-DhNW4M4M&w=257&h=257&q=avt%20user&ved=2ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT')," +
@@ -90,9 +91,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(2, 'khachhang1', '11/02/2023', 2000)," +
                 "(3, 'khachhang1', '11/03/2023', 2000)");
 
-        db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', '30000', '1')," +
-                "(2, 'Giay', '40000', '2')," +
-                "(3, 'Giay thoi trang', '54444', '3')");
+        db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', 30000, 1, 12)," +
+                "(2, 'Giay', 40000, 2,13)," +
+                "(3, 'Giay thoi trang', 54444, 3,12)");
 
         db.execSQL("INSERT INTO HoaDon VALUES(1, 1, 'Giay bong da',  2, 1231413, '23')," +
                 "(2, 2, 'Giay',  1, 231221, '12')");

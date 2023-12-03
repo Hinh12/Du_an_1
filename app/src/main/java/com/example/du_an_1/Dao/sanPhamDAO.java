@@ -20,24 +20,25 @@ public class sanPhamDAO {
     public ArrayList<SanPham> getDSSanPham(){
         ArrayList<SanPham> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-//        Cursor cursor = db.rawQuery("SELECT * FROM Giay", null);
-        Cursor cursor = db.rawQuery("select sp.maGiay, sp.tenGiay, sp.giaTien, lsp.maLoai,lsp.tenLoai from Giay sp, LoaiGiay lsp where sp.maLoai = lsp.maLoai",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Giay", null);
+//        Cursor cursor = db.rawQuery("select sp.maGiay, sp.tenGiay, sp.giaTien, lsp.maLoai,lsp.tenLoai, sp.soLuong from Giay sp, LoaiGiay lsp where sp.maLoai = lsp.maLoai",null);
         if(cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new SanPham(cursor.getInt(0),cursor.getString(1),cursor.getInt(2), cursor.getInt(3)));
+                list.add(new SanPham(cursor.getInt(0),cursor.getString(1),cursor.getInt(2), cursor.getInt(3),cursor.getInt(4)));
             }while (cursor.moveToNext());
         }
         return list;
     }
 
 
-    public boolean insert(String tenGiay, int giaTien, int maloai){
+    public boolean insert(String tenGiay, int giaTien, int maloai, int soLuong){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put("tenGiay",tenGiay);
         values.put("giaTien",giaTien);
         values.put("maLoai",maloai);
+        values.put("soLuong",soLuong);
         long check = db.insert("Giay",null,values);
         if(check == -1){
             return false;
@@ -46,12 +47,13 @@ public class sanPhamDAO {
         }
     }
 
-    public boolean update(int maGiay, String tenGiay, int giaTien, int maloai){
+    public boolean update(int maGiay, String tenGiay, int giaTien, int maloai, int soLuong){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("tenGiay",tenGiay);
         values.put("giaTien",giaTien);
         values.put("maLoai",maloai);
+        values.put("soLuong",soLuong);
         long check = db.update("Giay",values,"maGiay = ?", new String[]{String.valueOf(maGiay)});
         if(check == -1){
             return false;

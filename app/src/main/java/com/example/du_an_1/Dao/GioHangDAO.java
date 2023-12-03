@@ -26,18 +26,19 @@ public class GioHangDAO {
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         try {
 //
-            Cursor c = database.rawQuery("SELECT GioHang.maGioHang,GioHang.maAD, Giay.maGiay, GioHang.soLuong, Giay.tenGiay,Giay.giaTien" +
+            Cursor c = database.rawQuery("SELECT GioHang.maGioHang,GioHang.maAD, Giay.maGiay, GioHang.soLuong, Giay.tenGiay,Giay.giaTien, Giay.soLuong" +
                     " from GioHang,Giay Where GioHang.maGiay = Giay.maGiay", null);
             if (c.getCount() != 0) {
                 c.moveToFirst();
                 do {
                     GioHang gioHang = new GioHang();
                     gioHang.setMaGioHang(c.getInt(0));
-                    gioHang.setMaGiay(c.getInt(2));
                     gioHang.setMaAD(c.getString(1));
+                    gioHang.setMaGiay(c.getInt(2));
                     gioHang.setSoLuongMua(c.getInt(3));
                     gioHang.setTenGiay(c.getString(4));
                     gioHang.setGiaTien(c.getInt(5));
+                    gioHang.setSoLuong(c.getInt(6));
                     list.add(gioHang);
                 } while (c.moveToNext());
             }
@@ -46,6 +47,38 @@ public class GioHangDAO {
         }
         return list;
     }
+
+    public ArrayList<GioHang> getDanhSachGioHangByMaNguoiDung(String maAD) {
+        ArrayList<GioHang> list = new ArrayList<>();
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        try {
+            // Thêm điều kiện WHERE cho mã người dùng
+            String query =  "SELECT GioHang.maGioHang,GioHang.maAD, Giay.maGiay, GioHang.soLuong, Giay.tenGiay,Giay.giaTien, Giay.soLuong" +
+                    " from GioHang,Giay Where GioHang.maGiay = Giay.maGiay AND GioHang.maAD =? ";
+
+            Cursor c = database.rawQuery(query, new String[]{String.valueOf(maAD)});
+            if (c.getCount() != 0) {
+                c.moveToFirst();
+                do {
+                    GioHang gioHang = new GioHang();
+                    gioHang.setMaGioHang(c.getInt(0));
+                    gioHang.setMaAD(c.getString(1));
+                    gioHang.setMaGiay(c.getInt(2));
+                    gioHang.setSoLuongMua(c.getInt(3));
+                    gioHang.setTenGiay(c.getString(4));
+                    gioHang.setGiaTien(c.getInt(5));
+                    gioHang.setSoLuong(c.getInt(6));
+                    list.add(gioHang);
+                } while (c.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.i(TAG, "Lỗiiii", e);
+        }
+        return list;
+    }
+
+
+
 
     public boolean insertGioHang(GioHang gioHang){
         SQLiteDatabase db = dbHelper.getWritableDatabase();

@@ -53,13 +53,13 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
          holder.btncong.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 if(gioHang.getSoLuongMua() >= 1){
+                 if(gioHang.getSoLuongMua() < gioHang.getSoLuong()){
                      gioHang.setSoLuongMua(gioHang.getSoLuongMua() + 1);
-
                      dao.updateGioHang(gioHang);
                      notifyDataSetChanged();
                      updateTotalPrice();
-
+                 }else {
+                     Toast.makeText(context, "Không thể mua thêm, số lượng trong kho đã đạt tối đa", Toast.LENGTH_SHORT).show();
                  }
              }
          });

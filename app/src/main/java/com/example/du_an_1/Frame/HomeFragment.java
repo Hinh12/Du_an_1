@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -33,6 +34,7 @@ import com.example.du_an_1.adapter.sanPhamHomeAdapter;
 import com.example.du_an_1.model.GioHang;
 import com.example.du_an_1.model.SanPham;
 import com.example.du_an_1.model.Slideiten;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,7 @@ public class HomeFragment extends Fragment {
     GioHangAdapter gioHangAdapter;
     GioHangDAO gioHangDAO;
     private SharedViewModel sharedViewModel;
+    ArrayList<GioHang> listGioHang = new ArrayList<>();
 
 //    adapter_slide;
 
@@ -122,7 +125,7 @@ public class HomeFragment extends Fragment {
         sanPhamHomeAdapter.setOnAddToCartClickListener(new sanPhamHomeAdapter.OnAddToCartClickListener() {
             @Override
             public void onAddToCartClick(SanPham sanPham) {
-                addToCart(sanPham);
+                themVaoGio(sanPham);
             }
         });
 
@@ -144,6 +147,21 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private int getSoLuongSp(int maSanPham) {
+        for (SanPham sanPham : list) {
+            if (sanPham.getMaGiay() == maSanPham) {
+                return sanPham.getSoLuong();
+            }
+        }
+        return 0; // Trả về 0 nếu không tìm thấy sản phẩm
+    }
+
+    @NonNull
+    @Override
+    public ViewModelStore getViewModelStore() {
+        return new ViewModelStore();
+    }
+
 
     private Runnable sildeRunnable = new Runnable() {
         @Override
@@ -158,9 +176,46 @@ public class HomeFragment extends Fragment {
         }
     };
 
+    private void themVaoGio(SanPham sanPham) {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String maad = sharedPreferences.getString("USERNAME", "");
+        int maSanPham = sanPham.getMaGiay();
+        int slSanPham = getSoLuongSp(maSanPham);
+        listGioHang = gioHangDAO.getDanhSachGioHangByMaNguoiDung(maad);
+
+        boolean isProductInCart = false;
+
+        for (GioHang gioHang : listGioHang) {
+            if (gioHang.getMaGiay() == maSanPham) {
+                isProductInCart = true;
+                if (gioHang.getSoLuongMua() < slSanPham) {
+                    gioHang.setSoLuongMua(gioHang.getSoLuongMua() + 1);
+                    gioHangDAO.updateGioHang(gioHang);
+                    Snackbar.make(getView(), "Đã cập nhật giỏ hàng thành công", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Số lượng sản phẩm đã đạt giới hạn", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+        }
+
+        if (!isProductInCart) {
+            if (slSanPham > 0) {
+                gioHangDAO.insertGioHang(new GioHang(maSanPham, maad, 1));
+            } else {
+                Toast.makeText(getActivity(), "Sản phẩm hết hàng", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+
+
     private void addToCart(SanPham sanPham) {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
         String maad = sharedPreferences.getString("USERNAME", "");
+        int maSanPham = sanPham.getMaGiay();
+        int slSanPham = getSoLuongSp(maSanPham);
 
         if (!sharedViewModel.isProductInCart(sanPham.getMaGiay())) {
             sharedViewModel.setMasp(sanPham.getMaGiay());
@@ -170,21 +225,25 @@ public class HomeFragment extends Fragment {
             Log.i("tengiayuuuuu",sanPham.getTenGiay());
             Log.i("ma nguoi dunggggggggg",maad);
             gioHangDAO.insertGioHang(new GioHang(sanPham.getMaGiay(), maad, 1));
+            Snackbar.make(getView(),"Đã thêm vào giỏ Hàng",Snackbar.LENGTH_SHORT).show();
         } else {
             GioHang hang = gioHangDAO.getGioHangByMasp(sanPham.getMaGiay(),maad);
             if (hang != null) {
                 hang.setSoLuongMua(hang.getSoLuongMua() + 1);
                 gioHangDAO.updateGioHang(hang);
+                Snackbar.make(getView(), "Đã cập nhật giỏ hàng thành công", Snackbar.LENGTH_SHORT).show();
             } else {
-                GioHang newCartItem = new GioHang(sanPham.getMaGiay(), maad, 1);
-                gioHangDAO.insertGioHang(newCartItem);
+//                GioHang newCartItem = new GioHang(sanPham.getMaGiay(), maad, 1);
+//                gioHangDAO.insertGioHang(newCartItem);
+                Toast.makeText(getContext(), "Đã cập nhật giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+
             }
-            gioHangAdapter.notifyDataSetChanged();
+//            gioHangAdapter.notifyDataSetChanged();
         }
-        ArrayList<GioHang> updatedCartList = gioHangDAO.getDSGioHang();
-        gioHangAdapter.updateCartList(updatedCartList);
-        gioHangAdapter.notifyDataSetChanged();
-        Toast.makeText(getContext(), "Đã cập nhật giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+//        ArrayList<GioHang> updatedCartList = gioHangDAO.getDSGioHang();
+//        gioHangAdapter.updateCartList(updatedCartList);
+//        gioHangAdapter.notifyDataSetChanged();
+//        Toast.makeText(getContext(), "Đã cập nhật giỏ hàng thành công", Toast.LENGTH_SHORT).show();
     }
 
 

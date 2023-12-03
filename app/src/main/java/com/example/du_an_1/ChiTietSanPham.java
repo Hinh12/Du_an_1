@@ -108,11 +108,11 @@ public class ChiTietSanPham extends AppCompatActivity {
                         sharedViewModel.setQuantityToAdd(1);
 
 
-                        String maad = getSharedPreferences("USERNAME", MODE_PRIVATE).getString("maAD", "");
+                        String maad = getSharedPreferences("USER_FILE", MODE_PRIVATE).getString("maAD", "");
                         gioHangDao.insertGioHang(new GioHang(maSanPham, maad, 1));
                     } else {
                         // Sản phẩm đã tồn tại trong giỏ hàng, thực hiện cập nhật số lượng
-                        String maad = getSharedPreferences("NGUOIDUNG", MODE_PRIVATE).getString("maAD", "");
+                        String maad = getSharedPreferences("Admin", MODE_PRIVATE).getString("maAD", "");
                         GioHang gioHang = gioHangDao.getGioHangByMasp(maSanPham, maad);
                         if (gioHang != null) {
                             gioHang.setSoLuongMua(gioHang.getSoLuongMua() + 1);

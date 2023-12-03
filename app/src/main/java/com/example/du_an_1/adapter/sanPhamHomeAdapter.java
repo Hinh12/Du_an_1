@@ -72,17 +72,18 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
         LoaiSanPham loaisp = loaispdao.getLoaiSanPhamByID(list.get(position).getMaLoai());
         holder.txttensp.setText(list.get(position).getTenGiay());
         holder.txtgiasp.setText(String.valueOf(list.get(position).getGiaTien()));
+        holder.txt_so_luong_san_pham.setText(String.valueOf(list.get(position).getSoLuong()));
         SanPham sp = list.get(position);
 
 
-//        holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mAddToCartClickListener != null){
-//                    mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
-//                }
-//            }
-//        });
+        holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAddToCartClickListener != null){
+                    mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
+                }
+            }
+        });
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +103,7 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
 
     public class ViewHoler extends RecyclerView.ViewHolder {
 
-        TextView txtmasp, txttensp, txtgiasp, txtmaloaisp, txttenloaisp;
+        TextView txtmasp, txttensp, txtgiasp, txtmaloaisp, txt_so_luong_san_pham;
         Button btn_themvagiohang;
         LinearLayout sanphamhome;
 
@@ -113,8 +114,9 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
             txtgiasp = itemView.findViewById(R.id.txtgia_san_pham);
             txtmaloaisp = itemView.findViewById(R.id.txtma_loai_san_pham2);
             sanphamhome = itemView.findViewById(R.id.sanphamhome);
+            txt_so_luong_san_pham = itemView.findViewById(R.id.txt_so_luong_san_pham);
 
-//            btn_themvagiohang = itemView.findViewById(R.id.btn_themvaogiohang);
+            btn_themvagiohang = itemView.findViewById(R.id.btn_themvaogiohang);
 
 
 

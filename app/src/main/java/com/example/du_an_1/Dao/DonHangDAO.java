@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.nfc.Tag;
 import android.util.Log;
 
 import androidx.constraintlayout.helper.widget.MotionEffect;
@@ -26,7 +25,8 @@ public class DonHangDAO {
         ArrayList<DonHang> list= new ArrayList<>();
         SQLiteDatabase database= dbHelper.getReadableDatabase();
         try{
-            Cursor cursor= database.rawQuery("SELECT DonHang.maDonHang, Admin.maAD, Admin.hoTen, DonHang.ngayDatHang, DonHang.tongTien from DonHang, Admin where DonHang.maAD = Admin.maAD", null);
+            Cursor cursor= database.rawQuery("SELECT DonHang.maDonHang, Admin.maAD, Admin.hoTen, DonHang.ngayDatHang, DonHang.tongTien" +
+                    " from DonHang, Admin where DonHang.maAD = Admin.maAD", null);
             if (cursor.getCount() != 0){
                 cursor.moveToFirst();
                 do {
@@ -44,6 +44,38 @@ public class DonHangDAO {
         }
         return list;
     }
+
+    public ArrayList<DonHang> getDonHangByMaTaiKhoan(String maAD) {
+        ArrayList<DonHang> list = new ArrayList<>();
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        try {
+            String query="SELECT DonHang.maDonHang, Admin.maAD, Admin.hoTen, DonHang.ngayDatHang, DonHang.tongTien" +
+                    " FROM DonHang JOIN Admin ON DonHang.maAD = Admin.maAD WHERE Admin.maAD = ?";
+
+            Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(maAD)});
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    DonHang donHang = new DonHang();
+                    donHang.setMaDonHang(cursor.getInt(0));
+                    donHang.setMaAD(cursor.getString(1));
+                    donHang.setHoTen(cursor.getString(2));
+                    donHang.setNgayDatHang(cursor.getString(3));
+                    donHang.setTongTien(cursor.getInt(4));
+//                    donHang.setTrangthai(cursor.getString(5));
+                    list.add(donHang);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(MotionEffect.TAG, "Lỗi", e);
+        }
+        return list;
+    }
+
+
+
+
 
     public int xoaDonHang(int maDonHang){
         SQLiteDatabase db = dbHelper.getWritableDatabase();

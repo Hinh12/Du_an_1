@@ -1,5 +1,7 @@
 package com.example.du_an_1.Frame;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,62 +13,61 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.du_an_1.Dao.DonHangChiTietDao;
 import com.example.du_an_1.Dao.DonHangDAO;
 import com.example.du_an_1.R;
-import com.example.du_an_1.adapter.DonHangAdapter;
+import com.example.du_an_1.adapter.Adapter_lich_su_don_hang;
 import com.example.du_an_1.model.DonHang;
 
 import java.util.ArrayList;
 
 
-public class QLdonHangFragment extends Fragment {
-
-    RecyclerView rcvdonhang;
-    DonHangAdapter donHangAdapter;
+public class LichSuDonHangFragment extends Fragment {
     private ArrayList<DonHang> list = new ArrayList<>();
-    DonHangDAO donHangDAO;
-    private DonHangChiTietDao chiTietDao;
-    public QLdonHangFragment() {
+    private DonHangDAO dao;
+
+    private Adapter_lich_su_don_hang adapterDonHang;
+    RecyclerView rcv;
+
+
+    public LichSuDonHangFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=  inflater.inflate(R.layout.fragment_q_ldon_hang, container, false);
+        View view = inflater.inflate(R.layout.fragment_lich_su_don_hang, container, false);
 
-        rcvdonhang= view.findViewById(R.id.rcvQLDH);
-        donHangDAO= new DonHangDAO(getContext());
-        LinearLayoutManager layoutManager= new LinearLayoutManager(getContext());
-        rcvdonhang.setLayoutManager(layoutManager);
-        list = donHangDAO.getDSDonHang();
-        donHangAdapter= new DonHangAdapter(list, getContext());
-        rcvdonhang.setAdapter(donHangAdapter);
-        chiTietDao = new DonHangChiTietDao(getContext());
+        SharedPreferences preferences = requireActivity().getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
+        String maad = preferences.getString("maAD", "");
 
-        donHangAdapter.setOnItemClick(new DonHangAdapter.OnItemClick() {
+        rcv = view.findViewById(R.id.rcv_Lich_Su_Don_Hang);
+        dao = new DonHangDAO(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        rcv.setLayoutManager(layoutManager);
+        list = dao.getDonHangByMaTaiKhoan(maad);
+        adapterDonHang = new Adapter_lich_su_don_hang(list, getContext());
+        rcv.setAdapter(adapterDonHang);
+        adapterDonHang.setOnItemClick(new Adapter_lich_su_don_hang.OnItemClick() {
             @Override
             public void onItemClick(int position) {
                 DonHang donHang = list.get(position);
                 int maDonHang = donHang.getMaDonHang();
 
                 Bundle bundle = new Bundle();
-                bundle.putInt("maDonHang", maDonHang);
-                DonHangChiTietFragment frgDonHangChiTiet = new DonHangChiTietFragment();
-                frgDonHangChiTiet.setArguments(bundle);
+                bundle.putInt("maDonHang",maDonHang);
+                DonHangChiTietFragment donHangChiTietFragment = new DonHangChiTietFragment();
+                donHangChiTietFragment.setArguments(bundle);
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frglayout, frgDonHangChiTiet);
+                fragmentTransaction.replace(R.id.frglayout, donHangChiTietFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+
             }
         });
-
-
         return view;
     }
-
-
 }

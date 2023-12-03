@@ -76,6 +76,15 @@
                 android:layout_marginTop="5sp"
                 android:text="Ma loai san pham"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txt_so_luong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:text="Số lượng san pham"
+                android:textSize="20sp" />
         </LinearLayout>
 
 

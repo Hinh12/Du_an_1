@@ -31,13 +31,22 @@
         android:textSize="20sp"
         android:padding="5dp" />
 
-    <!--    <Button-->
-    <!--        android:id="@+id/btn_themvaogiohang"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:text="Thêm vào giỏ hàng"-->
-    <!--        android:background="@color/white"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        android:layout_margin="10dp" />-->
+    <TextView
+        android:id="@+id/txt_so_luong_san_pham"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Số lượng san pham "
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/orange"
+        android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_themvaogiohang"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Thêm vào giỏ hàng"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_margin="10dp" />
 
 </LinearLayout>

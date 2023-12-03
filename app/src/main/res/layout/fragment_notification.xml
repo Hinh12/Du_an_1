@@ -43,7 +43,6 @@
                     android:id="@+id/txthometongtien"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     android:gravity="center"
                     android:textColor="@color/orange" />
             </LinearLayout>

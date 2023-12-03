@@ -49,10 +49,11 @@ public class DonHangChiTietFragment extends Fragment {
         rcvDonHangChiTiet.setAdapter(adapterDonHangChiTiet);
         adapterDonHangChiTiet.notifyDataSetChanged();
         chiTietDao = new DonHangChiTietDao(getContext());
+
         Bundle bundle = getArguments();
         if (bundle != null) {
-            int maDonHang = bundle.getInt("maHD", 0);
-            Log.d("maHD", String.valueOf(maDonHang));
+            int maDonHang = bundle.getInt("maDonHang");
+            Log.d("maDonHang", String.valueOf(maDonHang));
             if (maDonHang != 0) {
                 list = chiTietDao.getChiTietDonHangByMaDonHang(maDonHang);
                 adapterDonHangChiTiet = new adapter_don_hang_chi_tiet(list, getContext());
@@ -67,7 +68,7 @@ public class DonHangChiTietFragment extends Fragment {
                 QLdonHangFragment frgQuanLyDonHang = new QLdonHangFragment();//fragment được chuyển đến sau khi ấn
                 FragmentManager fragmentManager=getParentFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.dralayout,frgQuanLyDonHang);
+                fragmentTransaction.replace(R.id.frglayout,frgQuanLyDonHang);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

@@ -26,6 +26,19 @@
             android:id="@+id/ed_updateTenSP"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/in_updateSoLuong">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập số lượng"
+            android:id="@+id/ed_updateSoLuong"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="50dp"

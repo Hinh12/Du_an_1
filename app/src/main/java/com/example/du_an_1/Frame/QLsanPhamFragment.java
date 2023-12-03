@@ -2,12 +2,6 @@ package com.example.du_an_1.Frame;
 
 import android.app.Dialog;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,6 +11,11 @@ import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.du_an_1.Dao.LoaiSanPhamDAO;
 import com.example.du_an_1.Dao.sanPhamDAO;
@@ -51,7 +50,7 @@ public class QLsanPhamFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_q_lsan_pham, container, false);
-        rcv= view.findViewById(R.id.rcvgiay);
+        rcv= view.findViewById(R.id.rcvqlgiay);
         fltAdd = view.findViewById(R.id.add_sp);
         dao= new sanPhamDAO(getContext());
         list= dao.getDSSanPham();
@@ -88,13 +87,36 @@ public class QLsanPhamFragment extends Fragment {
 
         TextInputLayout in_TenSanPham = view.findViewById(R.id.in_addTenSP);
         TextInputLayout in_GiaThue = view.findViewById(R.id.in_addGiaThue);
+        TextInputLayout in_SoLuong = view.findViewById(R.id.in_addSoLuong);
         TextInputEditText ed_TenSanPham = view.findViewById(R.id.ed_addTenSP);
         TextInputEditText ed_GiaThue = view.findViewById(R.id.ed_addGiaThue);
+        TextInputEditText ed_SoLuong = view.findViewById(R.id.ed_addSoLuong);
         Spinner spnSanPham = view.findViewById(R.id.spnSanPham1);
         Button addSP = view.findViewById(R.id.SP_add);
         Button cancel = view.findViewById(R.id.SP_Cancel);
 
 
+
+        ed_SoLuong.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() == 0){
+                    in_SoLuong.setError("Vui lòng không để trống số lượng sản phẩm");
+                }else{
+                    in_SoLuong.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
         ed_TenSanPham.addTextChangedListener(new TextWatcher() {
@@ -157,7 +179,8 @@ public class QLsanPhamFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String tensach = ed_TenSanPham.getText().toString();
-                String checktien = ed_GiaThue.getText().toString();;
+                String checktien = ed_GiaThue.getText().toString();
+                String soLuongSP = ed_SoLuong.getText().toString();
                 HashMap<String, Object> hs = (HashMap<String, Object>) spnSanPham.getSelectedItem();
                 int maloai = (int) hs.get("maLoai");
 
@@ -174,10 +197,17 @@ public class QLsanPhamFragment extends Fragment {
                     }else{
                         in_GiaThue.setError(null);
                     }
+
+                    if(soLuongSP.equals("")){
+                        in_SoLuong.setError("Vui lòng không để trống số lượng sản phẩm");
+                    }else{
+                        in_SoLuong.setError(null);
+                    }
                 }else{
                     try {
                         int tien = Integer.parseInt(checktien);
-                        boolean check = dao.insert(tensach, tien, maloai);
+                        int soluong= Integer.parseInt(soLuongSP);
+                        boolean check = dao.insert(tensach, tien, maloai,soluong);
                         if (check) {
                             loadData();
                             Toast.makeText(getContext(), "Thêm thành công sản phẩm", Toast.LENGTH_SHORT).show();
@@ -190,7 +220,7 @@ public class QLsanPhamFragment extends Fragment {
                             Toast.makeText(getContext(), "Thêm không thành công sản phẩm", Toast.LENGTH_SHORT).show();
                         }
                     } catch (NumberFormatException e) {
-                        Toast.makeText(getContext(), "Số tiền không hợp lệ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Số tiền hoặc số lượng không hợp lệ", Toast.LENGTH_SHORT).show();
                     }
                 }
 

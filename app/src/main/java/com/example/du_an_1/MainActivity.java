@@ -27,6 +27,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.du_an_1.Frame.DoiMatKhauFragment;
 import com.example.du_an_1.Frame.HomeFragment;
+import com.example.du_an_1.Frame.LichSuDonHangFragment;
 import com.example.du_an_1.Frame.NotificationFragment;
 import com.example.du_an_1.Frame.QLdonHangFragment;
 import com.example.du_an_1.Frame.QLloaiSanPhamFragment;
@@ -92,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
                     toolbar.setTitle("Quản lý thông kê");
                     ThongKeFragment qlthongke = new ThongKeFragment();
                     replay(qlthongke);
+                    dralayout.closeDrawer(GravityCompat.START, false);
+                }else if (item.getItemId() == R.id.nav_lichsu) {
+                    toolbar.setTitle("Lịch sử đơn hàng");
+                    LichSuDonHangFragment lichSuDonHangFragment = new LichSuDonHangFragment();
+                    replay(lichSuDonHangFragment);
                     dralayout.closeDrawer(GravityCompat.START, false);
                 } else if (item.getItemId() == R.id.nav_doiMatKhau) {
                     toolbar.setTitle("Đổi mật khẩu");

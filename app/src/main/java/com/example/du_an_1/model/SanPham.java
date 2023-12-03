@@ -5,12 +5,13 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class SanPham  implements Parcelable {
+public class SanPham implements Parcelable {
     private int maGiay;
     private String tenGiay;
     private int maLoai;
     private int giaTien;
     private String tenLoai;
+    private int soLuong;
 
     public SanPham() {
     }
@@ -23,6 +24,15 @@ public class SanPham  implements Parcelable {
 //        this.tenLoai = tenLoai;
 //    }
 
+
+    public SanPham(int maGiay, String tenGiay, int giaTien, int maLoai, int soLuong) {
+        this.maGiay = maGiay;
+        this.tenGiay = tenGiay;
+        this.giaTien = giaTien;
+        this.maLoai = maLoai;
+        this.soLuong = soLuong;
+    }
+
     public SanPham(int maGiay, String tenGiay, int giaTien, int maLoai ) {
         this.maGiay = maGiay;
         this.tenGiay = tenGiay;
@@ -31,6 +41,13 @@ public class SanPham  implements Parcelable {
 
     }
 
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
 
     public int getMaLoai() {
         return maLoai;
@@ -72,7 +89,7 @@ public class SanPham  implements Parcelable {
         this.tenLoai = tenLoai;
     }
 
-    public  SanPham(Parcel in) {
+    public SanPham(Parcel in) {
         // Đọc dữ liệu từ Parcel và đặt vào các thuộc tính
 
         maGiay = in.readInt();

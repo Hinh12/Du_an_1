@@ -57,7 +57,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
 
 
         btnmuahang = view.findViewById(R.id.btnhomemuahang);
-        txttongtien= view.findViewById(R.id.txthometongtien);
+        txttongtien = view.findViewById(R.id.txthometongtien);
         rcvGioHang = view.findViewById(R.id.rcvGioHang);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcvGioHang.setLayoutManager(layoutManager);
@@ -86,7 +86,22 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
         btnmuahang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int totalAmount = Integer.parseInt(txttongtien.getText().toString());
+
+                for (GioHang gioHang : list) {
+                    if (gioHang.getSoLuong() == 0) {
+                        Toast.makeText(getContext(), "Sản phẩm " + gioHang.getTenGiay() + " đã hết hàng", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                String totalAmountString = txttongtien.getText().toString();
+                int totalAmount;
+                try {
+                    totalAmount = Integer.parseInt(totalAmountString);
+                } catch (NumberFormatException e) {
+                    totalAmount = 0;
+                }
+
+//                int totalAmount = Integer.parseInt(txttongtien.getText().toString());
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
                 String maad = sharedPreferences.getString("maAD", "");
 
@@ -96,7 +111,9 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                 String ngayHienTai = currentDate.format(formatter);
                 String hoTen = sharedPreferences.getString("hoTen","");
 
-                if (totalAmount > 0) {
+//                if (totalAmount > 0) {
+
+
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.apply();
                         DonHang donHang = new DonHang(maad, hoTen ,ngayHienTai, totalAmount);
@@ -105,6 +122,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                         if (orderId != 0){
                             listDonHang.clear();
                             listDonHang.addAll(donHangDao.getDSDonHang());
+                            Log.d("tongtien",String.valueOf(txttongtien));
                             if (totalAmount > 0){
                                 Log.d("sizeeeeeeeeeee",String.valueOf(list.size()));
                                 for (GioHang gioHang : list){
@@ -119,7 +137,8 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                                         }
                                     }
                                 }
-                            }else {
+                            }
+                            else {
                                 Toast.makeText(getContext(), "Vui lòng chọn sản phẩm để thanh toán", Toast.LENGTH_SHORT).show();
                                 return;
                             }
@@ -137,7 +156,6 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                             Snackbar.make(getView(), "Thanh toán thành công", Snackbar.LENGTH_SHORT).show();
                             Bundle bundle = new Bundle();
                             bundle.putInt("maDonHang", orderId);
-//                            Toast.makeText(getContext(), "Đã tạo đơn hàng thành công!", Toast.LENGTH_SHORT).show();
 
                             ThanhToanFragment frgThanhToan = new ThanhToanFragment();
                             frgThanhToan.setArguments(bundle);
@@ -150,7 +168,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                         }else {
                             Toast.makeText(getContext(), "Thất bại!", Toast.LENGTH_SHORT).show();
                         }
-                }
+//                }
 
             }
         });
