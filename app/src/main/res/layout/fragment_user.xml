@@ -13,20 +13,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/img_Back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="15sp"
-            android:layout_marginTop="15sp"
-            android:src="@drawable/ic_back" />
+
 
         <TextView
             android:id="@+id/hi_Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/img_Back"
             android:layout_marginLeft="15sp"
             android:text="HI, PHƯỚC"
             android:textSize="30sp" />
@@ -58,14 +50,6 @@
             android:padding="6sp">
 
             <TextView
-                android:id="@+id/txtPMaNguoiDung"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:text="Mã người dùng: "
-                android:textSize="18sp" />
-
-            <TextView
                 android:id="@+id/txtPTenDangNhap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,13 +73,6 @@
                 android:text="Số điện thoại: "
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/txtPEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:text="Email: "
-                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtPDiaChi"
