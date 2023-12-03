@@ -59,21 +59,21 @@ public class QLnguoiDungFragment extends Fragment {
         view.findViewById(R.id.add_nguoidung).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogAllSanPham();
+                dialogAllNguoiDung();
             }
         });
 
         fltAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogAllSanPham();
+                dialogAllNguoiDung();
             }
         });
 
 
         return view;
     }
-    private void dialogAllSanPham(){
+    private void dialogAllNguoiDung(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.item_add_nguoidung,null);

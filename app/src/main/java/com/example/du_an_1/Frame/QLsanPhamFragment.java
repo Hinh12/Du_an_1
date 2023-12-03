@@ -86,10 +86,10 @@ public class QLsanPhamFragment extends Fragment {
         dialog.show();
 
         TextInputLayout in_TenSanPham = view.findViewById(R.id.in_addTenSP);
-        TextInputLayout in_GiaThue = view.findViewById(R.id.in_addGiaThue);
+        TextInputLayout in_GiaThue = view.findViewById(R.id.in_addGiaTien);
         TextInputLayout in_SoLuong = view.findViewById(R.id.in_addSoLuong);
         TextInputEditText ed_TenSanPham = view.findViewById(R.id.ed_addTenSP);
-        TextInputEditText ed_GiaThue = view.findViewById(R.id.ed_addGiaThue);
+        TextInputEditText ed_GiaThue = view.findViewById(R.id.ed_addGiaTien);
         TextInputEditText ed_SoLuong = view.findViewById(R.id.ed_addSoLuong);
         Spinner spnSanPham = view.findViewById(R.id.spnSanPham1);
         Button addSP = view.findViewById(R.id.SP_add);

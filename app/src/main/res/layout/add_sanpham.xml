@@ -37,25 +37,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
-        android:id="@+id/in_addGiaThue">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nhập mô tả sản phẩm"
-            android:id="@+id/ed_addGiaThue"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        android:id="@+id/in_addMoTa">
+        android:id="@+id/in_addGiaTien">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập giá tiền"
-            android:id="@+id/ed_addMoTa"/>
+            android:id="@+id/ed_addGiaTien"/>
     </com.google.android.material.textfield.TextInputLayout>
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginHorizontal="10dp"-->
+<!--        android:id="@+id/in_addMoTa">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Nhập giá tiền"-->
+<!--            android:id="@+id/ed_addMoTa"/>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 
     <com.google.android.material.textfield.TextInputLayout

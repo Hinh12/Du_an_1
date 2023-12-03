@@ -15,6 +15,7 @@ import android.os.health.ServiceHealthStats;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -147,10 +148,17 @@ public class MainActivity extends AppCompatActivity {
         navController.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                SharedPreferences sharedPreferences= getSharedPreferences("USER_FILE", MODE_PRIVATE);
+                String loaiTK= sharedPreferences.getString("loaiTK", "");
                 if (item.getItemId() == R.id.homeFragment) {
                     replay(new HomeFragment());
                 } else if (item.getItemId() == R.id.notificationFragment) {
-                    replay(new NotificationFragment());
+                    if(loaiTK.equals("admin")){
+                        Toast.makeText(context, "Không có quyền truy cập", Toast.LENGTH_SHORT).show();
+                    } else {
+                        replay(new NotificationFragment());
+                    }
+                  
 
                 } else if (item.getItemId() == R.id.userFragment) {
                     replay(new UserFragment());

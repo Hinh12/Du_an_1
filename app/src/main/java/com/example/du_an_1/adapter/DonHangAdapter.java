@@ -115,7 +115,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
 
     public class Viewholder extends RecyclerView.ViewHolder{
         TextView txtmadonhang, txtmanguoidung, txthotennguoidung, txtngay, txttongtien;
-        ImageButton btnxoa;
+        ImageView btnxoa;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             txtmadonhang= itemView.findViewById(R.id.txtmadonhang);
