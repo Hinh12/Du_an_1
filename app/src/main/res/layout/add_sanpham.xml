@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/khung_radio10"
     android:orientation="vertical">
 
     <TextView
@@ -59,8 +60,8 @@
             android:text="ADD"
             android:textStyle="bold"
             android:layout_marginRight="10dp"
-            android:backgroundTint="#8000FF00"
-            android:textColor="@color/black"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/white"
             android:textSize="17dp"
             android:id="@+id/SP_add"/>
         <Button
@@ -68,7 +69,8 @@
             android:layout_height="wrap_content"
             android:text="Cancel"
             android:textStyle="bold"
-            android:backgroundTint="#444444"
+            android:backgroundTint="@color/orange"
+            android:background="@color/white"
             android:textSize="17dp"
             android:id="@+id/SP_Cancel"/>
     </LinearLayout>

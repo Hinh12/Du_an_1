@@ -4,30 +4,30 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10sp"
     android:layout_marginTop="10sp"
-    android:background="@drawable/khung_item"
+    android:background="@drawable/khung_radio10"
     android:orientation="vertical">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/txtma_loai_san_pham"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="20sp"
             android:text="Mã loại sản "
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <ImageButton
             android:id="@+id/imgDeleteLSP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|center"
-            android:layout_marginRight="11dp"
-            android:src="@drawable/cancel" />
-    </FrameLayout>
+            android:src="@drawable/cancel"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txtten_loai_san_pham"

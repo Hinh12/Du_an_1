@@ -75,14 +75,14 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
         SanPham sp = list.get(position);
 
 
-        holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mAddToCartClickListener != null){
-                    mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
-                }
-            }
-        });
+//        holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mAddToCartClickListener != null){
+//                    mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
+//                }
+//            }
+//        });
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +114,7 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
             txtmaloaisp = itemView.findViewById(R.id.txtma_loai_san_pham2);
             sanphamhome = itemView.findViewById(R.id.sanphamhome);
 
-            btn_themvagiohang = itemView.findViewById(R.id.btn_themvaogiohang);
+//            btn_themvagiohang = itemView.findViewById(R.id.btn_themvaogiohang);
 
 
 

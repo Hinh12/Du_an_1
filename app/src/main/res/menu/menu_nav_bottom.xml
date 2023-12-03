@@ -3,6 +3,7 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/home"
+        
         android:title="Trang chủ" />
 
     <item

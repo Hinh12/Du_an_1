@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.health.ServiceHealthStats;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -71,26 +72,32 @@ public class MainActivity extends AppCompatActivity {
                     toolbar.setTitle("Quản lý người dùng");
                     QLnguoiDungFragment qlnguoidung = new QLnguoiDungFragment();
                     replay(qlnguoidung);
+                    dralayout.closeDrawer(GravityCompat.START, false);
                 } else if (item.getItemId() == R.id.nav_quanLySanPham) {
                     toolbar.setTitle("Quản lý sản phẩm");
                     QLsanPhamFragment qlsanpham = new QLsanPhamFragment();
                     replay(qlsanpham);
+                    dralayout.closeDrawer(GravityCompat.START, false);
                 } else if (item.getItemId() == R.id.nav_quanLyLoaiSanPham) {
                     toolbar.setTitle("Quản lý loại sản phẩm");
                     QLloaiSanPhamFragment qlloaisanpham = new QLloaiSanPhamFragment();
                     replay(qlloaisanpham);
+                    dralayout.closeDrawer(GravityCompat.START, false);
                 }else if (item.getItemId() == R.id.nav_quanLyDonHang) {
                     toolbar.setTitle("Quản đơn hàng");
                     QLdonHangFragment qldonhang = new QLdonHangFragment();
                     replay(qldonhang);
+                    dralayout.closeDrawer(GravityCompat.START, false);
                 } else if (item.getItemId() == R.id.nav_thongKe) {
                     toolbar.setTitle("Quản lý thông kê");
                     ThongKeFragment qlthongke = new ThongKeFragment();
                     replay(qlthongke);
+                    dralayout.closeDrawer(GravityCompat.START, false);
                 } else if (item.getItemId() == R.id.nav_doiMatKhau) {
                     toolbar.setTitle("Đổi mật khẩu");
                     DoiMatKhauFragment doimk = new DoiMatKhauFragment();
                     replay(doimk);
+                    dralayout.closeDrawer(GravityCompat.START, false);
                 }else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("Đăng Xuất");
@@ -106,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     dralayout.openDrawer(GravityCompat.START);
                     builder.setNegativeButton("Hủy", null);
                     builder.create().show();
+
                 }
 
                 return false;

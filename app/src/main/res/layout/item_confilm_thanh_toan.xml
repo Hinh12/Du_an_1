@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginVertical="5sp"
-    android:background="#CDDC39">
+    android:background="@drawable/khung_radio10">
 
     <ImageView
         android:id="@+id/imgAnhSp"
