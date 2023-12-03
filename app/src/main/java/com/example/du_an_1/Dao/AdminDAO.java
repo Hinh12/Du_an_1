@@ -17,16 +17,13 @@ import java.util.ArrayList;
 public class AdminDAO {
     private final DbHelper dbHelper;
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    private SharedPreferences.Editor editor;
+    private Context context;
+
 
     public AdminDAO(Context context){
         this.dbHelper = new DbHelper(context);
-
-        if (context != null){
-            sharedPreferences= context.getSharedPreferences("USER_FILE", context.MODE_PRIVATE);
-        }else {
-            Log.e(TAG, "Context is null in USER_FILE contructor");
-        }
+        sharedPreferences = context.getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
     }
     public ArrayList<Admin> getDSNguoiDung(){
         ArrayList<Admin> list = new ArrayList<>();
@@ -50,7 +47,7 @@ public class AdminDAO {
             Cursor cursor = database.rawQuery("SELECT * FROM Admin WHERE maAD = ? AND matKhau = ?", new String[]{maAD, matKhau});
             if (cursor.getCount() > 0){
                 cursor.moveToFirst();
-                editor= sharedPreferences.edit();
+                editor = sharedPreferences.edit();
                 editor.putString("maAD", cursor.getString(0));
                 editor.putString("hoTen", cursor.getString(1));
                 editor.putString("matKhau", cursor.getString(2));

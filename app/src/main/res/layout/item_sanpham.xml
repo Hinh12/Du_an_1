@@ -65,9 +65,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
                 android:text="Gia san pham "
-                android:layout_marginTop="5sp"
+                android:textSize="20sp"
+                android:layout_marginTop="5sp"/>
 
-                android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/txtma_loai_san_pham2"
                 android:layout_width="match_parent"
@@ -85,6 +86,16 @@
                 android:layout_marginTop="5sp"
                 android:text="Số lượng san pham"
                 android:textSize="20sp" />
+            <TextView
+                android:id="@+id/txtMoTa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:text="Mô tả sản phẩm "
+                android:layout_marginTop="5sp"
+
+                android:textSize="20sp" />
+
         </LinearLayout>
 
 
