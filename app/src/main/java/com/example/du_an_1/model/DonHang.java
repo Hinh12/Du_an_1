@@ -11,21 +11,21 @@ public class DonHang {
     public DonHang() {
     }
 
+    public DonHang(String maAD, String hoTen, String ngayDatHang, int tongTien, String trangthai) {
+        this.maAD = maAD;
+        this.hoTen = hoTen;
+        this.ngayDatHang = ngayDatHang;
+        this.tongTien = tongTien;
+        this.trangthai = trangthai;
+    }
 
-
-    public DonHang(int maDonHang, String maAD, String hoTen, String ngayDatHang, int tongTien) {
+    public DonHang(int maDonHang, String maAD, String hoTen, String ngayDatHang, int tongTien, String trangthai) {
         this.maDonHang = maDonHang;
         this.maAD = maAD;
         this.hoTen = hoTen;
         this.ngayDatHang = ngayDatHang;
         this.tongTien = tongTien;
-    }
-
-    public DonHang(String maAD, String hoTen, String ngayDatHang, int tongTien) {
-        this.maAD = maAD;
-        this.hoTen = hoTen;
-        this.ngayDatHang = ngayDatHang;
-        this.tongTien = tongTien;
+        this.trangthai = trangthai;
     }
 
     public int getMaDonHang() {
@@ -66,5 +66,13 @@ public class DonHang {
 
     public void setTongTien(int tongTien) {
         this.tongTien = tongTien;
+    }
+
+    public String getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(String trangthai) {
+        this.trangthai = trangthai;
     }
 }
