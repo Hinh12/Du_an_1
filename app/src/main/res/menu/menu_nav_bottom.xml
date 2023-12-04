@@ -3,8 +3,10 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/home"
-        
+
+
         android:title="Trang chủ" />
+<!--    android:icon="@drawable/selector_bottom_nav"-->
 
     <item
         android:id="@+id/notificationFragment"

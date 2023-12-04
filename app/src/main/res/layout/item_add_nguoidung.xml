@@ -84,24 +84,43 @@
         android:layout_marginTop="25dp"
         android:padding="5dp">
 
-        <Button
-            android:id="@+id/btn_huy_ND"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Hủy"
-            android:textAllCaps="false" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_huy_ND"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:text="Hủy"-->
+<!--            android:textAllCaps="false" />-->
 
+<!--        <Button-->
+<!--            android:id="@+id/btn_Them_ND"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:text="Thêm"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@android:color/black" />-->
         <Button
-            android:id="@+id/btn_Them_ND"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Thêm"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:id="@+id/btn_huy_ND"/>
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textStyle="bold"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:id="@+id/btn_Them_ND"/>
     </LinearLayout>
 
 </LinearLayout>
