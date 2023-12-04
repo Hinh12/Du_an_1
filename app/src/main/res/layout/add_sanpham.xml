@@ -80,6 +80,25 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
+<!--        <Button-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ADD"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:backgroundTint="@color/orange"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="17dp"-->
+<!--            android:id="@+id/SP_add"/>-->
+<!--        <Button-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Cancel"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textStyle="bold"-->
+<!--            android:background="@color/orange"-->
+<!--            android:textSize="17dp"-->
+<!--            android:id="@+id/SP_Cancel"/>-->
         <Button
             android:layout_width="170dp"
             android:layout_height="wrap_content"
@@ -96,7 +115,7 @@
             android:text="Cancel"
             android:textStyle="bold"
             android:backgroundTint="@color/orange"
-            android:background="@color/white"
+            android:textColor="@color/white"
             android:textSize="17dp"
             android:id="@+id/SP_Cancel"/>
     </LinearLayout>

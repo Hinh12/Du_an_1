@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
+            android:textColor="@color/white"
             android:text="Mã đơn hàng: "
             android:textSize="20sp" />
 
@@ -34,12 +35,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
+        android:textColor="@color/white"
         android:text="Mã người dùng: "
         android:textSize="20sp" />
     <TextView
         android:id="@+id/txthotennguoidung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_marginLeft="10sp"
         android:text="Tên người dùng: "
         android:textSize="20sp" />
@@ -47,6 +50,7 @@
         android:id="@+id/txtngay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_marginLeft="10sp"
         android:text="Ngày đặt hàng: "
         android:textSize="20sp" />
@@ -54,6 +58,7 @@
         android:id="@+id/txttongtien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_marginLeft="10sp"
         android:text="Tổng tiền:    "
         android:layout_marginBottom="10sp"

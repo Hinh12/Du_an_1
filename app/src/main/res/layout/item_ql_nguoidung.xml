@@ -15,6 +15,7 @@
             android:id="@+id/txtma_nguoi_dung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_marginLeft="10sp"
             android:text="Mã người dùng "
             android:textSize="20sp" />
@@ -31,6 +32,7 @@
     </FrameLayout>
     <TextView
         android:id="@+id/txt_Ten_Nguoi_Dung"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
