@@ -58,6 +58,7 @@ public class Dangky extends AppCompatActivity {
         admin.setHoTen(txthoTen.getText().toString());
         admin.setMatKhau(txtMatkhau.getText().toString());
         admin.setLoaiTK("khachhang");
+        admin.setAnh("https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg");
 
         AdminDAO dao= new AdminDAO(Dangky.this);
         boolean result= dao.checkDangKy(admin);

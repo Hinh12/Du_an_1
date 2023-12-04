@@ -80,7 +80,7 @@ public class DonHangDAO {
 
     public int xoaDonHang(int maDonHang){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from DonHang where maDonHang = ?",new String[]{String.valueOf(maDonHang)});
+        Cursor cursor = db.rawQuery("select * from ChiTietDonHang where maDonHang = ?",new String[]{String.valueOf(maDonHang)});
         if (cursor.getCount() != 0){
             return -1;
         }

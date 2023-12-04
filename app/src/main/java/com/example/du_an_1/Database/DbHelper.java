@@ -23,8 +23,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "matKhau TEXT NOT NULL," +
                 "loaiTK TEXT NOT NULL," +
                 "anh TEXT," +
-                "sdt TEXT NOT NULL," +
-                "diaChi TEXT NOT NULL)");
+                "sdt TEXT," +
+                "diaChi TEXT)");
         db.execSQL(tb_Admin);
 
         // Bang loai giay
@@ -48,7 +48,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "tenGiay TEXT NOT NULL," +
                 "giaTien INTEGER NOT NULL," +
                 "maLoai INTEGER REFERENCES LoaiGiay(maLoai)," +
-                "soLuong INTEGER NOT NULL)";
+                "soLuong INTEGER NOT NULL," +
+                "anh TEXT NOT NULL)";
         db.execSQL(tb_Giay);
 
         // Bảng giỏ hàng
@@ -94,9 +95,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(2, 'khachhang1', '11/02/2023', 2000, 'Đã nhận hàng')," +
                 "(3, 'khachhang1', '11/03/2023', 2000, 'Đã nhận hàng')");
 
-        db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', 30000, 1, 12)," +
-                "(2, 'Giay', 40000, 2,13)," +
-                "(3, 'Giay thoi trang', 54444, 3,12)");
+        db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', 30000, 1, 12,'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg')," +
+                "(2, 'Giay', 40000, 2,13,'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg')," +
+                "(3, 'Giay thoi trang', 54444, 3,12,'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg')," +
+                "(4, 'Giay the duc', 50000, 3, 10,'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg')");
 
         db.execSQL("INSERT INTO HoaDon VALUES(1, 1, 'Giay bong da',  2, 1231413, '23')," +
                 "(2, 2, 'Giay',  1, 231221, '12')");

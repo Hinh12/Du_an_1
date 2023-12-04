@@ -47,6 +47,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
     private SharedViewModel sharedViewModel;
     Button btnmuahang;
     TextView txttongtien;
+    sanPhamDAO SPDAO;
 
 
     @Override
@@ -64,6 +65,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
         gioHangAdapter = new GioHangAdapter(list,getContext());
         rcvGioHang.setAdapter(gioHangAdapter);
         gioHangDao = new GioHangDAO(getContext());
+        SPDAO = new sanPhamDAO(getContext());
 
         gioHangAdapter.setTotalPriceListener(this);
         DonHangChiTietDao chiTietDao =new DonHangChiTietDao(getContext());
@@ -127,7 +129,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                                 Log.d("sizeeeeeeeeeee",String.valueOf(list.size()));
                                 for (GioHang gioHang : list){
                                     if(gioHang.isSelected()){
-                                        sanPhamDAO SPDAO = new sanPhamDAO(getContext());
+
                                         SanPham sanPham = SPDAO.getSanPhamById(gioHang.getMaGiay());
                                         if (sanPham != null){
                                            DonHangChiTiet donHangChiTiet = new DonHangChiTiet(orderId, gioHang.getMaGiay(), gioHang.getSoLuongMua(), sanPham.getGiaTien(), gioHang.getSoLuongMua() * sanPham.getGiaTien());
@@ -141,6 +143,15 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                             else {
                                 Toast.makeText(getContext(), "Vui lòng chọn sản phẩm để thanh toán", Toast.LENGTH_SHORT).show();
                                 return;
+                            }
+                            // Cập nhật số lượng sản phẩm sau khi thanh toán thành công
+                            for (GioHang gioHang : list) {
+                                int newQuantity = gioHang.getSoLuong() - gioHang.getSoLuongMua();
+                                if (newQuantity < 0) {
+                                    Toast.makeText(getContext(), "Sản phẩm " + gioHang.getTenGiay() + "không đủ số lượng trong kho", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                SPDAO.updateSlSanPham(gioHang.getMaGiay(), newQuantity);
                             }
                             for (GioHang selected : list) {
                                 if (selected.isSelected()) {

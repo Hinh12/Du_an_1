@@ -33,6 +33,12 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
         this.list = list;
         spdao = new sanPhamDAO(context);
     }
+
+    public void setSanPhamList(ArrayList<SanPham> newList) {
+        list = newList;
+        notifyDataSetChanged();
+    }
+
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
@@ -76,14 +82,31 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
         SanPham sp = list.get(position);
 
 
-        holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mAddToCartClickListener != null){
-                    mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
+        if (list.get(position).getSoLuong() == 0) {
+            holder.btn_themvagiohang.setVisibility(View.GONE);
+            holder.txtHetHang.setVisibility(View.VISIBLE);
+        } else {
+            holder.btn_themvagiohang.setVisibility(View.VISIBLE);
+            holder.txtHetHang.setVisibility(View.GONE);
+            holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mAddToCartClickListener != null) {
+                        mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
+                    }
                 }
-            }
-        });
+            });
+        }
+
+
+//        holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mAddToCartClickListener != null){
+//                    mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
+//                }
+//            }
+//        });
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +126,7 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
 
     public class ViewHoler extends RecyclerView.ViewHolder {
 
-        TextView txtmasp, txttensp, txtgiasp, txtmaloaisp, txt_so_luong_san_pham;
+        TextView txtmasp, txttensp, txtgiasp, txtmaloaisp, txtHetHang, txt_so_luong_san_pham;
         Button btn_themvagiohang;
         LinearLayout sanphamhome;
 
@@ -115,7 +138,7 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
             txtmaloaisp = itemView.findViewById(R.id.txtma_loai_san_pham2);
             sanphamhome = itemView.findViewById(R.id.sanphamhome);
             txt_so_luong_san_pham = itemView.findViewById(R.id.txt_so_luong_san_pham);
-
+            txtHetHang = itemView.findViewById(R.id.txtHetHang);
             btn_themvagiohang = itemView.findViewById(R.id.btn_themvaogiohang);
 
 

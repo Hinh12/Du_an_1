@@ -71,6 +71,19 @@
             android:id="@+id/ed_addSoLuong"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/in_addAnh">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập link ảnh"
+            android:id="@+id/ed_addAnh"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <LinearLayout

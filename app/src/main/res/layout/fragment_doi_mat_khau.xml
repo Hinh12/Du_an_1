@@ -101,17 +101,6 @@
                 android:textSize="17dp"
                 android:backgroundTint="#FF5722"
                 android:layout_marginHorizontal="20dp"/>
-            <Button
-                android:id="@+id/btnCancelUserChange"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Come back"
-                android:textColor="@color/xam"
-                android:textStyle="bold"
-                android:textSize="17dp"
-                android:backgroundTint="#FF5722"
-                android:layout_marginTop="20sp"
-                android:layout_marginHorizontal="20dp"/>
         </LinearLayout>
     </ScrollView>
 

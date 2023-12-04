@@ -32,24 +32,16 @@ public class UserFragment extends Fragment {
         imgAvatar_Profile = view.findViewById(R.id.imgAvatar_Profile);
 
         txtPTenDangNhap = view.findViewById(R.id.txtPTenDangNhap);
-        txtPHoTen = view.findViewById(R.id.txtPTenDangNhap);
+        txtPHoTen = view.findViewById(R.id.txtPHoTen);
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
         String urlAnh = sharedPreferences.getString("anh","");
-
         Picasso.get().load(urlAnh).into(imgAvatar_Profile);
-
         SharedPreferences preferences = getActivity().getSharedPreferences("USER_FILE", MODE_PRIVATE);
         String maad = preferences.getString("maAD", "");
-        String hoten = preferences.getString("hoten", "");
+        String hoten = preferences.getString("hoTen", "");
 
-
-        txtPHoTen.setText("Hi, " + hoten);
         txtPTenDangNhap.setText("Mã tài khoản: " + String.valueOf(maad));
-        //txtPHoTen.setText("Họ Tên: "+ String.valueOf(hoten));
-
-
-
-
+        txtPHoTen.setText("Họ Tên: "+ String.valueOf(hoten));
         return view;
     }
 }

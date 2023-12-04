@@ -71,6 +71,7 @@ public class AdminDAO {
         values.put("hoTen", admin.getHoTen());
         values.put("matKhau", admin.getMatKhau());
         values.put("loaiTK", admin.getLoaiTK());
+        values.put("anh",admin.getAnh());
         long result= db.insert("Admin", null, values);
         return result != -1;
     }

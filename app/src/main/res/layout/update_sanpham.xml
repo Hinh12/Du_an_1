@@ -58,6 +58,19 @@
             android:hint="Nhập giá tiền"
             android:id="@+id/ed_updateGiaTien"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="24dp"
+        android:id="@+id/in_updateAnh">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập link ảnh"
+            android:id="@+id/ed_updateAnh"/>
+    </com.google.android.material.textfield.TextInputLayout>
 <!--    <com.google.android.material.textfield.TextInputLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->

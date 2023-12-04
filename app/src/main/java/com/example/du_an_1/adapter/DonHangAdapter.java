@@ -81,7 +81,6 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Cảnh báo");
                 builder.setMessage("Bạn có chắc chắn muốn xóa Dơn Hàng này không!");
-
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -89,7 +88,9 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
                         int check = donHangDAO.xoaDonHang(list.get(holder.getAdapterPosition()).getMaDonHang());
                         switch(check){
                             case 1:
-                                //  loadData();
+                                list.clear();
+                                list = donHangDAO.getDSDonHang();
+                                notifyDataSetChanged();
                                 Toast.makeText(context, "Xóa đơn hàng thành công", Toast.LENGTH_SHORT).show();
                                 break;
                             case 0:
@@ -104,6 +105,8 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
 
                     }
                 });
+                builder.setNegativeButton("NO", null);
+                builder.create().show();
 
             }
         });

@@ -12,6 +12,7 @@ public class SanPham implements Parcelable {
     private int giaTien;
     private String tenLoai;
     private int soLuong;
+    private String anh;
 
     public SanPham() {
     }
@@ -25,12 +26,14 @@ public class SanPham implements Parcelable {
 //    }
 
 
-    public SanPham(int maGiay, String tenGiay, int giaTien, int maLoai, int soLuong) {
+
+    public SanPham(int maGiay, String tenGiay, int giaTien, int maLoai, int soLuong, String anh) {
         this.maGiay = maGiay;
         this.tenGiay = tenGiay;
         this.giaTien = giaTien;
         this.maLoai = maLoai;
         this.soLuong = soLuong;
+        this.anh = anh;
     }
 
     public SanPham(int maGiay, String tenGiay, int giaTien, int maLoai ) {
@@ -39,6 +42,14 @@ public class SanPham implements Parcelable {
         this.giaTien = giaTien;
         this.maLoai = maLoai;
 
+    }
+
+    public String getAnh() {
+        return anh;
+    }
+
+    public void setAnh(String anh) {
+        this.anh = anh;
     }
 
     public int getSoLuong() {

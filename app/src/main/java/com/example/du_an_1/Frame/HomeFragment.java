@@ -7,10 +7,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,10 +49,12 @@ public class HomeFragment extends Fragment {
     sanPhamDAO spdao;
     sanPhamHomeAdapter sanPhamHomeAdapter;
     ArrayList<SanPham> list= new ArrayList<>();
+    ArrayList<SanPham> tempListSanPham= new ArrayList<>();
     GioHangAdapter gioHangAdapter;
     GioHangDAO gioHangDAO;
     private SharedViewModel sharedViewModel;
     ArrayList<GioHang> listGioHang = new ArrayList<>();
+    EditText edSearch;
 
 //    adapter_slide;
 
@@ -65,9 +70,43 @@ public class HomeFragment extends Fragment {
         rcv= view.findViewById(R.id.rcvgiay);
         viewpage = view.findViewById(R.id.viewpager);
         spdao= new sanPhamDAO(getContext());
-        list= spdao.getDSSanPham();
+        list = spdao.getDSSanPham();
+        tempListSanPham = spdao.getDSSanPham();
+        sanPhamHomeAdapter = new sanPhamHomeAdapter(getContext(), list);
+        rcv.setAdapter(sanPhamHomeAdapter);
         gioHangDAO = new GioHangDAO(getContext());
         gioHangAdapter = new GioHangAdapter(new ArrayList<>(),getContext());
+        edSearch = view.findViewById(R.id.edSearch);
+
+        edSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                ArrayList<SanPham> filteredList = new ArrayList<>();
+                for (SanPham sanPham : list) {
+                    if (sanPham.getTenGiay().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        filteredList.add(sanPham);
+                    }
+                }
+                sanPhamHomeAdapter.setSanPhamList(filteredList);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+
+
+
 
 
 //        sanphamhome = view.findViewById(R.id.sanphamhome);

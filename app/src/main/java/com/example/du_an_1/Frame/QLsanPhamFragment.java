@@ -88,9 +88,11 @@ public class QLsanPhamFragment extends Fragment {
         TextInputLayout in_TenSanPham = view.findViewById(R.id.in_addTenSP);
         TextInputLayout in_GiaThue = view.findViewById(R.id.in_addGiaTien);
         TextInputLayout in_SoLuong = view.findViewById(R.id.in_addSoLuong);
+        TextInputLayout in_Anh = view.findViewById(R.id.in_addAnh);
         TextInputEditText ed_TenSanPham = view.findViewById(R.id.ed_addTenSP);
         TextInputEditText ed_GiaThue = view.findViewById(R.id.ed_addGiaTien);
         TextInputEditText ed_SoLuong = view.findViewById(R.id.ed_addSoLuong);
+        TextInputEditText ed_Anh = view.findViewById(R.id.ed_addAnh);
         Spinner spnSanPham = view.findViewById(R.id.spnSanPham1);
         Button addSP = view.findViewById(R.id.SP_add);
         Button cancel = view.findViewById(R.id.SP_Cancel);
@@ -161,6 +163,29 @@ public class QLsanPhamFragment extends Fragment {
             }
         });
 
+
+        ed_Anh.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() == 0){
+                    in_Anh.setError("Vui lòng không để trống link ảnh");
+                }else{
+                    in_Anh.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
         ArrayList<HashMap<String, Object>> dsLoaiSanPhams = getDSLoaiGiay();
         if (dsLoaiSanPhams != null){
             SimpleAdapter simpleAdapter = new SimpleAdapter(
@@ -181,6 +206,7 @@ public class QLsanPhamFragment extends Fragment {
                 String tensach = ed_TenSanPham.getText().toString();
                 String checktien = ed_GiaThue.getText().toString();
                 String soLuongSP = ed_SoLuong.getText().toString();
+                String anhSP = ed_Anh.getText().toString();
                 HashMap<String, Object> hs = (HashMap<String, Object>) spnSanPham.getSelectedItem();
                 int maloai = (int) hs.get("maLoai");
 
@@ -203,11 +229,17 @@ public class QLsanPhamFragment extends Fragment {
                     }else{
                         in_SoLuong.setError(null);
                     }
+
+                    if(anhSP.equals("")){
+                        in_Anh.setError("Vui lòng không để trống link ảnh sản phẩm");
+                    }else{
+                        in_Anh.setError(null);
+                    }
                 }else{
                     try {
                         int tien = Integer.parseInt(checktien);
                         int soluong= Integer.parseInt(soLuongSP);
-                        boolean check = dao.insert(tensach, tien, maloai,soluong);
+                        boolean check = dao.insert(tensach, tien, maloai,soluong,anhSP);
                         if (check) {
                             loadData();
                             Toast.makeText(getContext(), "Thêm thành công sản phẩm", Toast.LENGTH_SHORT).show();

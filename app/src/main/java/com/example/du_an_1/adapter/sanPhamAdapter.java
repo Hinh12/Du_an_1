@@ -28,6 +28,7 @@ import com.example.du_an_1.model.LoaiSanPham;
 import com.example.du_an_1.model.SanPham;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +38,10 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
     private Context context;
     private ArrayList<HashMap<String, Object>> listHM;
     sanPhamDAO spdao;
-
+    String tensanpham;
+    String giasanpham;
+    String soLuongSP;
+    String anhsp ;
 
     public sanPhamAdapter(Context context, ArrayList<SanPham> list, ArrayList<HashMap<String, Object>> listHM ) {
         this.context = context;
@@ -65,8 +69,11 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
         holder.txtgiasp.setText("Giá sản phẩm: " + String.valueOf(list.get(position).getGiaTien()));
         holder.txtmaloaisp.setText("Mã loại sản phẩm: " + loaisp.getMaLoai() + "");
         holder.txtsoluong.setText("Số lượng sản phẩm: " +String.valueOf(sp.getSoLuong()));
+        Picasso.get().load(list.get(position).getAnh()).into(holder.imgAnhsp);
 
         Log.d("slllllllllllll",String.valueOf(list.get(position).getSoLuong()));
+
+
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -89,7 +96,9 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                         int check = spdao.delete(list.get(holder.getAdapterPosition()).getMaGiay());
                         switch (check) {
                             case 1:
-                                //  loadData();
+                                list.clear();
+                                list = spdao.getDSSanPham();
+                                notifyDataSetChanged();
                                 Toast.makeText(context, "Xóa thành công sản phẩm", Toast.LENGTH_SHORT).show();
                                 break;
                             case 0:
@@ -119,7 +128,7 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
     public class ViewHoler extends RecyclerView.ViewHolder {
 
         TextView txtmasp, txttensp, txtgiasp, txtmaloaisp, txtsoluong;
-        ImageView delete_sp;
+        ImageView delete_sp, imgAnhsp;
 
         public ViewHoler(@NonNull View itemView) {
             super(itemView);
@@ -128,6 +137,7 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
             txtgiasp = itemView.findViewById(R.id.txtgia_san_pham);
             txtmaloaisp = itemView.findViewById(R.id.txtma_loai_san_pham2);
             txtsoluong = itemView.findViewById(R.id.txt_so_luong);
+            imgAnhsp = itemView.findViewById(R.id.imgAnhsp);
             delete_sp = itemView.findViewById(R.id.can);
         }
     }
@@ -144,9 +154,11 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
         TextInputLayout in_TenSP = view.findViewById(R.id.in_updateTenSP);
         TextInputLayout in_GiaTien = view.findViewById(R.id.in_updateGiaTien);
         TextInputLayout in_SoLuong = view.findViewById(R.id.in_updateSoLuong);
+        TextInputLayout in_anh = view.findViewById(R.id.in_updateAnh);
         TextInputEditText ed_TenSanPham = view.findViewById(R.id.ed_updateTenSP);
         TextInputEditText ed_GiaTien = view.findViewById(R.id.ed_updateGiaTien);
         TextInputEditText ed_SoLuong = view.findViewById(R.id.ed_updateSoLuong);
+        TextInputEditText ed_anh = view.findViewById(R.id.ed_updateAnh);
         Spinner spnUpadateSP = view.findViewById(R.id.spnSanPham2);
         Button update = view.findViewById(R.id.SP_update);
         Button cancel = view.findViewById(R.id.SP_Cancel2);
@@ -154,7 +166,12 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
         ed_TenSanPham.setText(sp.getTenGiay());
         ed_GiaTien.setText(String.valueOf(sp.getGiaTien()));
         ed_SoLuong.setText(String.valueOf(sp.getSoLuong()));
+        ed_SoLuong.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
 
+            }
+        });
         ed_SoLuong.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -198,6 +215,8 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
 
             }
         });
+
+
 
         ed_GiaTien.addTextChangedListener(new TextWatcher() {
             @Override
@@ -247,9 +266,11 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    String tensanpham = ed_TenSanPham.getText().toString();
-                    String giasanpham = ed_GiaTien.getText().toString();
-                    String soLuongSP = ed_SoLuong.getText().toString();
+                     tensanpham = ed_TenSanPham.getText().toString();
+                     giasanpham = ed_GiaTien.getText().toString();
+                     soLuongSP = ed_SoLuong.getText().toString();
+                     anhsp = ed_anh.getText().toString();
+
                     HashMap<String, Object> hs = (HashMap<String, Object>) spnUpadateSP.getSelectedItem();
                     int maloaisp = (int) hs.get("maLoai");
 
@@ -257,10 +278,10 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                         if (tensanpham.equals("")) {
                             ed_TenSanPham.setError("Vui lòng không để trống tên sản phẩm");
                         } else {
-                            ed_GiaTien.setError(null);
+                            ed_TenSanPham.setError(null);
                         }
                         if (giasanpham.equals("")) {
-                            ed_TenSanPham.setError("Vui lòng không để trống giá sản phẩm");
+                            ed_GiaTien.setError("Vui lòng không để trống giá sản phẩm");
                         } else {
                             ed_GiaTien.setError(null);
                         }
@@ -269,36 +290,32 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                         } else {
                             ed_SoLuong.setError(null);
                         }
+                        if (anhsp.equals("")) {
+                            ed_anh.setError("Vui lòng không để trống số link anh sản phẩm");
+                            return;
+                        } else {
+                            ed_anh.setError(null);
+                        }
+
+
                     } else {
                         try {
                             int tien = Integer.parseInt(giasanpham);
                             int soluong = Integer.parseInt(soLuongSP);
-                                if (tien <= 0) {
+
+                            if (tien <= 0) {
                                 ed_GiaTien.setError("Giá sản phẩm phải lớn hơn 0");
-                                } else {
+                            } else if (soluong <= 0) {
+                                ed_SoLuong.setError("Số lượng sản phẩm phải lớn hơn 0");
+                            } else {
                                 ed_GiaTien.setError(null);
-                                boolean check = spdao.update(sp.getMaGiay(), tensanpham, tien, maloaisp,soluong);
+                                ed_SoLuong.setError(null);
+
+                                boolean check = spdao.update(sp.getMaGiay(), tensanpham, tien, maloaisp, soluong, anhsp);
 
                                 if (check) {
                                     list.clear();
-                                    list = spdao.getDSSanPham();
-                                    notifyDataSetChanged();
-                                    Toast.makeText(context, "Cập nhật thành công sản phẩm", Toast.LENGTH_SHORT).show();
-                                    dialog.dismiss();
-                                } else {
-                                    Toast.makeText(context, "Cập nhật không thành công sản phẩm", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                            if (soluong <= 0) {
-                                ed_SoLuong.setError("Số lượng sản phẩm phải lớn hơn 0");
-                            } else {
-                                ed_SoLuong.setError(null);
-                                boolean check1 = spdao.update(sp.getMaGiay(), tensanpham, tien, maloaisp,soluong);
-
-                                if (check1) {
-                                    list.clear();
-                                    list = spdao.getDSSanPham();
+                                    list.addAll(spdao.getDSSanPham());
                                     notifyDataSetChanged();
                                     Toast.makeText(context, "Cập nhật thành công sản phẩm", Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
@@ -307,7 +324,7 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                                 }
                             }
                         } catch (NumberFormatException e) {
-                            ed_GiaTien.setError("Số lượng sản phẩm phải là số");
+                            ed_GiaTien.setError("Giá tiền sản phẩm và số lượng sản phẩm phải là số");
                         }
                     }
                 }
@@ -330,6 +347,10 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
 //        list = dao.getDSSanPham();
 //        notifyDataSetChanged();
 //    }
+private void validTenSp(){
+        if (tensanpham.isEmpty()){
 
+        }
+}
 
 }

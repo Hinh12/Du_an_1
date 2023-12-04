@@ -24,7 +24,7 @@ public class DoiMatKhauFragment extends Fragment {
 
     TextInputLayout in_PassOld,in_PassChange,in_RePassChange;
     TextInputEditText edPassOld, edPass, edRePass;
-    Button btnSave, btnCancel;
+    Button btnSave;
     private Context context;
 
     public DoiMatKhauFragment() {
@@ -46,17 +46,8 @@ public class DoiMatKhauFragment extends Fragment {
         edPass = view.findViewById(R.id.edPassChange);
         edRePass = view.findViewById(R.id.edRePassChange);
         btnSave = view.findViewById(R.id.btnSaveUserChange);
-        btnCancel = view.findViewById(R.id.btnCancelUserChange);
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edPassOld.setText("");
-                edPass.setText("");
-                edRePass.setText("");
 
-            }
-        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +65,8 @@ public class DoiMatKhauFragment extends Fragment {
         String rePass = edRePass.getText().toString();
         if (newPass.equals(rePass)){
             SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE",getContext().MODE_PRIVATE);
-            String matt = sharedPreferences.getString("USERNAME","");
-            String mk = sharedPreferences.getString("PASSWORD","");
+            String matt = sharedPreferences.getString("maAD","");
+            String mk = sharedPreferences.getString("matKhau","");
             //cập nhật
             AdminDAO adminDAO = new AdminDAO(getContext());
             boolean check = adminDAO.updatePass(matt,oldPass,newPass);
