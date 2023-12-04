@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 8;
+    private static final int DbVersion = 32;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -38,7 +38,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maDonHang INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "maAD TEXT REFERENCES Admin(maAD)," +
                 "ngayDatHang TEXT NOT NULL," +
-                "tongTien INTEGER NOT NULL)";
+                "tongTien INTEGER NOT NULL," +
+                "trangthai TEXT NOT NULL)";
         db.execSQL(tb_donHang);
 
         // Bang giay
@@ -89,9 +90,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "('2', 'lll')," +
                 "('3', 'dfa')");
 
-        db.execSQL("INSERT INTO DonHang VALUES(1, 'khachhang1', '11/01/2023', 2000)," +
-                "(2, 'khachhang1', '11/02/2023', 2000)," +
-                "(3, 'khachhang1', '11/03/2023', 2000)");
+        db.execSQL("INSERT INTO DonHang VALUES(1, 'khachhang1', '11/01/2023', 2000, 'Đã nhận hàng')," +
+                "(2, 'khachhang1', '11/02/2023', 2000, 'Đã nhận hàng')," +
+                "(3, 'khachhang1', '11/03/2023', 2000, 'Đã nhận hàng')");
 
         db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', 30000, 1, 12)," +
                 "(2, 'Giay', 40000, 2,13)," +

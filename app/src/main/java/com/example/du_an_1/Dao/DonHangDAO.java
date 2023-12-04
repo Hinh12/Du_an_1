@@ -25,7 +25,7 @@ public class DonHangDAO {
         ArrayList<DonHang> list= new ArrayList<>();
         SQLiteDatabase database= dbHelper.getReadableDatabase();
         try{
-            Cursor cursor= database.rawQuery("SELECT DonHang.maDonHang, Admin.maAD, Admin.hoTen, DonHang.ngayDatHang, DonHang.tongTien" +
+            Cursor cursor= database.rawQuery("SELECT DonHang.maDonHang, Admin.maAD, Admin.hoTen, DonHang.ngayDatHang, DonHang.tongTien, DonHang.trangthai" +
                     " from DonHang, Admin where DonHang.maAD = Admin.maAD", null);
             if (cursor.getCount() != 0){
                 cursor.moveToFirst();
@@ -36,6 +36,7 @@ public class DonHangDAO {
                     donHang.setHoTen(cursor.getString(2));
                     donHang.setNgayDatHang(cursor.getString(3));
                     donHang.setTongTien(cursor.getInt(4));
+                    donHang.setTrangthai(cursor.getString(5));
                     list.add(donHang);
                 }while (cursor.moveToNext());
             }
@@ -49,7 +50,7 @@ public class DonHangDAO {
         ArrayList<DonHang> list = new ArrayList<>();
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         try {
-            String query="SELECT DonHang.maDonHang, Admin.maAD, Admin.hoTen, DonHang.ngayDatHang, DonHang.tongTien" +
+            String query="SELECT DonHang.maDonHang, Admin.maAD, Admin.hoTen, DonHang.ngayDatHang, DonHang.tongTien, DonHang.trangthai" +
                     " FROM DonHang JOIN Admin ON DonHang.maAD = Admin.maAD WHERE Admin.maAD = ?";
 
             Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(maAD)});
@@ -63,7 +64,7 @@ public class DonHangDAO {
                     donHang.setHoTen(cursor.getString(2));
                     donHang.setNgayDatHang(cursor.getString(3));
                     donHang.setTongTien(cursor.getInt(4));
-//                    donHang.setTrangthai(cursor.getString(5));
+                    donHang.setTrangthai(cursor.getString(5));
                     list.add(donHang);
                 } while (cursor.moveToNext());
             }
@@ -98,6 +99,7 @@ public class DonHangDAO {
         values.put("maAD", donHang.getMaAD());
         values.put("ngayDatHang", donHang.getNgayDatHang());
         values.put("tongTien", donHang.getTongTien());
+        values.put("trangthai", donHang.getTrangthai());
 
         long check = sqLiteDatabase.update("DonHang", values, "maDonHang = ?", new String[]{String.valueOf(donHang.getMaDonHang())});
         return check > 0;
@@ -108,6 +110,7 @@ public class DonHangDAO {
         values.put("maAD",donHang.getMaAD());
         values.put("ngayDatHang",donHang.getNgayDatHang());
         values.put("tongTien", donHang.getTongTien());
+        values.put("trangthai", donHang.getTrangthai());
 
         try {
             long check = db.insert("DonHang",null,values);

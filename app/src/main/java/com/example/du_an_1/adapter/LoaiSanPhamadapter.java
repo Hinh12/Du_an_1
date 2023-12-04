@@ -1,6 +1,5 @@
 package com.example.du_an_1.adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +27,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 
 
-public class LoaiSanPhamadapter  extends RecyclerView.Adapter<LoaiSanPhamadapter.ViewHolder> {
+public class LoaiSanPhamadapter extends RecyclerView.Adapter<LoaiSanPhamadapter.ViewHolder> {
 
     private Context context;
     private ArrayList<LoaiSanPham> list;

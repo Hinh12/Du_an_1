@@ -43,7 +43,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
     RecyclerView rcvGioHang;
     GioHangDAO gioHangDao;
     private DonHangDAO donHangDao;
-    private ArrayList<DonHang> listDonHang = new ArrayList<>();
+    private ArrayList<DonHang> listDonHang = new ArrayList<>(); 
     private SharedViewModel sharedViewModel;
     Button btnmuahang;
     TextView txttongtien;
@@ -116,7 +116,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.apply();
-                        DonHang donHang = new DonHang(maad, hoTen ,ngayHienTai, totalAmount);
+                        DonHang donHang = new DonHang(maad, hoTen ,ngayHienTai, totalAmount, "Chưa nhận hàng");
 
                         int orderId = donHangDao.insertDonHang(donHang);
                         if (orderId != 0){
