@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.du_an_1.Dao.DonHangChiTietDao;
 import com.example.du_an_1.R;
 import com.example.du_an_1.model.DonHangChiTiet;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,6 +48,8 @@ private DonHangChiTietDao dao;
         holder.txtSoLuong.setText("Số lượng: "+String.valueOf(list.get(position).getSoLuong()));
         holder.txttensanpham.setText("Tên sản phẩm: "+list.get(position).getTenGiay());
 
+        Picasso.get().load(list.get(position).getAnhsp()).into(holder.imgAnhspdonhangchitiet);
+
     }
 
     @Override
@@ -56,7 +60,7 @@ private DonHangChiTietDao dao;
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txttensanpham, txtMaSanPham, txtDonGia, txtMaDonHang, txtThanhTien,txtmaChiTietDon, txtSoLuong ;
 
-
+        ImageView imgAnhspdonhangchitiet;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txttensanpham = itemView.findViewById(R.id.txttensanpham);
@@ -66,6 +70,7 @@ private DonHangChiTietDao dao;
             txtThanhTien = itemView.findViewById(R.id.txtThanhTien);
             txtmaChiTietDon = itemView.findViewById(R.id.txtmaChiTietDon);
             txtSoLuong = itemView.findViewById(R.id.txtSoLuong);
+            imgAnhspdonhangchitiet = itemView.findViewById(R.id.imgAnhspdonhangchitiet);
 
 
         }

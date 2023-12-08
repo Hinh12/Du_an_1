@@ -95,7 +95,7 @@
                 android:id="@+id/btnSaveUserChange"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="Lưu"
                 android:textColor="@color/xam"
                 android:textStyle="bold"
                 android:textSize="17dp"

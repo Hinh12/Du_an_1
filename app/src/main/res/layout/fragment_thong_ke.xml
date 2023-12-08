@@ -159,9 +159,12 @@
                         android:src="@drawable/ic_tien" />
                 </FrameLayout>
             </LinearLayout>
-
-
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvThongKe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_thongkedonhang"
+                />
 
         </LinearLayout>
     </ScrollView>

@@ -11,6 +11,7 @@ public class GioHang {
     private int soLuong;
 
     private boolean isSelected;
+    private String anhSP;
 
     public boolean isSelected() {
         return isSelected;
@@ -34,6 +35,15 @@ public class GioHang {
         this.maGiay = maGiay;
         this.maAD = maAD;
         this.soLuongMua = soLuongMua;
+    }
+
+
+    public String getAnhSP() {
+        return anhSP;
+    }
+
+    public void setAnhSP(String anhSP) {
+        this.anhSP = anhSP;
     }
 
     public int getSoLuong() {

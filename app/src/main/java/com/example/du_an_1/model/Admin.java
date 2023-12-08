@@ -7,16 +7,36 @@ public class Admin {
     private String loaiTK;
 
     private String anh;
+    private String sdt;
+    private String diaChi;
 
     public Admin() {
     }
 
-    public Admin(String maAD, String hoTen, String matKhau, String loaiTK, String anh) {
+    public Admin(String maAD, String hoTen, String matKhau, String loaiTK, String anh, String sdt, String diaChi) {
         this.maAD = maAD;
         this.hoTen = hoTen;
         this.matKhau = matKhau;
         this.loaiTK = loaiTK;
         this.anh = anh;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
     public String getMaAD() {

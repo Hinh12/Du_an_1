@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 1;
+    private static final int DbVersion = 9;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -85,7 +85,7 @@ public class DbHelper extends SQLiteOpenHelper {
         //insert date
         db.execSQL("INSERT INTO Admin VALUES ('admin1','Nguyễn Văn Admin','admin', 'admin','https://www.shareicon.net/data/128x128/2016/08/05/806962_user_512x512.png','0967110342','Hà Nội')," +
                 "('admin12','Nguyễn Văn Admin','admin12', 'khachhang','https://reputationprotectiononline.com/wp-content/uploads/2022/04/78-786207_user-avatar-png-user-avatar-icon-png-transparent-287x300.png','028383','Hà Tây'), " +
-                "('khachhang1','Nguyen Văn A ','123456', 'admin','https://www.google.com/imgres?imgurl=https%3A%2F%2Fps.w.org%2Fuser-avatar-reloaded%2Fassets%2Ficon-256x256.png%3Frev%3D2540745&tbnid=4tCxPvBodOnWbM&vet=12ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Ffa.wordpress.org%2Fplugins%2Fuser-avatar-reloaded%2F&docid=7XY1G-DhNW4M4M&w=257&h=257&q=avt%20user&ved=2ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT','982738489','TP Hồ Chí Minh')");
+                "('khachhang1','Nguyen Văn A ','123456', 'khachhang','https://www.google.com/imgres?imgurl=https%3A%2F%2Fps.w.org%2Fuser-avatar-reloaded%2Fassets%2Ficon-256x256.png%3Frev%3D2540745&tbnid=4tCxPvBodOnWbM&vet=12ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Ffa.wordpress.org%2Fplugins%2Fuser-avatar-reloaded%2F&docid=7XY1G-DhNW4M4M&w=257&h=257&q=avt%20user&ved=2ahUKEwin0prGtPCCAxUvavUHHQnwDoIQMygAegQIARBT','982738489','TP Hồ Chí Minh')");
 
         db.execSQL("INSERT INTO LoaiGiay VALUES ('1', 'xxx')," +
                 "('2', 'lll')," +
@@ -95,10 +95,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(2, 'khachhang1', '11/02/2023', 2000, 'Đã nhận hàng')," +
                 "(3, 'khachhang1', '11/03/2023', 2000, 'Đã nhận hàng')");
 
-        db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', 30000, 1, 12,'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg')," +
-                "(2, 'Giay', 40000, 2,13,'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg')," +
-                "(3, 'Giay thoi trang', 54444, 3,12,'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg')," +
-                "(4, 'Giay the duc', 50000, 3, 10,'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg')");
+        db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', 30000, 1, 12,'https://cdn.vuahanghieu.com/unsafe/0x0/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/news/content/2022/08/sneaker-hoc-sinh-cap-3-1-jpg-1661834379-30082022113939.jpg')," +
+                "(2, 'Giay', 40000, 2,13,'https://cdn.vuahanghieu.com/unsafe/0x0/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/news/content/2022/08/sneaker-hoc-sinh-cap-3-jpg-1661834352-30082022113912.jpg')," +
+                "(3, 'Giay thoi trang', 54444, 3,12,'https://btsneaker.vn/wp-content/uploads/2021/09/diem-danh-7-shop-ban-giay-sneaker-tren-instagram-dep-va-re-5.jpg')," +
+                "(4, 'Giay the duc', 50000, 3, 10,'https://minhphusport.com.vn/wp-content/uploads/2019/10/giay-the-thao-nam-525-1.jpg')");
 
         db.execSQL("INSERT INTO HoaDon VALUES(1, 1, 'Giay bong da',  2, 1231413, '23')," +
                 "(2, 2, 'Giay',  1, 231221, '12')");
