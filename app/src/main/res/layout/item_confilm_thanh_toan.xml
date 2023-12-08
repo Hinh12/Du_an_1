@@ -9,10 +9,9 @@
     android:background="@drawable/khung_radio10">
 
     <ImageView
-        android:id="@+id/imgAnhSp"
+        android:id="@+id/imgAnhSpthanhtoan"
         android:layout_width="130dp"
         android:layout_height="150sp"
-        android:src="@drawable/giay"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 

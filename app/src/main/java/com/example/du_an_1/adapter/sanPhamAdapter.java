@@ -75,14 +75,12 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
 
 
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                dialogAddGiay(sp);
-                return true;
-            }
-        });
-
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               dialogUpdateGiay(sp);
+           }
+       });
         holder.delete_sp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,13 +135,13 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
             txtgiasp = itemView.findViewById(R.id.txtgia_san_pham);
             txtmaloaisp = itemView.findViewById(R.id.txtma_loai_san_pham2);
             txtsoluong = itemView.findViewById(R.id.txt_so_luong);
-            imgAnhsp = itemView.findViewById(R.id.imgAnhsp);
+            imgAnhsp = itemView.findViewById(R.id.imgAnhsp1);
             delete_sp = itemView.findViewById(R.id.can);
         }
     }
 
 
-    private void dialogAddGiay(SanPham sp) {
+    private void dialogUpdateGiay(SanPham sp) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         View view = inflater.inflate(R.layout.update_sanpham, null);
@@ -169,7 +167,14 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
         ed_SoLuong.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus){
+                    if (ed_anh.getText().toString().isEmpty()){
+                        in_anh.setError("Vui lòng nhập link ảnh");
+                    }else {
+                        in_anh.setError(null);
+                    }
 
+                }
             }
         });
         ed_SoLuong.addTextChangedListener(new TextWatcher() {
@@ -274,7 +279,7 @@ public class sanPhamAdapter extends RecyclerView.Adapter<sanPhamAdapter.ViewHole
                     HashMap<String, Object> hs = (HashMap<String, Object>) spnUpadateSP.getSelectedItem();
                     int maloaisp = (int) hs.get("maLoai");
 
-                    if (tensanpham.isEmpty() || giasanpham.isEmpty()) {
+                    if (tensanpham.isEmpty() || giasanpham.isEmpty() || soLuongSP.isEmpty() || anhsp.isEmpty()) {
                         if (tensanpham.equals("")) {
                             ed_TenSanPham.setError("Vui lòng không để trống tên sản phẩm");
                         } else {

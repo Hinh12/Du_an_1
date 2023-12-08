@@ -1,30 +1,22 @@
 package com.example.du_an_1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.health.ServiceHealthStats;
-import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.du_an_1.Frame.DoiMatKhauFragment;
 import com.example.du_an_1.Frame.HomeFragment;
@@ -129,13 +121,17 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences= getSharedPreferences("USER_FILE", MODE_PRIVATE);
         String loaiTK= sharedPreferences.getString("loaiTK", "");
-        if (!loaiTK.equals("admin")){
-            Menu menu= navigationView.getMenu();
-            menu.findItem(R.id.nav_quanLyNguoiDung).setVisible(false);
-            menu.findItem(R.id.nav_thongKe).setVisible(false);
-            menu.findItem(R.id.nav_quanLyLoaiSanPham).setVisible(false);
-            menu.findItem(R.id.nav_quanLyDonHang).setVisible(false);
-            menu.findItem(R.id.nav_quanLySanPham).setVisible(false);
+        if (loaiTK.equals("admin")) {
+            // Ẩn menu item lịch sử đơn hàng cho tài khoản admin
+            navigationView.getMenu().findItem(R.id.nav_lichsu).setVisible(false);
+        } else if (loaiTK.equals("khachhang")) {
+            // Ẩn các menu item khác ngoại trừ lịch sử đơn hàng cho tài khoản khách hàng
+            navigationView.getMenu().findItem(R.id.nav_quanLyNguoiDung).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_quanLySanPham).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_quanLyLoaiSanPham).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_quanLyDonHang).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_thongKe).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_doiMatKhau).setVisible(true); // Hiển thị đổi mật khẩu
         }
 
 

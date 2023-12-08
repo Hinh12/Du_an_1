@@ -61,12 +61,12 @@ public class QLsanPhamFragment extends Fragment {
         rcv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        view.findViewById(R.id.add_sp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialogAllSanPham();
-            }
-        });
+//        view.findViewById(R.id.add_sp).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialogAllSanPham();
+//            }
+//        });
 
         fltAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +96,18 @@ public class QLsanPhamFragment extends Fragment {
         Spinner spnSanPham = view.findViewById(R.id.spnSanPham1);
         Button addSP = view.findViewById(R.id.SP_add);
         Button cancel = view.findViewById(R.id.SP_Cancel);
+        in_Anh.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus){
+                    if (ed_Anh.getText().toString().trim().isEmpty()){
+                        in_Anh.setError("Vui lòng không để trống link ảnh");
+                    }else {
+                        in_Anh.setError(null);
+                    }
+                }
+            }
+        });
 
 
 
@@ -164,26 +176,26 @@ public class QLsanPhamFragment extends Fragment {
         });
 
 
-        ed_Anh.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() == 0){
-                    in_Anh.setError("Vui lòng không để trống link ảnh");
-                }else{
-                    in_Anh.setError(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+//        ed_Anh.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                if(charSequence.length() == 0){
+//                    in_Anh.setError("Vui lòng không để trống link ảnh");
+//                }else{
+//                    in_Anh.setError(null);
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
 
 
         ArrayList<HashMap<String, Object>> dsLoaiSanPhams = getDSLoaiGiay();
@@ -211,7 +223,7 @@ public class QLsanPhamFragment extends Fragment {
                 int maloai = (int) hs.get("maLoai");
 
 
-                if(tensach.isEmpty() || checktien.isEmpty()){
+                if(tensach.isEmpty() || checktien.isEmpty() || soLuongSP.isEmpty() || anhSP.isEmpty()){
                     if(tensach.equals("")){
                         in_TenSanPham.setError("Vui lòng không để trống tên sản phẩm");
                     }else{
@@ -229,12 +241,12 @@ public class QLsanPhamFragment extends Fragment {
                     }else{
                         in_SoLuong.setError(null);
                     }
-
-                    if(anhSP.equals("")){
-                        in_Anh.setError("Vui lòng không để trống link ảnh sản phẩm");
-                    }else{
+                    if (ed_Anh.getText().toString().trim().isEmpty()){
+                        in_Anh.setError("Vui lòng không để trống link ảnh");
+                    }else {
                         in_Anh.setError(null);
                     }
+
                 }else{
                     try {
                         int tien = Integer.parseInt(checktien);
@@ -245,7 +257,7 @@ public class QLsanPhamFragment extends Fragment {
                             Toast.makeText(getContext(), "Thêm thành công sản phẩm", Toast.LENGTH_SHORT).show();
                             list.clear();
                             list.addAll(dao.getDSSanPham());
-                            adapter = new sanPhamAdapter(getContext(),list,getDSLoaiGiay());
+
                             adapter.notifyDataSetChanged();
                             dialog.dismiss();
                         } else {

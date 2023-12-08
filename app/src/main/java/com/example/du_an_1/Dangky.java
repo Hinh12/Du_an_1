@@ -1,15 +1,12 @@
 package com.example.du_an_1;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.du_an_1.Dao.AdminDAO;
 import com.example.du_an_1.model.Admin;
@@ -19,7 +16,7 @@ public class Dangky extends AppCompatActivity {
 
     TextInputEditText txtTen, txthoTen;
     TextInputEditText txtMatkhau;
-    TextInputEditText txtNhaplai;
+    TextInputEditText txtNhaplai, txtSoDienThoai, txtDiaChi;
     Button btnDK;
     Button btnDN;
     Admin admin= new Admin();
@@ -28,6 +25,8 @@ public class Dangky extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dangky);
 
+        txtSoDienThoai = findViewById(R.id.edtSoDienThoaiDK);
+        txtDiaChi = findViewById(R.id.edtDiaChiDK);
         txtTen = findViewById(R.id.txtTen);
         txthoTen = findViewById(R.id.txthoTen);
         txtMatkhau = findViewById(R.id.txtMatkhau);
@@ -59,7 +58,8 @@ public class Dangky extends AppCompatActivity {
         admin.setMatKhau(txtMatkhau.getText().toString());
         admin.setLoaiTK("khachhang");
         admin.setAnh("https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg");
-
+        admin.setDiaChi(txtDiaChi.getText().toString());
+        admin.setSdt(txtSoDienThoai.getText().toString());
         AdminDAO dao= new AdminDAO(Dangky.this);
         boolean result= dao.checkDangKy(admin);
         if (result){
@@ -77,7 +77,10 @@ public class Dangky extends AppCompatActivity {
         String hoTen= txthoTen.getText().toString().trim();
         String matKhau= txtMatkhau.getText().toString().trim();
         String nhapLai= txtNhaplai.getText().toString().trim();
+
         boolean Vali= true;
+
+
         if(maAD.isEmpty()){
             txtTen.setError("Vui lòng nhập mã đăng nhập");
             Vali= false;
@@ -88,6 +91,20 @@ public class Dangky extends AppCompatActivity {
             txtTen.setError(null);
         }
 
+
+        if(txtDiaChi.getText().toString().trim().isEmpty()){
+            txtDiaChi.setError("Vui lòng nhập địa chỉ");
+            Vali= false;
+        }else {
+            txtDiaChi.setError(null);
+        }
+
+        if(txtSoDienThoai.getText().toString().trim().isEmpty()){
+            txtSoDienThoai.setError("Vui lòng nhập số điện thoại");
+            Vali= false;
+        }else {
+            txtSoDienThoai.setError(null);
+        }
         if(hoTen.isEmpty()){
             txthoTen.setError("Vui lòng nhập họ tên");
             Vali= false;

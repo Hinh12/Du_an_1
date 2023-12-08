@@ -26,7 +26,7 @@ public class GioHangDAO {
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         try {
 //
-            Cursor c = database.rawQuery("SELECT GioHang.maGioHang,GioHang.maAD, Giay.maGiay, GioHang.soLuong, Giay.tenGiay,Giay.giaTien, Giay.soLuong" +
+            Cursor c = database.rawQuery("SELECT GioHang.maGioHang,GioHang.maAD, Giay.maGiay, GioHang.soLuong, Giay.tenGiay,Giay.giaTien, Giay.soLuong, Giay.anh" +
                     " from GioHang,Giay Where GioHang.maGiay = Giay.maGiay", null);
             if (c.getCount() != 0) {
                 c.moveToFirst();
@@ -39,6 +39,7 @@ public class GioHangDAO {
                     gioHang.setTenGiay(c.getString(4));
                     gioHang.setGiaTien(c.getInt(5));
                     gioHang.setSoLuong(c.getInt(6));
+                    gioHang.setAnhSP(c.getString(7));
                     list.add(gioHang);
                 } while (c.moveToNext());
             }
@@ -53,7 +54,7 @@ public class GioHangDAO {
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         try {
             // Thêm điều kiện WHERE cho mã người dùng
-            String query =  "SELECT GioHang.maGioHang,GioHang.maAD, Giay.maGiay, GioHang.soLuong, Giay.tenGiay,Giay.giaTien, Giay.soLuong" +
+            String query =  "SELECT GioHang.maGioHang,GioHang.maAD, Giay.maGiay, GioHang.soLuong, Giay.tenGiay,Giay.giaTien, Giay.soLuong, Giay.anh" +
                     " from GioHang,Giay Where GioHang.maGiay = Giay.maGiay AND GioHang.maAD =? ";
 
             Cursor c = database.rawQuery(query, new String[]{String.valueOf(maAD)});
@@ -68,6 +69,7 @@ public class GioHangDAO {
                     gioHang.setTenGiay(c.getString(4));
                     gioHang.setGiaTien(c.getInt(5));
                     gioHang.setSoLuong(c.getInt(6));
+                    gioHang.setAnhSP(c.getString(7));
                     list.add(gioHang);
                 } while (c.moveToNext());
             }

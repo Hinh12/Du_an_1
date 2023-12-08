@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.du_an_1.Dao.DonHangChiTietDao;
 import com.example.du_an_1.R;
 import com.example.du_an_1.model.DonHangChiTiet;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,6 +49,8 @@ public class adapter_thanh_toan extends RecyclerView.Adapter<adapter_thanh_toan.
         holder.txtSoLuong.setText("Số lượng: " + String.valueOf(list.get(position).getSoLuong()));
         holder.txtDonGia.setText("Giá: " + String.valueOf(list.get(position).getDonGia()));
         holder.txtThanhTien.setText("Thành tiền: " + String.valueOf(list.get(position).getThanhTien()));
+
+        Picasso.get().load(list.get(position).getAnhsp()).into(holder.imgAnhSpthanhtoan);
     }
 
     @Override
@@ -58,6 +62,7 @@ public class adapter_thanh_toan extends RecyclerView.Adapter<adapter_thanh_toan.
 
 
         TextView txtMaSanPham,txtTenSanPham,txtMaDonHang,txtSoLuong,txtDonGia,txtThanhTien;
+        ImageView imgAnhSpthanhtoan;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +72,7 @@ public class adapter_thanh_toan extends RecyclerView.Adapter<adapter_thanh_toan.
             txtSoLuong = itemView.findViewById(R.id.txtSoLuong1);
             txtDonGia = itemView.findViewById(R.id.txtDonGia1);
             txtThanhTien = itemView.findViewById(R.id.txtThanhTien1);
+            imgAnhSpthanhtoan = itemView.findViewById(R.id.imgAnhSpthanhtoan);
         }
     }
 }

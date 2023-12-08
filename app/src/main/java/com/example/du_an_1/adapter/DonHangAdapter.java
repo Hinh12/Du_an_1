@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +25,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewholder> {
     private ArrayList<DonHang> list;
@@ -61,12 +59,12 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         DonHang dh = list.get(position);
-        holder.txtmadonhang.setText( String.valueOf(list.get(position).getMaDonHang()));
-        holder.txtmanguoidung.setText(list.get(position).getMaAD());
-        holder.txthotennguoidung.setText(list.get(position).getHoTen());
-        holder.txtngay.setText(list.get(position).getNgayDatHang());
-        holder.txttongtien.setText(String.valueOf(list.get(position).getTongTien()));
-        holder.txttrangthai.setText(list.get(position).getTrangthai());
+        holder.txtmadonhang.setText("Mã đơn hàng: " + String.valueOf(list.get(position).getMaDonHang()));
+        holder.txtmanguoidung.setText("Mã người dùng: " + list.get(position).getMaAD());
+        holder.txthotennguoidung.setText("Họ tên: " + list.get(position).getHoTen());
+        holder.txtngay.setText("Ngày đặt hàng: " + list.get(position).getNgayDatHang());
+        holder.txttongtien.setText("Tổng tiền: " + String.valueOf(list.get(position).getTongTien()));
+        holder.txttrangthai.setText("Trạng thái: " + list.get(position).getTrangthai());
 
         holder.btnchinhsua.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +87,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
                         switch(check){
                             case 1:
                                 list.clear();
-                                list = donHangDAO.getDSDonHang();
+                                list.addAll(donHangDAO.getDSDonHang());
                                 notifyDataSetChanged();
                                 Toast.makeText(context, "Xóa đơn hàng thành công", Toast.LENGTH_SHORT).show();
                                 break;
@@ -214,7 +212,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
         can.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ed_updonhang.setText("");
+                dialog.dismiss();
             }
         });
     }
