@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/giay" />
+            android:id="@+id/AnhSPgiohang" />
 
         <LinearLayout
             android:layout_width="match_parent"

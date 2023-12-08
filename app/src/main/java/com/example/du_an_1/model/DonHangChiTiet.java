@@ -8,6 +8,7 @@ public class DonHangChiTiet {
     private int soLuong;
     private int donGia;
     private int thanhTien;
+    private  String anhsp;
 
 
     public DonHangChiTiet() {
@@ -29,6 +30,15 @@ public class DonHangChiTiet {
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
+    }
+
+
+    public String getAnhsp() {
+        return anhsp;
+    }
+
+    public void setAnhsp(String anhsp) {
+        this.anhsp = anhsp;
     }
 
     public int getMaChiTietDonHang() {
