@@ -7,14 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.du_an_1.Dao.DonHangChiTietDao;
 import com.example.du_an_1.R;
 import com.example.du_an_1.model.DonHangChiTiet;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 
@@ -49,7 +49,6 @@ private DonHangChiTietDao dao;
         holder.txttensanpham.setText("Tên sản phẩm: "+list.get(position).getTenGiay());
 
         Picasso.get().load(list.get(position).getAnhsp()).into(holder.imgAnhspdonhangchitiet);
-
     }
 
     @Override

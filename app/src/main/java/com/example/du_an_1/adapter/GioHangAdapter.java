@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.du_an_1.Dao.GioHangDAO;
 import com.example.du_an_1.R;
 import com.example.du_an_1.model.GioHang;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -48,6 +50,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
          holder.txtgia.setText(String.valueOf(gioHang.getGiaTien()));
          holder.txtsoluong.setText(String.valueOf(gioHang.getSoLuongMua()));
          holder.txttensp.setText(String.valueOf(gioHang.getTenGiay()));
+        Picasso.get().load(list.get(position).getAnhSP()).into(holder.AnhSPgiohang);
 
 
          holder.btncong.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +139,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txttensp,txtsoluong,txtgia;
         ImageButton btntru,btncong;
+        ImageView AnhSPgiohang;
         CheckBox chkChonSanPham;
 
         public ViewHolder(@NonNull View itemView) {
@@ -146,6 +150,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
             btncong = itemView.findViewById(R.id.btncong);
             btntru = itemView.findViewById(R.id.btntru);
             chkChonSanPham = itemView.findViewById(R.id.chkChonSanPham);
+            AnhSPgiohang = itemView.findViewById(R.id.AnhSPgiohang);
 
         }
     }

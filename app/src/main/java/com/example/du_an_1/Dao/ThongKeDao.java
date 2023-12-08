@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.du_an_1.Database.DbHelper;
+import com.example.du_an_1.model.DonHang;
+
+import java.util.ArrayList;
 
 public class ThongKeDao {
     DbHelper dbs;
@@ -38,5 +41,35 @@ public class ThongKeDao {
             return 0;
         }
     }
+    public ArrayList<DonHang> getDanhSachDonHang(String ngayBatDau, String ngayKetThuc) {
+        ngayBatDau = ngayBatDau.replace("/", "");
+        ngayKetThuc = ngayKetThuc.replace("/", "");
+        SQLiteDatabase sqLiteDatabase = dbs.getReadableDatabase();
 
+        ArrayList<DonHang> danhSachDonHang = new ArrayList<>();
+
+        Cursor cursor = sqLiteDatabase.rawQuery(
+                "SELECT  DonHang.maDonHang, Admin.maAD, Admin.hoTen, DonHang.ngayDatHang, DonHang.tongTien, DonHang.trangthai FROM DonHang, Admin WHERE DonHang.maAD = Admin.maAD AND substr(ngayDatHang, 7) || substr(ngayDatHang, 4, 2) || substr(ngayDatHang, 1, 2) BETWEEN ? AND ? ORDER BY DonHang.tongTien DESC  ",
+                new String[]{ngayBatDau, ngayKetThuc}
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                DonHang donHang = new DonHang();
+                donHang.setMaDonHang(cursor.getInt(0));
+                donHang.setMaAD(cursor.getString(1));
+                donHang.setHoTen(cursor.getString(2));
+                donHang.setNgayDatHang(cursor.getString(3));
+                donHang.setTongTien(cursor.getInt(4));
+                donHang.setTrangthai(cursor.getString(5));
+
+                danhSachDonHang.add(donHang);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        sqLiteDatabase.close();
+
+        return danhSachDonHang;
+    }
 }

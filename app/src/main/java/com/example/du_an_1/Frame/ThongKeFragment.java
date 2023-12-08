@@ -2,9 +2,6 @@ package com.example.du_an_1.Frame;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +10,17 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.du_an_1.Dao.ThongKeDao;
 import com.example.du_an_1.R;
+import com.example.du_an_1.adapter.adapter_ThongKe;
+import com.example.du_an_1.model.DonHang;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -25,6 +29,9 @@ public class ThongKeFragment extends Fragment {
     Button btnthong_ke;
 
     TextView txtso_luong_don,txttong_tien;
+    private ArrayList<DonHang> list = new ArrayList<>();
+    private ThongKeDao thongKeDao;
+    private adapter_ThongKe adapterThongKe;
 
     public ThongKeFragment() {
         // Required empty public constructor
@@ -43,6 +50,12 @@ public class ThongKeFragment extends Fragment {
         ThongKeDao dao =new ThongKeDao(getContext());
         Calendar calendar = Calendar.getInstance();
         // Inflate the layout for this fragment
+        RecyclerView rcvThongKe = view.findViewById(R.id.rcvThongKe);
+        thongKeDao = new ThongKeDao(getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        rcvThongKe.setLayoutManager(manager);
+
+
         btnlich_bat_dau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,7 +136,9 @@ public class ThongKeFragment extends Fragment {
 
                 int tongdon = dao.tongDonHang(ngaybd, ngaykt);
                 txtso_luong_don.setText("Số lượng đơn hàng đã bán ra: "+tongdon);
-
+                list = thongKeDao.getDanhSachDonHang(ngaybd,ngaykt);
+                adapterThongKe = new adapter_ThongKe(list,getContext());
+                rcvThongKe.setAdapter(adapterThongKe);
                 Toast.makeText(getContext(), "Tong tien"+ tongtien, Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), "Tong don"+tongdon, Toast.LENGTH_SHORT).show();
             }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.du_an_1.Dao.LoaiSanPhamDAO;
 import com.example.du_an_1.Dao.sanPhamDAO;
 import com.example.du_an_1.R;
-import com.example.du_an_1.model.LoaiSanPham;
 import com.example.du_an_1.model.SanPham;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,11 +76,11 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {
         LoaiSanPhamDAO loaispdao = new LoaiSanPhamDAO(context);
-        LoaiSanPham loaisp = loaispdao.getLoaiSanPhamByID(list.get(position).getMaLoai());
         holder.txttensp.setText(list.get(position).getTenGiay());
         holder.txtgiasp.setText(String.valueOf(list.get(position).getGiaTien()));
         holder.txt_so_luong_san_pham.setText(String.valueOf(list.get(position).getSoLuong()));
         SanPham sp = list.get(position);
+        Picasso.get().load(list.get(position).getAnh()).into(holder.imgAnhsp2);
 
 
         if (list.get(position).getSoLuong() == 0) {
@@ -129,6 +130,7 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
         TextView txtmasp, txttensp, txtgiasp, txtmaloaisp, txtHetHang, txt_so_luong_san_pham;
         Button btn_themvagiohang;
         LinearLayout sanphamhome;
+        ImageView imgAnhsp2;
 
         public ViewHoler(@NonNull View itemView) {
             super(itemView);
@@ -139,6 +141,7 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
             sanphamhome = itemView.findViewById(R.id.sanphamhome);
             txt_so_luong_san_pham = itemView.findViewById(R.id.txt_so_luong_san_pham);
             txtHetHang = itemView.findViewById(R.id.txtHetHang);
+            imgAnhsp2 = itemView.findViewById(R.id.imgAnhsp2);
             btn_themvagiohang = itemView.findViewById(R.id.btn_themvaogiohang);
 
 

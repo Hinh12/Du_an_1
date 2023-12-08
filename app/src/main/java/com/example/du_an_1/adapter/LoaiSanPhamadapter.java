@@ -87,13 +87,12 @@ public class LoaiSanPhamadapter extends RecyclerView.Adapter<LoaiSanPhamadapter.
             }
         });
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                dialogUpdateLSP(lsp);
-                return true;
-            }
-        });
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               dialogUpdateLSP(lsp);
+           }
+       });
 
     }
 
@@ -154,7 +153,12 @@ public class LoaiSanPhamadapter extends RecyclerView.Adapter<LoaiSanPhamadapter.
 
             }
         });
-
+        ed_MaLSP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                in_MaLS.setError("Không được sửa trường này");
+            }
+        });
         UpdateLSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -185,7 +189,8 @@ public class LoaiSanPhamadapter extends RecyclerView.Adapter<LoaiSanPhamadapter.
         CancelLSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ed_TenLSP.setText("");
+
+                dialog.dismiss();
             }
         });
     }

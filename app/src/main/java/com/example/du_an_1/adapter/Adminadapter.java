@@ -63,10 +63,13 @@ public class Adminadapter extends RecyclerView.Adapter<Adminadapter.ViewHolder> 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         addao = new AdminDAO(context);
-                        int check = addao.delete(list.get(holder.getAdapterPosition()).getMaAD());
+                        int check = addao.delete(admin.getMaAD());
                         switch (check) {
                             case 1:
                                 //  loadData();
+                                list.clear();
+                                list.addAll(addao.getDSNguoiDung());
+                                notifyDataSetChanged();
                                 Toast.makeText(context, "Xóa thành công Người dùng", Toast.LENGTH_SHORT).show();
                                 break;
                             case 0:

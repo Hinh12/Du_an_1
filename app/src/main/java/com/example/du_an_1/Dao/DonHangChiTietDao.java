@@ -27,7 +27,7 @@ public class DonHangChiTietDao {
         ArrayList<DonHangChiTiet> listChiTiet = new ArrayList<>();
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         try {
-            String query = "SELECT ChiTietDonHang.maChiTietDonHang, ChiTietDonHang.maGiay, Giay.tenGiay, DonHang.maDonHang, ChiTietDonHang.soLuong, ChiTietDonHang.donGia, ChiTietDonHang.thanhTien\n" +
+            String query = "SELECT ChiTietDonHang.maChiTietDonHang, ChiTietDonHang.maGiay, Giay.tenGiay, DonHang.maDonHang, ChiTietDonHang.soLuong, ChiTietDonHang.donGia, ChiTietDonHang.thanhTien, Giay.anh\n" +
                     "FROM ChiTietDonHang\n" +
                     "INNER JOIN DonHang ON ChiTietDonHang.maDonHang = DonHang.maDonHang\n" +
                     "INNER JOIN Giay ON ChiTietDonHang.maGiay = Giay.maGiay\n" +
@@ -46,6 +46,7 @@ public class DonHangChiTietDao {
                     chiTietDonHang.setSoLuong(cursor.getInt(4));
                     chiTietDonHang.setDonGia(cursor.getInt(5));
                     chiTietDonHang.setThanhTien(cursor.getInt(6));
+                    chiTietDonHang.setAnhsp(cursor.getString(7));
                     listChiTiet.add(chiTietDonHang);
                 } while (cursor.moveToNext());
             }
