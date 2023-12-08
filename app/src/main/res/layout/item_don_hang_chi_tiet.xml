@@ -26,7 +26,7 @@
             android:layout_marginHorizontal="10sp"
             android:paddingBottom="10sp"
             android:paddingTop="10dp"
-            android:text="Tên san pham"
+            android:text="Tên sản phẩm"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
