@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "QLG";
-    private static final int DbVersion = 9;
+    private static final int DbVersion = 1;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME,null, DbVersion);
@@ -91,9 +91,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "('2', 'lll')," +
                 "('3', 'dfa')");
 
-        db.execSQL("INSERT INTO DonHang VALUES(1, 'khachhang1', '11/01/2023', 2000, 'Đã nhận hàng')," +
-                "(2, 'khachhang1', '11/02/2023', 2000, 'Đã nhận hàng')," +
-                "(3, 'khachhang1', '11/03/2023', 2000, 'Đã nhận hàng')");
+//        db.execSQL("INSERT INTO DonHang VALUES(1, 'khachhang1', '11/01/2023', 2000, 'Đã nhận hàng')," +
+//                "(2, 'khachhang1', '11/02/2023', 2000, 'Đã nhận hàng')," +
+//                "(3, 'khachhang1', '11/03/2023', 2000, 'Đã nhận hàng')");
 
         db.execSQL("INSERT INTO Giay VALUES (1, 'Giay bong da', 30000, 1, 12,'https://minhphusport.com.vn/wp-content/uploads/2019/10/giay-the-thao-nam-525-1.jpg')," +
                 "(2, 'Giay', 40000, 2,13,'https://cdn.vuahanghieu.com/unsafe/0x0/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/news/content/2022/08/sneaker-hoc-sinh-cap-3-1-jpg-1661834379-30082022113939.jpg')," +

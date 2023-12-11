@@ -2,14 +2,12 @@ package com.example.du_an_1.Frame;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -26,11 +25,9 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.du_an_1.ChiTietSanPham;
 import com.example.du_an_1.Dao.GioHangDAO;
 import com.example.du_an_1.Dao.sanPhamDAO;
 import com.example.du_an_1.R;
-import com.example.du_an_1.Viewmd.SharedViewModel;
 import com.example.du_an_1.adapter.GioHangAdapter;
 import com.example.du_an_1.adapter.adapter_slide;
 import com.example.du_an_1.adapter.sanPhamHomeAdapter;
@@ -52,7 +49,6 @@ public class HomeFragment extends Fragment {
     ArrayList<SanPham> tempListSanPham= new ArrayList<>();
     GioHangAdapter gioHangAdapter;
     GioHangDAO gioHangDAO;
-    private SharedViewModel sharedViewModel;
     ArrayList<GioHang> listGioHang = new ArrayList<>();
     EditText edSearch;
 
@@ -101,12 +97,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-
-
-
-
-
 
 
 //        sanphamhome = view.findViewById(R.id.sanphamhome);
@@ -160,7 +150,6 @@ public class HomeFragment extends Fragment {
         rcv.setAdapter(sanPhamHomeAdapter);
         sanPhamHomeAdapter.notifyDataSetChanged();
 
-        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         sanPhamHomeAdapter.setOnAddToCartClickListener(new sanPhamHomeAdapter.OnAddToCartClickListener() {
             @Override
             public void onAddToCartClick(SanPham sanPham) {
@@ -173,10 +162,17 @@ public class HomeFragment extends Fragment {
 
 
         sanPhamHomeAdapter.setOnItemClickListener(position -> {
-            SanPham selectedSanPham = list.get(position);
-            Intent intent = new Intent(getContext(), ChiTietSanPham.class);
-            intent.putExtra("sanPham", selectedSanPham);
-            startActivity(intent);
+            Bundle bundle = new Bundle();
+            bundle.putInt("maGiay", list.get(position).getMaGiay());
+            bundle.putString("tenLoai", list.get(position).getTenLoai());
+            SanPhamCTFragment sanPhamCTFragment = new SanPhamCTFragment();
+            sanPhamCTFragment.setArguments(bundle);
+
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frglayout, sanPhamCTFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
 
 
@@ -246,47 +242,6 @@ public class HomeFragment extends Fragment {
             }
         }
     }
-
-
-
-
-    private void addToCart(SanPham sanPham) {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
-        String maad = sharedPreferences.getString("USERNAME", "");
-        int maSanPham = sanPham.getMaGiay();
-        int slSanPham = getSoLuongSp(maSanPham);
-
-        if (!sharedViewModel.isProductInCart(sanPham.getMaGiay())) {
-            sharedViewModel.setMasp(sanPham.getMaGiay());
-            sharedViewModel.setAddToCartClicked(true);
-            sharedViewModel.addProductToCart(sanPham.getMaGiay());
-            sharedViewModel.setQuantityToAdd(1);
-            Log.i("tengiayuuuuu",sanPham.getTenGiay());
-            Log.i("ma nguoi dunggggggggg",maad);
-            gioHangDAO.insertGioHang(new GioHang(sanPham.getMaGiay(), maad, 1));
-            Snackbar.make(getView(),"Đã thêm vào giỏ Hàng",Snackbar.LENGTH_SHORT).show();
-        } else {
-            GioHang hang = gioHangDAO.getGioHangByMasp(sanPham.getMaGiay(),maad);
-            if (hang != null) {
-                hang.setSoLuongMua(hang.getSoLuongMua() + 1);
-                gioHangDAO.updateGioHang(hang);
-                Snackbar.make(getView(), "Đã cập nhật giỏ hàng thành công", Snackbar.LENGTH_SHORT).show();
-            } else {
-//                GioHang newCartItem = new GioHang(sanPham.getMaGiay(), maad, 1);
-//                gioHangDAO.insertGioHang(newCartItem);
-                Toast.makeText(getContext(), "Đã cập nhật giỏ hàng thành công", Toast.LENGTH_SHORT).show();
-
-            }
-//            gioHangAdapter.notifyDataSetChanged();
-        }
-//        ArrayList<GioHang> updatedCartList = gioHangDAO.getDSGioHang();
-//        gioHangAdapter.updateCartList(updatedCartList);
-//        gioHangAdapter.notifyDataSetChanged();
-//        Toast.makeText(getContext(), "Đã cập nhật giỏ hàng thành công", Toast.LENGTH_SHORT).show();
-    }
-
-
-
 
 
 

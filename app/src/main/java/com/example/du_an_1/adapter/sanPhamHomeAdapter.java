@@ -100,16 +100,6 @@ public class sanPhamHomeAdapter extends RecyclerView.Adapter<sanPhamHomeAdapter.
         }
 
 
-//        holder.btn_themvagiohang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mAddToCartClickListener != null){
-//                    mAddToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
-//                }
-//            }
-//        });
-
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -25,7 +25,6 @@ import com.example.du_an_1.Dao.DonHangDAO;
 import com.example.du_an_1.Dao.GioHangDAO;
 import com.example.du_an_1.Dao.sanPhamDAO;
 import com.example.du_an_1.R;
-import com.example.du_an_1.Viewmd.SharedViewModel;
 import com.example.du_an_1.adapter.GioHangAdapter;
 import com.example.du_an_1.model.DonHang;
 import com.example.du_an_1.model.DonHangChiTiet;
@@ -43,8 +42,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
     RecyclerView rcvGioHang;
     GioHangDAO gioHangDao;
     private DonHangDAO donHangDao;
-    private ArrayList<DonHang> listDonHang = new ArrayList<>(); 
-    private SharedViewModel sharedViewModel;
+    private ArrayList<DonHang> listDonHang = new ArrayList<>();
     Button btnmuahang;
     TextView txttongtien;
     sanPhamDAO SPDAO;
@@ -71,19 +69,6 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
         DonHangChiTietDao chiTietDao =new DonHangChiTietDao(getContext());
         donHangDao = new DonHangDAO(getContext());
 
-        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        sharedViewModel.getMasp().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                if (isAdded() && isVisible()) {
-                    if (sharedViewModel.getAddToCartClicked().getValue() != null && sharedViewModel.getAddToCartClicked().getValue()) {
-                        Boolean addToCartClicked = sharedViewModel.getAddToCartClicked().getValue();
-                        updateGioHangByMaSp(integer);
-                        sharedViewModel.setAddToCartClicked(true); // Đặt lại trạng thái
-                    }
-                }
-            }
-        });
 
         btnmuahang.setOnClickListener(new View.OnClickListener() {
             @Override
