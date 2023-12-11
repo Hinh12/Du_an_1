@@ -174,12 +174,7 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
-
-
-
         return view;
-
-
     }
 
     private int getSoLuongSp(int maSanPham) {
