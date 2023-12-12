@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class QLnguoiDungFragment extends Fragment {
 
     RecyclerView rcv;
-    FloatingActionButton fltAdd;
+//    FloatingActionButton fltAdd;
     AdminDAO dao;
     Adminadapter adapter;
     ArrayList<Admin> list= new ArrayList<>();
@@ -44,7 +44,7 @@ public class QLnguoiDungFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_q_lnguoi_dung, container, false);
         rcv= view.findViewById(R.id.rcvnguoidung);
-        fltAdd = view.findViewById(R.id.add_nguoidung);
+//        fltAdd = view.findViewById(R.id.add_nguoidung);
         dao = new AdminDAO(getContext());
         list= dao.getDSNguoiDung();
 
@@ -55,19 +55,14 @@ public class QLnguoiDungFragment extends Fragment {
         adapter.notifyDataSetChanged();
 
 
-        view.findViewById(R.id.add_nguoidung).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialogAllNguoiDung();
-            }
-        });
 
-        fltAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialogAllNguoiDung();
-            }
-        });
+
+//        fltAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialogAllNguoiDung();
+//            }
+//        });
 
 
         return view;
