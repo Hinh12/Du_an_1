@@ -60,6 +60,9 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
         rcvGioHang = view.findViewById(R.id.rcvGioHang);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcvGioHang.setLayoutManager(layoutManager);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String maad = sharedPreferences.getString("maAD", "");
+
         gioHangAdapter = new GioHangAdapter(list,getContext());
         rcvGioHang.setAdapter(gioHangAdapter);
         gioHangDao = new GioHangDAO(getContext());
@@ -69,6 +72,8 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
         DonHangChiTietDao chiTietDao =new DonHangChiTietDao(getContext());
         donHangDao = new DonHangDAO(getContext());
 
+        list = gioHangDao.getDanhSachGioHangByMaNguoiDung(maad);
+        displayCart(list);
 
         btnmuahang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +94,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                 }
 
 //                int totalAmount = Integer.parseInt(txttongtien.getText().toString());
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
-                String maad = sharedPreferences.getString("maAD", "");
+
 
                 LocalDate currentDate = LocalDate.now();
 
@@ -133,7 +137,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
                             for (GioHang gioHang : list) {
                                 int newQuantity = gioHang.getSoLuong() - gioHang.getSoLuongMua();
                                 if (newQuantity < 0) {
-                                    Toast.makeText(getContext(), "Sản phẩm " + gioHang.getTenGiay() + "không đủ số lượng trong kho", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Sản phẩm " + gioHang.getTenGiay() + " không đủ số lượng trong kho", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 SPDAO.updateSlSanPham(gioHang.getMaGiay(), newQuantity);
@@ -170,8 +174,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
         });
 
 
-        list = gioHangDao.getDSGioHang();
-        displayCart(list);
+
 
         return view;
     }

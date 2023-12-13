@@ -44,20 +44,23 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout dralayout = findViewById(R.id.dralayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.menunav);
+
         navController = findViewById(R.id.bottomNavigationView);
         setUpNavigation();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.list_24);
         if(savedInstanceState == null ){
             replay(new HomeFragment() );
-            getSupportActionBar().setTitle("trang chủ");
+            getSupportActionBar().setTitle("Trang Chủ");
         }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
                 dralayout, toolbar, R.string.open, R.string.close);
         dralayout.addDrawerListener(toggle);
-        toggle.setDrawerIndicatorEnabled(true);
-        toggle.syncState();
+//        toggle.setDrawerIndicatorEnabled(true);
+//        toggle.setHomeAsUpIndicator(R.drawable.list_24);
+//        toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("Đăng Xuất");
-                    builder.setMessage("Bạn chắc chăn muốn đăng xuất chứ!");
+                    builder.setMessage("Bạn chắc chăn muốn đăng xuất không!");
                     builder.setPositiveButton("Đăng xuất", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

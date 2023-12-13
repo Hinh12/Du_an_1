@@ -159,8 +159,6 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
         sanPhamHomeAdapter.setOnItemClickListener(position -> {
             Bundle bundle = new Bundle();
             bundle.putInt("maGiay", list.get(position).getMaGiay());
@@ -174,6 +172,7 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
+
         return view;
     }
 
@@ -208,7 +207,7 @@ public class HomeFragment extends Fragment {
 
     private void themVaoGio(SanPham sanPham) {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
-        String maad = sharedPreferences.getString("USERNAME", "");
+        String maad = sharedPreferences.getString("maAD", "");
         int maSanPham = sanPham.getMaGiay();
         int slSanPham = getSoLuongSp(maSanPham);
         listGioHang = gioHangDAO.getDanhSachGioHangByMaNguoiDung(maad);

@@ -128,7 +128,7 @@ public class SanPhamCTFragment extends Fragment {
 
     private void themVaoGio(SanPham sanPham) {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
-        String maad = sharedPreferences.getString("USERNAME", "");
+        String maad = sharedPreferences.getString("maAD", "");
         int maSanPham = sanPham.getMaGiay();
         int slSanPham = getSoLuongSp(maSanPham);
         listGioHang = gioHangDao.getDanhSachGioHangByMaNguoiDung(maad);

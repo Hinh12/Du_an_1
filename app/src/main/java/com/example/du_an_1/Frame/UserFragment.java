@@ -108,33 +108,45 @@ public class UserFragment extends Fragment {
                         String anh = ed_AnhNguoiDung.getText().toString();
                         String diaChi = ed_diaChi.getText().toString();
                         String sdt = ed_sdt.getText().toString();
-                        if ( hoten.isEmpty() || anh.isEmpty() || diaChi.isEmpty() || sdt.isEmpty()) {
+//                        if ( hoten.isEmpty() || anh.isEmpty() || diaChi.isEmpty() || sdt.isEmpty()) {
+//
+//
+//
+//                        }
 
-
-                            if (hoten.equals("")) {
-                                in_HoTen.setError("Vui lòng không để trống Họ Tên");
-                            } else {
-                                in_HoTen.setError(null);
-                            }
-
-
-                            if (ed_AnhNguoiDung.getText().toString().trim().isEmpty()) {
-                                in_AnhNguoiDung.setError("Vui lòng nhập link ảnh");
-                            } else {
-                                in_AnhNguoiDung.setError(null);
-                            }
-
-                            if (diaChi.equals("")) {
-                                in_diaChi.setError("Vui lòng không để trống địa chỉ");
-                            } else {
-                                in_diaChi.setError(null);
-                            }
-                            if (sdt.equals("")) {
-                                in_sdt.setError("Vui lòng không để trống số điện thoại");
-                            } else {
-                                in_sdt.setError(null);
-                            }
+                        if (hoten.equals("")) {
+                            in_HoTen.setError("Vui lòng không để trống Họ Tên");
+                            return;
                         } else {
+                            in_HoTen.setError(null);
+                        }
+
+
+                        if (ed_AnhNguoiDung.getText().toString().trim().isEmpty()) {
+                            in_AnhNguoiDung.setError("Vui lòng nhập link ảnh");
+                            return;
+                        } else {
+                            in_AnhNguoiDung.setError(null);
+                        }
+
+                        if (diaChi.equals("")) {
+                            in_diaChi.setError("Vui lòng không để trống địa chỉ");
+                            return;
+                        } else {
+                            in_diaChi.setError(null);
+                        }
+
+
+                        if (sdt.equals("")) {
+                            in_sdt.setError("Vui lòng không để trống số điện thoại");
+                            return;
+                        } else if(!isValidSDT(sdt)){
+                            in_sdt.setError("Số điện thoại không đúng định dạng!");
+                            return;
+                        }else {
+                            in_sdt.setError(null);
+                        }
+
                             admin.setHoTen(hoten);
                             admin.setAnh(anh);
                             admin.setSdt(sdt);
@@ -170,13 +182,24 @@ public class UserFragment extends Fragment {
                                 Toast.makeText(getContext(), "Chỉnh sửa thất bại", Toast.LENGTH_SHORT).show();
                             }
 
-                        }
+
+
                     }
                 });
+
+
+
             }
         });
+
+
 
         return view;
     }
 
+
+    private boolean isValidSDT(String phoneNumber) {
+        String regex = "0\\d{9}";
+        return phoneNumber.matches(regex);
+    }
 }

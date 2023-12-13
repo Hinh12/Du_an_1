@@ -19,9 +19,9 @@ import com.example.du_an_1.model.DonHangChiTiet;
 import java.util.ArrayList;
 
 public class adapter_don_hang_chi_tiet extends RecyclerView.Adapter<adapter_don_hang_chi_tiet.ViewHolder> {
-private ArrayList<DonHangChiTiet> list;
-private Context context;
-private DonHangChiTietDao dao;
+    private ArrayList<DonHangChiTiet> list;
+    private Context context;
+    private DonHangChiTietDao dao;
 
     public adapter_don_hang_chi_tiet(ArrayList<DonHangChiTiet> list, Context context) {
         this.list = list;

@@ -102,6 +102,9 @@ public class Dangky extends AppCompatActivity {
         if(txtSoDienThoai.getText().toString().trim().isEmpty()){
             txtSoDienThoai.setError("Vui lòng nhập số điện thoại");
             Vali= false;
+        }else if(!isValidSDT(txtSoDienThoai.getText().toString().trim())){
+            txtSoDienThoai.setError("Số điện thoại không hợp lệ");
+            Vali=false;
         }else {
             txtSoDienThoai.setError(null);
         }
@@ -127,6 +130,11 @@ public class Dangky extends AppCompatActivity {
             Vali= false;
         }
         return Vali;
+    }
+
+    private boolean isValidSDT(String phoneNumber) {
+        String regex = "0\\d{9}";
+        return phoneNumber.matches(regex);
     }
 
 }
