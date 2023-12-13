@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.du_an_1.Dao.DonHangDAO;
 import com.example.du_an_1.R;
 import com.example.du_an_1.adapter.Adapter_lich_su_don_hang;
+import com.example.du_an_1.adapter.DonHangAdapter;
 import com.example.du_an_1.model.DonHang;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class LichSuDonHangFragment extends Fragment {
     private ArrayList<DonHang> list = new ArrayList<>();
     private DonHangDAO dao;
 
-    private Adapter_lich_su_don_hang adapterDonHang;
+    private DonHangAdapter adapterDonHang;
     RecyclerView rcv;
 
 
@@ -48,9 +49,9 @@ public class LichSuDonHangFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         rcv.setLayoutManager(layoutManager);
         list = dao.getDonHangByMaTaiKhoan(maad);
-        adapterDonHang = new Adapter_lich_su_don_hang(list, getContext());
+        adapterDonHang = new DonHangAdapter(list, getContext());
         rcv.setAdapter(adapterDonHang);
-        adapterDonHang.setOnItemClick(new Adapter_lich_su_don_hang.OnItemClick() {
+        adapterDonHang.setOnItemClick(new DonHangAdapter.OnItemClick() {
             @Override
             public void onItemClick(int position) {
                 DonHang donHang = list.get(position);

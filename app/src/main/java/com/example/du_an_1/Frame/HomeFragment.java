@@ -101,12 +101,12 @@ public class HomeFragment extends Fragment {
 
 //        sanphamhome = view.findViewById(R.id.sanphamhome);
         slidelist = new ArrayList<>(); // Khởi tạo slidelist trước khi sử dụng
-        slidelist.add(new Slideiten(R.drawable.img1));
-        slidelist.add(new Slideiten(R.drawable.img2));
-        slidelist.add(new Slideiten(R.drawable.img3));
-        slidelist.add(new Slideiten(R.drawable.img5));
-        slidelist.add(new Slideiten(R.drawable.img6));
-        slidelist.add(new Slideiten(R.drawable.img7));
+        slidelist.add(new Slideiten(R.drawable.banner6));
+        slidelist.add(new Slideiten(R.drawable.banner3));
+        slidelist.add(new Slideiten(R.drawable.banner2));
+        slidelist.add(new Slideiten(R.drawable.banner4));
+        slidelist.add(new Slideiten(R.drawable.banner5));
+        slidelist.add(new Slideiten(R.drawable.banner1));
         viewpage.setAdapter(new adapter_slide(slidelist, viewpage));
 //        chamduoi.setViewPager(viewpage);
         //cài đặt thuộc tính viewpager 2
