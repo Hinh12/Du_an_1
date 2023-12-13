@@ -27,6 +27,7 @@ public class LichSuDonHangFragment extends Fragment {
     private DonHangDAO dao;
 
     private DonHangAdapter adapterDonHang;
+
     RecyclerView rcv;
 
 
@@ -50,6 +51,7 @@ public class LichSuDonHangFragment extends Fragment {
         rcv.setLayoutManager(layoutManager);
         list = dao.getDonHangByMaTaiKhoan(maad);
         adapterDonHang = new DonHangAdapter(list, getContext());
+
         rcv.setAdapter(adapterDonHang);
         adapterDonHang.setOnItemClick(new DonHangAdapter.OnItemClick() {
             @Override
