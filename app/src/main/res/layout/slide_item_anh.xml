@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageslide"
-        android:layout_width="match_parent"
-        android:layout_height="280sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:circularflow_defaultRadius="20sp"
         />
 </LinearLayout>
