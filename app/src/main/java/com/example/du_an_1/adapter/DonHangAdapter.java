@@ -69,7 +69,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
         holder.btnchinhsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogUpdateLSP(dh);
+                dialogUpdateTT(dh);
             }
         });
 
@@ -144,7 +144,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
             btnxoa= itemView.findViewById(R.id.btnxoa);
         }
     }
-    private void dialogUpdateLSP(DonHang dh){
+    private void dialogUpdateTT(DonHang dh){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         View view = inflater.inflate(R.layout.update_trangthaidh,null);
@@ -159,24 +159,22 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
 
         ed_updonhang.setText(dh.getTrangthai());
 
-        ed_updonhang.addTextChangedListener(new TextWatcher() {
+        ed_updonhang.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder builder1 = new android.app.AlertDialog.Builder(context);
+                builder1.setTitle("Lựa chọn trạng thái");
+                String[] loai = {"Chờ phê duyệt","Đã phê duyệt","Đang giao hàng","Đã nhận hàng"};
 
-            }
+                builder1.setItems(loai, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ed_updonhang.setText(loai[which]);
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() == 0){
-                    in_updonhang.setError("Vui lòng nhập trạng thái");
-                }else{
-                    in_updonhang.setError(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
+                    }
+                });
+                android.app.AlertDialog dialog1 = builder1.create();//tạo hộp thoại
+                dialog1.show();
             }
         });
 
@@ -185,11 +183,11 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.Viewhold
             public void onClick(View view) {
                 dh.setTrangthai(ed_updonhang.getText().toString());
 
-                String TenLSP = ed_updonhang.getText().toString();
+                String TrangThai = ed_updonhang.getText().toString();
 
-                if(TenLSP.isEmpty()){
-                    if(TenLSP.equals("")){
-                        in_updonhang.setError("Vui Lòng Nhập Tên Loại Sản Phẩm");
+                if(TrangThai.isEmpty()){
+                    if(TrangThai.equals("")){
+                        in_updonhang.setError("Vui Lòng Nhập Trạng Thái Đơn Hàng");
                     }else{
                         in_updonhang.setError(null);
                     }

@@ -105,8 +105,8 @@ public class HomeFragment extends Fragment {
         slidelist.add(new Slideiten(R.drawable.banner5));
         slidelist.add(new Slideiten(R.drawable.banner2));
         slidelist.add(new Slideiten(R.drawable.banner4));
-        slidelist.add(new Slideiten(R.drawable.banner3));
-        slidelist.add(new Slideiten(R.drawable.banner1));
+//        slidelist.add(new Slideiten(R.drawable.banner3));
+//        slidelist.add(new Slideiten(R.drawable.banner1));
         viewpage.setAdapter(new adapter_slide(slidelist, viewpage));
 //        chamduoi.setViewPager(viewpage);
         //cài đặt thuộc tính viewpager 2

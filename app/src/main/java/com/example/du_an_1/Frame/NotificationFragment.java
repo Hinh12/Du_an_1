@@ -107,7 +107,7 @@ public class NotificationFragment extends Fragment implements GioHangAdapter.Tot
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.apply();
-                        DonHang donHang = new DonHang(maad, hoTen ,ngayHienTai, totalAmount, "Chưa nhận hàng");
+                        DonHang donHang = new DonHang(maad, hoTen ,ngayHienTai, totalAmount, "Chờ phê duyệt");
 
                         int orderId = donHangDao.insertDonHang(donHang);
                         if (orderId != 0){
