@@ -99,7 +99,7 @@
                 android:textColor="@color/xam"
                 android:textStyle="bold"
                 android:textSize="17dp"
-                android:backgroundTint="#FF5722"
+                android:backgroundTint="@color/green"
                 android:layout_marginHorizontal="20dp"/>
         </LinearLayout>
     </ScrollView>

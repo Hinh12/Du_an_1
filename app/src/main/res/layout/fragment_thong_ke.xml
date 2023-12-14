@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
+                android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.842"
@@ -60,7 +61,7 @@
                         android:id="@+id/btnlich_bat_dau"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_lich"
+                        android:drawableEnd="@drawable/today"
                         android:focusable="false"
                         android:inputType="none"
                         android:textColor="@color/black"
@@ -86,45 +87,25 @@
                         android:id="@+id/btnlich_ket_thuc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_lich"
+                        android:drawableEnd="@drawable/today"
                         android:focusable="false"
                         android:inputType="none"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
+
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnthong_ke"
-                    android:layout_width="120sp"
-                    android:layout_height="50sp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="5sp"
-                    android:text="Thống kê"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
-                android:background="@color/white"
-                android:orientation="vertical">
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30sp"
-                    android:layout_marginTop="20sp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/txtso_luong_don"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50sp"
+                        android:layout_marginLeft="40sp"
                         android:layout_marginTop="5sp"
                         android:text="Số lượng hàng đơn hàng:"
                         android:textColor="@color/black"
@@ -133,9 +114,9 @@
                     <ImageButton
                         android:layout_width="40sp"
                         android:layout_height="40sp"
-                        android:src="@drawable/lich" />
+                        android:background="#FEFEFE"
+                        android:src="@drawable/number" />
                 </FrameLayout>
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,7 +128,7 @@
                         android:id="@+id/txttong_tien"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50sp"
+                        android:layout_marginLeft="40sp"
                         android:layout_marginTop="5sp"
                         android:text="Tổng tiền hàng bán ra:"
                         android:textColor="@color/black"
@@ -156,8 +137,33 @@
                     <ImageButton
                         android:layout_width="40sp"
                         android:layout_height="40sp"
-                        android:src="@drawable/ic_tien" />
+                        android:background="#FEFEFE"
+                        android:src="@drawable/baseline_attach_money_24" />
                 </FrameLayout>
+
+                <Button
+                    android:id="@+id/btnthong_ke"
+                    android:layout_width="120sp"
+                    android:layout_height="50sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5sp"
+                    android:text="Thống kê"
+                    android:background="@drawable/khung_item"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+
+
+
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvThongKe"
